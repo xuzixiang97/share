@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>后台登录-L-admin2.0</title>
@@ -9,12 +9,12 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="css/font.css">
-	<link rel="stylesheet" href="css/xadmin.css">
+    <link rel="stylesheet" th:href="@{/admin/css/font.css}">
+	<link rel="stylesheet" th:href="@{/admin/css/xadmin.css}">
 	
-    <script src="js/jquery.min.js"></script>
-    <script src="lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="js/xadmin.js"></script>
+    <script th:src="@{/admin/js/jquery.min.js}"></script>
+    <script th:src="@{/admin/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/admin/js/xadmin.js}"></script>
 
 </head>
 <body>
@@ -38,9 +38,9 @@
           <li class="layui-nav-item">
             <a href="javascript:;">admin</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-              <dd><a onClick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
-              <dd><a onClick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
-              <dd><a href="login.html">退出</a></dd>
+              <dd><a onClick="x_admin_show('个人信息','#')">个人信息</a></dd>
+              <dd><a onClick="x_admin_show('切换帐号','#')">切换帐号</a></dd>
+              <dd><a th:href="@{/admin/login/page}">退出</a></dd>
             </dl>
           </li>
           <li class="layui-nav-item to-index"><a href="#">前台首页</a></li>
@@ -204,7 +204,7 @@
                     
                 </ul>
             </li>             
-<li>
+            <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe6ae;</i>
                     <cite>系统统计</cite>
@@ -260,7 +260,8 @@
                         </a>
                     </li>
                 </ul>
-            </li>            </ul>
+            </li>
+        </ul>
       </div>
     </div>
     <!-- <div class="x-slide_left"></div> -->
@@ -273,7 +274,7 @@
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src='html/welcome.html' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe th:src='@{/admin/welcome}' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
           </div>
         </div>

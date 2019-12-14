@@ -87,7 +87,7 @@ h2 {
     text-transform: uppercase;
 }
 
-input[type="text"], input[type="password"], input[type="email"]{
+input[type="text"], input[type="password"], input[type="username"]{
 	width: 84%;
 	padding: 15px 10px 15px;
 	font-size: 14px;
@@ -102,7 +102,7 @@ input[type="text"]{
 	background: url("../images/user.png") no-repeat 382px 11px;
 	background-size: 25px;
 }
-input[type="email"] {
+input[type="username"] {
 	background-size: 25px;
 }
 
@@ -270,7 +270,7 @@ input[type="checkbox"] {
     margin-bottom: 40px;
     letter-spacing: 4px;
 }
-.form-sub-w3ls input[type="text"],.form-sub-w3ls input[type="password"],.form-sub-w3ls input[type="email"]{
+.form-sub-w3ls input[type="text"],.form-sub-w3ls input[type="password"],.form-sub-w3ls input[type="username"]{
 	border:2px solid #fff;
 }
 .submit-w3l  input[type="submit"] {
@@ -376,7 +376,7 @@ input[type="checkbox"] {
 	.w3layoutscontaineragileits {
 		width: 70%;
 	}
-	.w3layoutscontaineragileits input[type="text"],.w3layoutscontaineragileits input[type="password"],.w3layoutscontaineragileits input[type="email"] {
+	.w3layoutscontaineragileits input[type="text"],.w3layoutscontaineragileits input[type="password"],.w3layoutscontaineragileits input[type="username"] {
 		width: 87%;
 	}
 	.w3footeragile p {
@@ -404,7 +404,7 @@ input[type="checkbox"] {
 	.w3layoutscontaineragileits {
 		width: 78%;
 	}
-	.w3layoutscontaineragileits input[type="text"],.w3layoutscontaineragileits input[type="password"],.w3layoutscontaineragileits input[type="email"] {
+	.w3layoutscontaineragileits input[type="text"],.w3layoutscontaineragileits input[type="password"],.w3layoutscontaineragileits input[type="username"] {
 		width: 87%;
 	}
 	.w3footeragile p {
@@ -420,7 +420,7 @@ input[type="checkbox"] {
 	h2 {
 		font-size: 30px;
 	}
-	.w3layoutscontaineragileits input[type="text"],.w3layoutscontaineragileits input[type="password"],.w3layoutscontaineragileits input[type="email"] {
+	.w3layoutscontaineragileits input[type="text"],.w3layoutscontaineragileits input[type="password"],.w3layoutscontaineragileits input[type="username"] {
 		width: 92%;
 	}
 	ul.tick {
@@ -465,11 +465,11 @@ input[type="checkbox"] {
 	.aitssendbuttonw3ls p {
 		float: left;
 	}
-	.w3layoutscontaineragileits input[type="text"],.w3layoutscontaineragileits input[type="password"],.w3layoutscontaineragileits input[type="email"] {
+	.w3layoutscontaineragileits input[type="text"],.w3layoutscontaineragileits input[type="password"],.w3layoutscontaineragileits input[type="username"] {
 		width: 94%;
 		padding: 13px 8px 13px;
 	}
-	input[type="email"] {
+	input[type="username"] {
 		background: url(../images/e-mail.png) no-repeat 300px 11px;
 		background-size: 23px;
 	}
@@ -500,7 +500,7 @@ input[type="checkbox"] {
 		font-size: 30px;
 		letter-spacing: 3px;
 	}
-	input[type="email"] {
+	input[type="username"] {
 		background: url(../images/e-mail.png) no-repeat 255px 11px;
 		background-size: 23px;
 	}
@@ -546,7 +546,7 @@ input[type="checkbox"] {
 	.w3layoutscontaineragileits {
 		width: 78%;
 	}
-	input[type="text"], input[type="password"], input[type="email"] {
+	input[type="text"], input[type="password"], input[type="username"] {
 		font-size: 13px;
 	}
 	.contact-form1 {
@@ -581,7 +581,7 @@ input[type="checkbox"] {
 	.w3layoutscontaineragileits {
 		padding: 20px 15px;
 	}
-	input[type="email"] {
+	input[type="username"] {
 		background: url(../images/e-mail.png) no-repeat 230px 11px;
 		background-size: 23px;
 	}
