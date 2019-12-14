@@ -1,17 +1,28 @@
 package com.xuzi.share.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
 
 @Controller
 public class HelloController {
 
     @RequestMapping("/hello")
-    @ResponseBody
-    public String getHello() {
-        return "hello";
+    public String getHello(Model model) {
+        model.addAttribute("hello", "aaaaaaaaaaaa");
+        return "/admin/xuzi";
+    }
+
+    @RequestMapping("/login")
+    public String getLogin1(Model model) {
+        model.addAttribute("hello", "aaaaaaaaaaaa");
+        return "admin/login";
+    }
+
+    @RequestMapping("/logina")
+    public String getLogin3(Model model) {
+        model.addAttribute("hello", "aaaaaaaaaaaa");
+        return "admin/login2.html";
     }
 }
