@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <meta name="360-site-verification" content="fe248e685636c6afe831c23af1352579">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title></title>
+    <link rel="icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" th:href="@{/designer/css/venders.min.css?v106}">
+    <script th:src="@{/designer/js/venders.min.js?v106}"></script>
+    <script>
+        var langroot = '';
+        var langcode = 'zh-cn';
+    </script>
+    <link rel="stylesheet" type="text/css" th:href="@{/designer/css/common.min.css?v117}">
+    <script th:src="@{/designer/js/common.min.js?v117}"></script>
+    <script th:src="@{/designer/js/cube.js?v100}"></script>
+
+    <style type="text/css">
+        .studioform h3 {
+            color: #000;
+            font-size: 18px;
+            padding: 15px;
+            background-color: #eff8ff;
+            border-top: 1px solid #e8e9eb;
+            border-bottom: 1px solid #e8e9eb;
+        }
+
+        .studioform .labeltitle {
+            color: #000;
+            font-size: 15px;
+        }
+
+        .studioform .labeltitle small {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .studioform span.red {
+            color: #a94442;
+        }
+    </style>
+
+</head>
+<body class="">
+
+<div class="container consolecon">
+
+        <form action="/console/studio/" method="post" class="form validateform studioform"
+              enctype="multipart/form-data">
+
+            <div class="row mt10">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>设计师信息审核
+                        <small>（带<span
+                                class="red">＊</span>号为必填项 填写更多信息可增加审核通过机率）
+                        </small>
+                    </h3>
+                </div>
+            </div>
+
+            <div class="row mt10">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="labeltitle">证件号码 <span class="red">*</span></label>
+                        <input type="text" class="form-control required"
+                               data-msg="请填写该项内容." name="certificate" maxlength="30"
+                               value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="labeltitle">
+                            真实姓名 <span class="red">*</span>
+                            <small class="text-danger">(不可修改)</small>
+                        </label>
+                        <input type="text" class="form-control required"
+                               data-msg="请填写该项内容." name="realname"
+                               value="" maxlength="50"
+                        >
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group" style="position: relative;">
+                                <label class="labeltitle">手机号码 <span class="red">*</span></label>
+                                <input type="text" class="form-control form-control-long required"
+                                       data-msg="请填写该项内容." name="mobile" maxlength="20"
+                                       value="18767127456" placeholder="手机号码">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="labeltitle">邮箱 <span class="red">*</span></label>
+                                <input type="text" class="form-control required" placeholder="邮箱"
+                                       data-msg="请填写该项内容." name="email" maxlength="50"
+                                       value="1090765806@qq.com">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="labeltitle">擅长领域 <span class="red">*</span></label>
+                        <select name="filterid" class="form-control required"
+                                data-msg="请选择列表中的一项.">
+                            <option value="">-- 请选择 --</option>
+
+                            <option value="3">女装 花型</option>
+
+                            <option value="49">男装 花型</option>
+
+                            <option value="50">童装 花型</option>
+
+                            <option value="46">泳装 花型</option>
+
+                            <option value="2">床品 花型</option>
+
+                            <option value="44">窗帘 花型</option>
+
+                            <option value="47">沙发布 花型</option>
+
+                            <option value="51">墙纸 花型</option>
+
+                            <option value="1">长巾 花型</option>
+
+                            <option value="97">方巾 花型</option>
+
+                            <option value="48">箱包 花型</option>
+
+                            <option value="4">其他 花型</option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group personal">
+                        <label class="labeltitle">
+                            示例作品 (PSD格式) <span class="red">*</span>
+                            <small>(PSD文件需要分层明确精细，尽量保留作图痕迹。)</small>
+
+                        </label>
+
+                        <input type="file"
+                               class="form-control required"
+                               name="demodesign" data-msg="请选择文件"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="labeltitle">
+                            示例作品描述 <span class="red">*</span>
+                            <small>(如有疑问, 请联系QQ: 2584191375.)</small>
+                        </label>
+                        <textarea name="demodesigndesc" placeholder="示例作品描述"
+                                  class="form-control required"
+                                  data-msg="请填写该项内容."></textarea>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="labeltitle">QQ</label>
+                                <input type="text" class="form-control" name="im" value="" placeholder="QQ"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="labeltitle">微信</label>
+                                <input type="text" class="form-control" name="sns" value="" placeholder="微信"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="labeltitle">地址</label>
+                        <input type="text" class="form-control" name="address" value="" placeholder="地址"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="labeltitle">个人博客</label>
+                        <input type="text" class="form-control" name="blog" value="" placeholder="个人博客"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="labeltitle">公司单位或学校</label>
+                        <input type="text" class="form-control" name="company" value="" placeholder="公司单位或学校"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="labeltitle">
+                            上传证书（毕业证书、荣誉证书等）
+                        </label>
+                        <input type="file" class="form-control" name="diploma"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="labeltitle">个人履历</label>
+                        <textarea name="resumes" class="form-control" placeholder="个人履历"></textarea>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group text-center" style="margin-top: 30px;">
+                <input type='hidden' name='csrfmiddlewaretoken' value='5RMJyWGXm4KUsh8aeq68HhWMlTwrVUai'/>
+                <input type="hidden" name="action" value="save">
+                <button type="submit" name="actionbutton" value="save" style="min-width: 150px;"
+                        class="btn btn-lg btn-primary actionbutton disabled">
+
+                    提交审核
+                </button>
+                <label class="ml10">
+                    <input type="checkbox" name="agreement_confirmed" value="on"
+                           onchange="$('.actionbutton').toggleClass('disabled');"> 同意
+                    <a href="/pages/1370/" target="_blank">《设计师协议》</a>
+                </label>
+            </div>
+
+        </form>
+
+
+        <script src="/static/js/jquery.validate-1.14.0.min.js"></script>
+        <script src="/static/js/jquery-validate.bootstrap-tooltip.js"></script>
+
+        <script>
+            $('.validateform').validate({
+                submitHandler: function (form) {
+                    $(form).find('input:file').each(function () {
+                        if ($(this).val()) {
+                            $(form).find('.uploading').removeClass('hidden');
+                            return false;
+                        }
+                    });
+
+                    form.submit();
+
+                    setTimeout(function () {
+                        $(form).find('[type="submit"]').attr('disabled', 'disabled');
+                    }, 100);
+                }
+            });
+        </script>
+
+
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+
+                $('input[name="sourcefrom"]').on('change', function () {
+                    var sourcefrom = $(this).val();
+                    if (sourcefrom == 'Others') {
+                        $('input[name="sourcefrom_custom"]').val('').removeClass('hidden');
+                    } else {
+                        $('input[name="sourcefrom_custom"]').val('').addClass('hidden');
+                    }
+                });
+
+                $('input[name="studiotype"]').on('change', function () {
+                    var studiotype = $(this).val();
+                    if (studiotype == 'personal') {
+                        $('.studioform .personal').removeClass('hidden');
+                        $('.studioform .personal .form-control').addClass('required');
+                        $('.studioform .company').addClass('hidden');
+                        $('.studioform .company .form-control').removeClass('required');
+                    } else {
+                        $('.studioform .personal').addClass('hidden');
+                        $('.studioform .personal .form-control').removeClass('required');
+                        $('.studioform .company').removeClass('hidden');
+
+
+                        $('.studioform .company .form-control').addClass('required');
+
+                    }
+                });
+            });
+        </script>
+
+
+    </div>
+
+
+    <div class="clearfix"></div>
+
+
+</div>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?77100ad85c585043d550c8d213b45b00";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body>
+</html>
