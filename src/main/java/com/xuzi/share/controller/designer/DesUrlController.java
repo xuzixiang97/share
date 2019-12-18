@@ -15,7 +15,7 @@ public class DesUrlController {
     private UserService userService;
 
     /**
-     * 跳转登录页面
+     * 跳转设计师平台
      *
      * @param model
      * @return
@@ -37,18 +37,18 @@ public class DesUrlController {
     }
 
     /**
-     * 跳转审核页面
+     * 跳转登录页面
      *
      * @param model
      * @return
      */
-    @RequestMapping("/login")
+    @RequestMapping("/login/page")
     public String getlogin(Model model) {
         return "designer/login";
     }
 
     /**
-     * 跳转审核页面
+     * 跳转登录页面2
      *
      * @param model
      * @return
@@ -64,7 +64,7 @@ public class DesUrlController {
      * @param model
      * @return
      */
-    @RequestMapping("/register")
+    @RequestMapping("/register/page")
     public String getRegister(Model model) {
         return "designer/register";
     }
