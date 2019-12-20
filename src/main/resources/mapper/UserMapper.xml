@@ -10,11 +10,10 @@
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="header_url" property="headerUrl" jdbcType="VARCHAR" />
-    <result column="is_vailed" property="isVailed" jdbcType="INTEGER" />
     <result column="extended_field" property="extendedField" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, username, password, nick_name, email, `type`, status, header_url, is_vailed, extended_field
+    id, username, password, nick_name, email, `type`, status, header_url, extended_field
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -42,11 +41,11 @@
   <insert id="insert" parameterType="com.xuzi.share.entity.User" >
     insert into user (id, username, password, 
       nick_name, email, `type`,
-      status, header_url, is_vailed, 
+      status, header_url,
       extended_field)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{nickName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{headerUrl,jdbcType=VARCHAR}, #{isVailed,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{headerUrl,jdbcType=VARCHAR},
       #{extendedField,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xuzi.share.entity.User" >
@@ -108,9 +107,6 @@
       <if test="headerUrl != null" >
         #{headerUrl,jdbcType=VARCHAR},
       </if>
-      <if test="isVailed != null" >
-        #{isVailed,jdbcType=INTEGER},
-      </if>
       <if test="extendedField != null" >
         #{extendedField,jdbcType=VARCHAR},
       </if>
@@ -140,9 +136,6 @@
       <if test="headerUrl != null" >
         header_url = #{headerUrl,jdbcType=VARCHAR},
       </if>
-      <if test="isVailed != null" >
-        is_vailed = #{isVailed,jdbcType=INTEGER},
-      </if>
       <if test="extendedField != null" >
         extended_field = #{extendedField,jdbcType=VARCHAR},
       </if>
@@ -158,7 +151,6 @@
       `type` = #{type,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       header_url = #{headerUrl,jdbcType=VARCHAR},
-      is_vailed = #{isVailed,jdbcType=INTEGER},
       extended_field = #{extendedField,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

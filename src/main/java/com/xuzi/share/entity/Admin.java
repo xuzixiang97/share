@@ -1,13 +1,14 @@
 package com.xuzi.share.entity;
 
+import lombok.Data;
+
+@Data
 public class Admin {
     private Integer id;
 
     private String username;
 
     private String password;
-
-    private Integer isVailed;
 
     public Integer getId() {
         return id;
@@ -31,13 +32,5 @@ public class Admin {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
-    }
-
-    public Integer getIsVailed() {
-        return isVailed;
-    }
-
-    public void setIsVailed(Integer isVailed) {
-        this.isVailed = isVailed;
     }
 }

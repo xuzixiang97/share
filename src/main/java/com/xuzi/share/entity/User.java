@@ -17,8 +17,6 @@ public class User {
 
     private String headerUrl;
 
-    private Integer isVailed;
-
     private String extendedField;
 
     public Integer getId() {
@@ -83,14 +81,6 @@ public class User {
 
     public void setHeaderUrl(String headerUrl) {
         this.headerUrl = headerUrl == null ? null : headerUrl.trim();
-    }
-
-    public Integer getIsVailed() {
-        return isVailed;
-    }
-
-    public void setIsVailed(Integer isVailed) {
-        this.isVailed = isVailed;
     }
 
     public String getExtendedField() {

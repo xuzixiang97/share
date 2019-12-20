@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xuzi.share.dao.DesignerMapper" >
+  <resultMap id="BaseResultMap" type="com.xuzi.share.entity.Designer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="header_url" property="headerUrl" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="identity_card" property="identityCard" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="sample_work" property="sampleWork" jdbcType="VARCHAR" />
+    <result column="sample_work_describe" property="sampleWorkDescribe" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="wechat" property="wechat" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="blog" property="blog" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="certificate" property="certificate" jdbcType="VARCHAR" />
+    <result column="personal_resume" property="personalResume" jdbcType="VARCHAR" />
+    <result column="is_vailed" property="isVailed" jdbcType="INTEGER" />
+    <result column="extended_field" property="extendedField" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xuzi.share.entity.Designer" extends="BaseResultMap" >
+    <result column="describe" property="describe" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, password, nick_name, status, header_url, `name`, identity_card, phone,
+    email, `type`, sample_work, sample_work_describe, qq, wechat, address, blog, company,
+    certificate, personal_resume, is_vailed, extended_field
+  </sql>
+  <sql id="Blob_Column_List" >
+    `describe`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from designer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from designer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xuzi.share.entity.Designer" >
+    insert into designer (id, username, password, 
+      nick_name, status, header_url, 
+      `name`, identity_card, phone,
+      email, `typ`e, sample_work,
+      sample_work_describe, qq, wechat, 
+      address, blog, company, 
+      certificate, personal_resume, is_vailed, 
+      extended_field, `describe`)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{nickName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{headerUrl,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{identityCard,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{sampleWork,jdbcType=VARCHAR}, 
+      #{sampleWorkDescribe,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{blog,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
+      #{certificate,jdbcType=VARCHAR}, #{personalResume,jdbcType=VARCHAR}, #{isVailed,jdbcType=INTEGER}, 
+      #{extendedField,jdbcType=VARCHAR}, #{describe,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xuzi.share.entity.Designer" >
+    insert into designer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="headerUrl != null" >
+        header_url,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="identityCard != null" >
+        identity_card,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="sampleWork != null" >
+        sample_work,
+      </if>
+      <if test="sampleWorkDescribe != null" >
+        sample_work_describe,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="wechat != null" >
+        wechat,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="blog != null" >
+        blog,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="certificate != null" >
+        certificate,
+      </if>
+      <if test="personalResume != null" >
+        personal_resume,
+      </if>
+      <if test="extendedField != null" >
+        extended_field,
+      </if>
+      <if test="describe != null" >
+        `describe`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="headerUrl != null" >
+        #{headerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCard != null" >
+        #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sampleWork != null" >
+        #{sampleWork,jdbcType=VARCHAR},
+      </if>
+      <if test="sampleWorkDescribe != null" >
+        #{sampleWorkDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="blog != null" >
+        #{blog,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="certificate != null" >
+        #{certificate,jdbcType=VARCHAR},
+      </if>
+      <if test="personalResume != null" >
+        #{personalResume,jdbcType=VARCHAR},
+      </if>
+      <if test="isVailed != null" >
+        #{isVailed,jdbcType=INTEGER},
+      </if>
+      <if test="extendedField != null" >
+        #{extendedField,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xuzi.share.entity.Designer" >
+    update designer
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="headerUrl != null" >
+        header_url = #{headerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCard != null" >
+        identity_card = #{identityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sampleWork != null" >
+        sample_work = #{sampleWork,jdbcType=VARCHAR},
+      </if>
+      <if test="sampleWorkDescribe != null" >
+        sample_work_describe = #{sampleWorkDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="blog != null" >
+        blog = #{blog,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="certificate != null" >
+        certificate = #{certificate,jdbcType=VARCHAR},
+      </if>
+      <if test="personalResume != null" >
+        personal_resume = #{personalResume,jdbcType=VARCHAR},
+      </if>
+      <if test="extendedField != null" >
+        extended_field = #{extendedField,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        `describe` = #{describe,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xuzi.share.entity.Designer" >
+    update designer
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      header_url = #{headerUrl,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      identity_card = #{identityCard,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR},
+      sample_work = #{sampleWork,jdbcType=VARCHAR},
+      sample_work_describe = #{sampleWorkDescribe,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      blog = #{blog,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      certificate = #{certificate,jdbcType=VARCHAR},
+      personal_resume = #{personalResume,jdbcType=VARCHAR},
+      is_vailed = #{isVailed,jdbcType=INTEGER},
+      extended_field = #{extendedField,jdbcType=VARCHAR},
+      describe = #{describe,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xuzi.share.entity.Designer" >
+    update designer
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      header_url = #{headerUrl,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      identity_card = #{identityCard,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR},
+      sample_work = #{sampleWork,jdbcType=VARCHAR},
+      sample_work_describe = #{sampleWorkDescribe,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      blog = #{blog,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      certificate = #{certificate,jdbcType=VARCHAR},
+      personal_resume = #{personalResume,jdbcType=VARCHAR},
+      is_vailed = #{isVailed,jdbcType=INTEGER},
+      extended_field = #{extendedField,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
