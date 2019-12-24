@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xuzi.share.dao.ExamineMapper" >
+  <resultMap id="BaseResultMap" type="com.xuzi.share.entity.Examine" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="apply_time" property="applyTime" jdbcType="BIGINT" />
+    <result column="entity_id" property="entityId" jdbcType="INTEGER" />
+    <result column="entity_type" property="entityType" jdbcType="INTEGER" />
+    <result column="check_result" property="checkResult" jdbcType="INTEGER" />
+    <result column="checker" property="checker" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="check_time" property="checkTime" jdbcType="BIGINT" />
+    <result column="extended_field" property="extendedField" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, apply_time, entity_id, entity_type, check_result, checker, reason, check_time, 
+    extended_field
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from examine
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    FROM  `examine`
+  </select>
+  <select id="findPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from `examine`
+    limit #{offset}, #{limit}
+  </select>
+  <select id="selectRows" resultType="int">
+    select count(id) from `examine`
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from examine
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xuzi.share.entity.Examine" >
+    insert into examine (id, apply_time, entity_id, 
+      entity_type, check_result, checker, 
+      reason, check_time, extended_field
+      )
+    values (#{id,jdbcType=INTEGER}, #{applyTime,jdbcType=BIGINT}, #{entityId,jdbcType=INTEGER}, 
+      #{entityType,jdbcType=INTEGER}, #{checkResult,jdbcType=INTEGER}, #{checker,jdbcType=VARCHAR}, 
+      #{reason,jdbcType=VARCHAR}, #{checkTime,jdbcType=BIGINT}, #{extendedField,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.xuzi.share.entity.Examine" >
+    update examine
+    <set >
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=BIGINT},
+      </if>
+      <if test="entityId != null" >
+        entity_id = #{entityId,jdbcType=INTEGER},
+      </if>
+      <if test="entityType != null" >
+        entity_type = #{entityType,jdbcType=INTEGER},
+      </if>
+      <if test="checkResult != null" >
+        check_result = #{checkResult,jdbcType=INTEGER},
+      </if>
+      <if test="checker != null" >
+        checker = #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        check_time = #{checkTime,jdbcType=BIGINT},
+      </if>
+      <if test="extendedField != null" >
+        extended_field = #{extendedField,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

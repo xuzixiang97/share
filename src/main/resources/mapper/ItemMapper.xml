@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xuzi.share.dao.ItemMapper" >
+  <resultMap id="BaseResultMap" type="com.xuzi.share.entity.Item" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="authorize_unitprice" property="authorizeUnitprice" jdbcType="INTEGER" />
+    <result column="buyout_unitprice" property="buyoutUnitprice" jdbcType="INTEGER" />
+    <result column="category_ids" property="categoryIds" jdbcType="VARCHAR" />
+    <result column="show_img" property="showImg" jdbcType="VARCHAR" />
+    <result column="effect_img" property="effectImg" jdbcType="VARCHAR" />
+    <result column="structure_img" property="structureImg" jdbcType="VARCHAR" />
+    <result column="refenence_img" property="refenenceImg" jdbcType="VARCHAR" />
+    <result column="fabirc_img" property="fabircImg" jdbcType="VARCHAR" />
+    <result column="product_information_img" property="productInformationImg" jdbcType="VARCHAR" />
+    <result column="cdr_download" property="cdrDownload" jdbcType="VARCHAR" />
+    <result column="et_download" property="etDownload" jdbcType="VARCHAR" />
+    <result column="all_download" property="allDownload" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+    <result column="extended_field" property="extendedField" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, describe, authorize_unitprice, buyout_unitprice, category_ids, show_img, 
+    effect_img, structure_img, refenence_img, fabirc_img, product_information_img, cdr_download, 
+    et_download, all_download, status, create_time, update_time, extended_field
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    FROM  `item`
+  </select>
+  <select id="findPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from `item`
+    limit #{offset}, #{limit}
+  </select>
+  <select id="selectRows" resultType="int">
+    select count(id) from `item`
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xuzi.share.entity.Item" >
+    insert into item (id, name, describe, 
+      authorize_unitprice, buyout_unitprice, category_ids, 
+      show_img, effect_img, structure_img, 
+      refenence_img, fabirc_img, product_information_img, 
+      cdr_download, et_download, all_download, 
+      status, create_time, update_time, 
+      extended_field)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, 
+      #{authorizeUnitprice,jdbcType=INTEGER}, #{buyoutUnitprice,jdbcType=INTEGER}, #{categoryIds,jdbcType=VARCHAR}, 
+      #{showImg,jdbcType=VARCHAR}, #{effectImg,jdbcType=VARCHAR}, #{structureImg,jdbcType=VARCHAR}, 
+      #{refenenceImg,jdbcType=VARCHAR}, #{fabircImg,jdbcType=VARCHAR}, #{productInformationImg,jdbcType=VARCHAR}, 
+      #{cdrDownload,jdbcType=VARCHAR}, #{etDownload,jdbcType=VARCHAR}, #{allDownload,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
+      #{extendedField,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.xuzi.share.entity.Item" >
+    update item
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        describe = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizeUnitprice != null" >
+        authorize_unitprice = #{authorizeUnitprice,jdbcType=INTEGER},
+      </if>
+      <if test="buyoutUnitprice != null" >
+        buyout_unitprice = #{buyoutUnitprice,jdbcType=INTEGER},
+      </if>
+      <if test="categoryIds != null" >
+        category_ids = #{categoryIds,jdbcType=VARCHAR},
+      </if>
+      <if test="showImg != null" >
+        show_img = #{showImg,jdbcType=VARCHAR},
+      </if>
+      <if test="effectImg != null" >
+        effect_img = #{effectImg,jdbcType=VARCHAR},
+      </if>
+      <if test="structureImg != null" >
+        structure_img = #{structureImg,jdbcType=VARCHAR},
+      </if>
+      <if test="refenenceImg != null" >
+        refenence_img = #{refenenceImg,jdbcType=VARCHAR},
+      </if>
+      <if test="fabircImg != null" >
+        fabirc_img = #{fabircImg,jdbcType=VARCHAR},
+      </if>
+      <if test="productInformationImg != null" >
+        product_information_img = #{productInformationImg,jdbcType=VARCHAR},
+      </if>
+      <if test="cdrDownload != null" >
+        cdr_download = #{cdrDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="etDownload != null" >
+        et_download = #{etDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="allDownload != null" >
+        all_download = #{allDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="extendedField != null" >
+        extended_field = #{extendedField,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

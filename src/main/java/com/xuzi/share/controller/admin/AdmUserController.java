@@ -1,26 +1,22 @@
 package com.xuzi.share.controller.admin;
 
 
-import com.xuzi.share.entity.Admin;
 import com.xuzi.share.entity.Page;
 import com.xuzi.share.entity.User;
-import com.xuzi.share.service.AdminService;
-import com.xuzi.share.service.UserService;
+import com.xuzi.share.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Map;
 
 
 @Controller
 @RequestMapping("/admin/user")
 public class AdmUserController {
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     /**
      * 用户信息页面 展示用户信息
@@ -34,7 +30,7 @@ public class AdmUserController {
         page.setRows(userService.selectRows());
         page.setPath("/admin/user/page");
 
-        List<User> users = userService.findDiscussPost(page.getOffset(), page.getLimit());
+        List<User> users = userService.findUserPage(page.getOffset(), page.getLimit());
         model.addAttribute("users", users);
         return "admin/user";
     }

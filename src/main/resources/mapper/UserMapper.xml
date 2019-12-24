@@ -34,6 +34,12 @@
   <select id="selectRows" resultType="int">
     select count(id) from `user`
   </select>
+  <select id="findByUserName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from `user`
+    where username = #{username}
+  </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from `user`
     where id = #{id,jdbcType=INTEGER}
@@ -48,71 +54,7 @@
       #{status,jdbcType=INTEGER}, #{headerUrl,jdbcType=VARCHAR},
       #{extendedField,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xuzi.share.entity.User" >
-    insert into `user`
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="username != null" >
-        username,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="nickName != null" >
-        nick_name,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="type != null" >
-        type,
-      </if>
-      <if test="status != null" >
-        status,
-      </if>
-      <if test="headerUrl != null" >
-        header_url,
-      </if>
-      <if test="isVailed != null" >
-        is_vailed,
-      </if>
-      <if test="extendedField != null" >
-        extended_field,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="nickName != null" >
-        #{nickName,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null" >
-        #{type,jdbcType=INTEGER},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="headerUrl != null" >
-        #{headerUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="extendedField != null" >
-        #{extendedField,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xuzi.share.entity.User" >
+  <update id="updateByPrimaryKey" parameterType="com.xuzi.share.entity.User" >
     update `user`
     <set >
       <if test="username != null" >
@@ -142,16 +84,5 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xuzi.share.entity.User" >
-    update `user`
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      nick_name = #{nickName,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      header_url = #{headerUrl,jdbcType=VARCHAR},
-      extended_field = #{extendedField,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
 </mapper>

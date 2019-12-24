@@ -1,7 +1,7 @@
 package com.xuzi.share.controller.designer;
 
 
-import com.xuzi.share.service.UserService;
+import com.xuzi.share.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/designer")
 public class DesUrlController {
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     /**
      * 跳转设计师平台

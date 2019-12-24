@@ -2,7 +2,7 @@ package com.xuzi.share.controller.admin;
 
 
 import com.xuzi.share.entity.Admin;
-import com.xuzi.share.service.AdminService;
+import com.xuzi.share.service.impl.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,7 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdmAdminController {
     @Autowired
-    private AdminService adminService;
+    private AdminServiceImpl adminService;
 
 
     /**
