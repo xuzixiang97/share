@@ -23,5 +23,5 @@ public interface DesignerMapper {
 
     int selectRows();
 
-    Admin findByUserName(String username);
+    Designer findByUserName(String username);
 }

@@ -30,7 +30,7 @@
   <sql id="Base_Column_List" >
     id, username, password, nick_name, status, header_url, `name`, identity_card, phone,
     email, `type`, sample_work, sample_work_describe, qq, wechat, address, blog, company,
-    certificate, personal_resume, is_vailed, extended_field
+    certificate, personal_resume, extended_field
   </sql>
   <sql id="Blob_Column_List" >
     `describe`
@@ -70,10 +70,10 @@
     insert into designer (id, username, password, 
       nick_name, status, header_url, 
       `name`, identity_card, phone,
-      email, `typ`e, sample_work,
+      email, `type`, sample_work,
       sample_work_describe, qq, wechat, 
       address, blog, company, 
-      certificate, personal_resume, is_vailed, 
+      certificate, personal_resume,
       extended_field, `describe`)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{nickName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{headerUrl,jdbcType=VARCHAR}, 
@@ -81,7 +81,7 @@
       #{email,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{sampleWork,jdbcType=VARCHAR}, 
       #{sampleWorkDescribe,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{blog,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
-      #{certificate,jdbcType=VARCHAR}, #{personalResume,jdbcType=VARCHAR}, #{isVailed,jdbcType=INTEGER}, 
+      #{certificate,jdbcType=VARCHAR}, #{personalResume,jdbcType=VARCHAR},
       #{extendedField,jdbcType=VARCHAR}, #{describe,jdbcType=LONGVARCHAR})
   </insert>
 

@@ -22,5 +22,5 @@ public interface UserMapper {
 
     int selectRows();
 
-    Admin findByUserName(String username);
+    User findByUserName(String username);
 }

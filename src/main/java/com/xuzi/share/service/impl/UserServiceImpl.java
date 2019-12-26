@@ -29,13 +29,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public Map<String, Object> login(String username, String password) {
         Map<String, Object> map = new HashMap<>();
-        Admin admin = userMapper.findByUserName(username);
+        User user = userMapper.findByUserName(username);
         //校验管理员账号是否存在
-        if (admin == null) {
+        if (user == null) {
             map.put("usernameMsg", "用户名不存在");
             return map;
         }
-        if (!admin.getPassword().equals(password)) {
+        if (!user.getPassword().equals(password)) {
             map.put("passwordMsg", "密码错误");
             return map;
         }

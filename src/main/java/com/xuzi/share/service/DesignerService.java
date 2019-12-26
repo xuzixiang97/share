@@ -21,4 +21,11 @@ public interface DesignerService {
      */
     Map<String, Object> register(Designer designer);
 
+    /**
+     * 修改设计师信息
+     * @param designer
+     * @return
+     */
+    Boolean updateByCondition(Designer designer);
+
 }

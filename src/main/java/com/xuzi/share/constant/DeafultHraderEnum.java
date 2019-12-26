@@ -39,7 +39,7 @@ public enum DeafultHraderEnum {
     public static String getUrl(String name) {
         for (DeafultHraderEnum c : DeafultHraderEnum.values()) {
             if (c.getName().equals(name)) {
-                return c.name;
+                return c.getUrl();
             }
         }
         return null;
