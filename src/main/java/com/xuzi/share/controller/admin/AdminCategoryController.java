@@ -24,10 +24,17 @@ public class AdminCategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    /**
+     * 查询所有类目
+     * @param model
+     * @return
+     */
+    @RequestMapping("/findAll")
     public String allCategory(Model model){
-        categoryService.
-        List<Category> categoryList = categoryService.selectbyCondition();
+        List <Category> categoryList = categoryService.selectAll();
         model.addAttribute("categoryList",categoryList);
         return "/admin/category";
     }
+
+    public String addCategory
 }
