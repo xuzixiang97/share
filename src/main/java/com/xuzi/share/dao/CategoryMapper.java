@@ -16,4 +16,6 @@ public interface CategoryMapper {
     int updateByPrimaryKey(Category record);
 
     List<Category> selectbyCondition(Category category);
+
+    List<Category> selectAll();
 }

@@ -30,6 +30,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<Category> selectAll() {
+        return categoryMapper.selectAll();
+    }
+
+    @Override
     public int updateById(Category category) {
         return categoryMapper.updateByPrimaryKey(category);
     }

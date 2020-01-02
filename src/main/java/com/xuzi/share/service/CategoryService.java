@@ -28,6 +28,12 @@ public interface CategoryService {
     Category selectById(Integer id);
 
     /**
+     * 查询全部类目
+     * @return
+     */
+    List<Category> selectAll();
+
+    /**
      * 修改类目信息
      * @param category
      * @return
