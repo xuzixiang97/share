@@ -20,12 +20,12 @@ public class FileUtil {
     private String headerBucketUrl;
     public Model fileup(Model model){
         // 上传文件名称
-        String fileName = CommunityUtil.generateUUID();
-        String fileName2 = CommunityUtil.generateUUID();
-        String fileName3 = CommunityUtil.generateUUID();
+        String fileName = ShareUtil.generateUUID();
+        String fileName2 = ShareUtil.generateUUID();
+        String fileName3 = ShareUtil.generateUUID();
         // 设置响应信息
         StringMap policy = new StringMap();
-        policy.put("returnBody", CommunityUtil.getJSONString(0));
+        policy.put("returnBody", ShareUtil.getJSONString(0));
         // 生成上传凭证
         Auth auth = Auth.create(accessKey, secretKey);
         String uploadToken = auth.uploadToken(headerBucketName, fileName, 3600, policy);

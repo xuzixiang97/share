@@ -49,7 +49,7 @@
 
 <div class="container consolecon">
 
-        <form action="/console/b/" method="post" class="form validateform studioform"
+        <form th:action="@{/designer/review}" method="post" class="form validateform studioform"
               enctype="multipart/form-data">
 
             <div class="row mt10">
@@ -70,7 +70,7 @@
                     <div class="form-group">
                         <label class="labeltitle">证件号码 <span class="red">*</span></label>
                         <input type="text" class="form-control required"
-                               data-msg="请填写该项内容." name="certificate" maxlength="30"
+                               data-msg="请填写该项内容." name="identity_card" maxlength="30"
                                value="">
                     </div>
 
@@ -80,7 +80,7 @@
                             <small class="text-danger">(不可修改)</small>
                         </label>
                         <input type="text" class="form-control required"
-                               data-msg="请填写该项内容." name="realname"
+                               data-msg="请填写该项内容." name="name"
                                value="" maxlength="50"
                         >
                     </div>
@@ -90,7 +90,7 @@
                             <div class="form-group" style="position: relative;">
                                 <label class="labeltitle">手机号码 <span class="red">*</span></label>
                                 <input type="text" class="form-control form-control-long required"
-                                       data-msg="请填写该项内容." name="mobile" maxlength="20"
+                                       data-msg="请填写该项内容." name="phone" maxlength="20"
                                        value="18767127456" placeholder="手机号码">
                             </div>
                         </div>
@@ -107,33 +107,45 @@
 
                     <div class="form-group">
                         <label class="labeltitle">擅长领域 <span class="red">*</span></label>
-                        <select name="filterid" class="form-control required"
+                        <select name="type" class="form-control required"
                                 data-msg="请选择列表中的一项.">
                             <option value="">-- 请选择 --</option>
+                            <optgroup label="广州">
 
-                            <option value="3">女装 花型</option>
+                                <option>列表数据</option>
 
-                            <option value="49">男装 花型</option>
+                            </optgroup>
+                            <optgroup label="sdj">
 
-                            <option value="50">童装 花型</option>
+                                <option>列表数据1</option>
+                                <option>列表数据2</option>
+                                <option>列表数据1</option>
 
-                            <option value="46">泳装 花型</option>
+                            </optgroup>
 
-                            <option value="2">床品 花型</option>
+<!--                            <option value="3">女装 花型</option>-->
 
-                            <option value="44">窗帘 花型</option>
+<!--                            <option value="49">男装 花型</option>-->
 
-                            <option value="47">沙发布 花型</option>
+<!--                            <option value="50">童装 花型</option>-->
 
-                            <option value="51">墙纸 花型</option>
+<!--                            <option value="46">泳装 花型</option>-->
 
-                            <option value="1">长巾 花型</option>
+<!--                            <option value="2">床品 花型</option>-->
 
-                            <option value="97">方巾 花型</option>
+<!--                            <option value="44">窗帘 花型</option>-->
 
-                            <option value="48">箱包 花型</option>
+<!--                            <option value="47">沙发布 花型</option>-->
 
-                            <option value="4">其他 花型</option>
+<!--                            <option value="51">墙纸 花型</option>-->
+
+<!--                            <option value="1">长巾 花型</option>-->
+
+<!--                            <option value="97">方巾 花型</option>-->
+
+<!--                            <option value="48">箱包 花型</option>-->
+
+<!--                            <option value="4">其他 花型</option>-->
 
                         </select>
                     </div>
@@ -147,7 +159,7 @@
 
                         <input type="file"
                                class="form-control required"
-                               name="demodesign" data-msg="请选择文件"/>
+                               name="sample_work" data-msg="请选择文件"/>
                     </div>
 
                     <div class="form-group">
@@ -155,7 +167,7 @@
                             示例作品描述 <span class="red">*</span>
                             <small>(如有疑问, 请联系QQ: 2584191375.)</small>
                         </label>
-                        <textarea name="demodesigndesc" placeholder="示例作品描述"
+                        <textarea name="sample_work_describe" placeholder="示例作品描述"
                                   class="form-control required"
                                   data-msg="请填写该项内容."></textarea>
                     </div>
@@ -167,13 +179,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="labeltitle">QQ</label>
-                                <input type="text" class="form-control" name="im" value="" placeholder="QQ"/>
+                                <input type="text" class="form-control" name="qq" value="" placeholder="QQ"/>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="labeltitle">微信</label>
-                                <input type="text" class="form-control" name="sns" value="" placeholder="微信"/>
+                                <input type="text" class="form-control" name="wechat" value="" placeholder="微信"/>
                             </div>
                         </div>
                     </div>
@@ -197,12 +209,12 @@
                         <label class="labeltitle">
                             上传证书（毕业证书、荣誉证书等）
                         </label>
-                        <input type="file" class="form-control" name="diploma"/>
+                        <input type="file" class="form-control" id="head-image" name="file" lang="es" required="">
                     </div>
 
                     <div class="form-group">
                         <label class="labeltitle">个人履历</label>
-                        <textarea name="resumes" class="form-control" placeholder="个人履历"></textarea>
+                        <textarea name="personal_resume" class="form-control" placeholder="个人履历"></textarea>
                     </div>
 
                 </div>

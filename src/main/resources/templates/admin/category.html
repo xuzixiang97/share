@@ -1,5 +1,5 @@
  <!DOCTYPE html>
- <html xmlns:th="http://www.thymeleaf.org">
+ <html xmlns:th="http://www.thymeleaf.org" xmlns:padding-left="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -54,8 +54,9 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    <input type="text" placeholder="请输入关键词" class="input-sm form-control"> <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-primary"> 搜索</button> </span>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                        打开示例窗口
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -64,43 +65,42 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>用户名</th>
-                                        <th>昵称</th>
-                                        <th>邮箱</th>
-                                        <th>头像</th>
+                                        <th>类目id</th>
+                                        <th>类目名称</th>
+                                        <th>类目描述</th>
+                                        <th>上级类目id</th>
+                                        <th>编辑类目</th>
+                                        <th>查看子类目</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="user,iterStat : ${users}">
+                                    <tr th:each="category,iterStat : ${categoryList}">
                                         <td>
                                             <input type="checkbox" checked class="i-checks" name="input[]">
                                         </td>
-                                        <td th:text="${user.username}"></td>
-                                        <td th:text="${user.nickName}"></td>
-                                        <td th:text="${user.email}"></td>
-                                        <td th:text="${user.headerUrl}"></td>
+                                        <td th:text="${category.id}"></td>
+                                        <td th:text="${category.name}"></td>
+                                        <td th:text="${category.describe}"></td>
+                                        <td th:text="${category.parentId}"></td>
+                                        <td><button th:name="${category.id}" type="button" class="btn btn-w-m btn-primary" onclick="test(this)">查看子类目</button></td>
+                                        <td><button th:name="${category.id}" type="button" class="btn btn-w-m btn-primary">查看子类目</button></td>
+                                        <div class="modal fade" th:id="${category.id}" tabindex="-1" role="dialog" aria-labelledby="hintModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="hintModalLabel">提示</h5>
+                                                    </div>
+                                                    <div class="modal-body" id="hintBody">
+                                                        发送完毕!
+
+                                                        <input th:value="${category.id}"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </tr>
                                 </tbody>
                             </table>
-                            <!-- 分页 -->
-                            <nav class="mt-5" th:if="${page.rows>0}" th:fragment="pagination">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item">
-                                        <a class="page-link" th:href="@{${page.path}(current=1)}">首页</a>
-                                    </li>
-                                    <li th:class="|page-item ${page.current==1?'disabled':''}|">
-                                        <a class="page-link" th:href="@{${page.path}(current=${page.current-1})}">上一页</a></li>
-                                    <li th:class="|page-item ${i==page.current?'active':''}|" th:each="i:${#numbers.sequence(page.from,page.to)}">
-                                        <a class="page-link" th:href="@{${page.path}(current=${i})}" th:text="${i}">1</a>
-                                    </li>
-                                    <li th:class="|page-item ${page.current==page.total?'disabled':''}|">
-                                        <a class="page-link" th:href="@{${page.path}(current=${page.current+1})}">下一页</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" th:href="@{${page.path}(current=${page.total})}">末页</a>
-                                    </li>
-                                </ul>
-                            </nav>
                         </div>
 
                     </div>
@@ -108,6 +108,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- 全局js -->
     <script th:src="@{/admin/js/jquery.min.js?v=2.1.4}"></script>
@@ -135,6 +136,11 @@
                 radioClass: 'iradio_square-green',
             });
         });
+
+        function test(element){
+            alert(element.name);
+            $('#'+element.name).modal("show");
+        }
     </script>
 
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>

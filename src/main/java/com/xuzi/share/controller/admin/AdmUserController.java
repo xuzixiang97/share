@@ -29,7 +29,6 @@ public class AdmUserController {
         //设置分页参数信息
         page.setRows(userService.selectRows());
         page.setPath("/admin/user/page");
-
         List<User> users = userService.findUserPage(page.getOffset(), page.getLimit());
         model.addAttribute("users", users);
         return "admin/user";

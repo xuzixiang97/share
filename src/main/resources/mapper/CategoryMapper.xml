@@ -3,7 +3,7 @@
 <mapper namespace="com.xuzi.share.dao.CategoryMapper" >
   <resultMap id="BaseResultMap" type="com.xuzi.share.entity.Category" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="level" property="level" jdbcType="INTEGER" />
     <result column="describe" property="describe" jdbcType="VARCHAR" />
     <result column="parent_id" property="parentId" jdbcType="INTEGER" />
@@ -11,7 +11,7 @@
     <result column="extended_field" property="extendedField" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, level, describe, parent_id, ancestor_id, extended_field
+    id, `name`, `level`, `describe`, parent_id, ancestor_id, extended_field
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -36,15 +36,23 @@
     from category
   </select>
 
+  <select id="selectByParentId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from category
+    where parent_id = #{parentId}
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from category
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.xuzi.share.entity.Category" >
-    insert into category (id, name, level, 
-      describe, parent_id, ancestor_id, 
+    insert into category (id, `name`, `level`,
+      `describe`, parent_id, ancestor_id,
       extended_field)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=BIGINT}, #{level,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
       #{describe,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{ancestorId,jdbcType=INTEGER}, 
       #{extendedField,jdbcType=VARCHAR})
   </insert>
@@ -52,13 +60,13 @@
     update category
     <set >
       <if test="name != null" >
-        name = #{name,jdbcType=BIGINT},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="level != null" >
-        level = #{level,jdbcType=INTEGER},
+        `level` = #{level,jdbcType=INTEGER},
       </if>
       <if test="describe != null" >
-        describe = #{describe,jdbcType=VARCHAR},
+        `describe` = #{describe,jdbcType=VARCHAR},
       </if>
       <if test="parentId != null" >
         parent_id = #{parentId,jdbcType=INTEGER},

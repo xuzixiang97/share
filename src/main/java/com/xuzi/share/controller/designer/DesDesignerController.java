@@ -1,9 +1,9 @@
 package com.xuzi.share.controller.designer;
 
+import com.xuzi.share.constant.DesignerStatusEnum;
 import com.xuzi.share.entity.Designer;
 import com.xuzi.share.service.DesignerService;
-import com.xuzi.share.service.impl.DesignerServiceImpl;
-import com.xuzi.share.utils.CommunityUtil;
+import com.xuzi.share.utils.ShareUtil;
 import com.xuzi.share.utils.FileUtil;
 import com.xuzi.share.utils.HostHolder;
 import org.apache.commons.lang3.StringUtils;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -126,17 +125,17 @@ public class DesDesignerController {
 
     // 更新头像路径
     @RequestMapping(path = "/header/url", method = RequestMethod.POST)
-    public String updateHeaderUrl(String key) {
-        if (StringUtils.isBlank(key)) {
-            return "redirect:/designer/setting";
+    @ResponseBody
+    public String updateHeaderUrl(String key,String filename) {
+        if (StringUtils.isBlank(filename)) {
+            return ShareUtil.getJSONString(1, "文件名不能为空!");
         }
-
         String url = fileUtil.getUrl(key);
         Designer designer = new Designer();
         designer.setId(hostHolder.getDesigner().getId());
         designer.setHeaderUrl(url);
         designerService.updateByCondition(designer);
-        return "redirect:/designer/index/page";
+        return ShareUtil.getJSONString(0,"成功好了");
     }
 
     /**
@@ -179,9 +178,48 @@ public class DesDesignerController {
      * @param model
      * @return
      */
-    @RequestMapping("/review")
+    @RequestMapping("/review/page")
     public String getshenhe(Model model) {
         return "designer/review";
+    }
+
+    /**
+     * 跳转等待审核页面
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/reviewing/page")
+    public String getreviewing(Model model) {
+        return "designer/reviewing";
+    }
+
+    /**
+     * 跳转审核完成页面
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/reviewed/page")
+    public String getreviewed(Model model) {
+        return "designer/reviewed";
+    }
+
+
+
+    /**
+     * 提交审核页面
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/review")
+    public String shenhe(Model model,Designer designer) {
+        designer.setId(hostHolder.getDesigner().getId());
+        //修改审核状态为待审核
+        designer.setStatus(DesignerStatusEnum.UNEXAMINEING.getStatus());
+        designerService.updateByCondition(designer);
+        return "designer/reviewing";
     }
 
 }

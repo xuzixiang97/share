@@ -35,6 +35,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<Category> selectByParentId(Integer parentId) {
+        return categoryMapper.selectByParentId(parentId);
+    }
+
+    @Override
     public int updateById(Category category) {
         return categoryMapper.updateByPrimaryKey(category);
     }

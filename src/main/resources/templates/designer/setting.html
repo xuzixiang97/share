@@ -14,6 +14,9 @@
 	<link th:href="@{/admin/css/animate.css}" rel="stylesheet">
 	<link th:href="@{/admin/css/style.css?v=4.1.0}" rel="stylesheet">
 
+	<link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 <body>
 <div class="nk-container">
@@ -24,14 +27,14 @@
 			<!-- 上传头像 -->
 			<h4>上传头像</h4>
 			<!--上传到七牛云-->
-			<form class="mt-5"  method="post" id="uploadForm" th:action="@{/designer/header/url}">
+			<form class="mt-5"  method="post" id="uploadForm" >
 				<div class="form-group row mt-4">
 					<label for="head-image" class="col-sm-2 col-form-label text-right">选择头像:</label>
 					<div class="col-sm-10">
 						<div class="custom-file">
 							<input type="hidden" name="token" th:value="${uploadToken}">
-							<input type="hidden" name="key" th:value="${fileName}">
-							<input type="file" class="custom-file-input" id="head-image" name="file" lang="es" required="" onchange="handleFile()">
+							<input type="hidden" id="key" name="key" th:value="${fileName}">
+							<input type="file" class="custom-file-input" id="head-image" name="file" lang="es" required="" onchange="handleFile()" >
 							<label class="custom-file-label" for="head-image" data-browse="文件">选择一张图片</label>
 							<div class="invalid-feedback">
 								该账号不存在!
@@ -42,7 +45,7 @@
 				<div class="form-group row mt-4">
 					<div class="col-sm-2"></div>
 					<div class="col-sm-10 text-center">
-						<button type="submit" class="btn btn-primary btn-rounded btn-block" onclick="refresh()" >立即保存</button>
+						<button id="upheader" type="submit" class="btn btn-primary btn-rounded btn-block demo2" >立即保存</button>
 					</div>
 				</div>
 			</form>
@@ -94,12 +97,39 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js" crossorigin="anonymous"></script>
+<!-- layer javascript -->
+<script th:src="@{/admin/js/plugins/layer/layer.min.js}"></script>
+
 <script>
     $(function(){
         bsCustomFileInput.init();
         $("form").submit(check_data);
         $("input").focus(clear_error);
     });
+
+
+	$('.demo2').click(function () {
+		//获取标题和内容，异步请求
+		//发送异步请求
+		$.post(
+				"/share/designer/header/url",
+				{"key":$("input[name='key']").val(),"filename":$("input[name='file']").val()},
+				function (data) {
+					data = $.parseJSON(data);
+					if (data.code == 1){
+						swal("?????????");
+					}else{
+						parent.layer.alert('内容')
+						parent.window.location.reload();
+						//alert("Hello world!");
+					}
+
+				}
+		);
+
+
+
+	});
 
 	function handleFile() {
 		$.ajax({
@@ -110,20 +140,13 @@
 			data: new FormData($("#uploadForm")[0]),
 			success: function(data) {
 				if(data && data.code == 0) {
-					console.log(data);
+
+
 				} else {
 					alert("上传失败!");
 				}
 			}
 		});
-		return false;
-	}
-
-	function refresh() {
-		setTimeout(function () {
-			alert("hh");
-			window.location.reload();
-		}, 2000);
 	}
 
 

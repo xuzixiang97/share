@@ -1,17 +1,11 @@
 package com.xuzi.share.controller;
 
-import com.qiniu.util.Auth;
-import com.qiniu.util.StringMap;
-import com.xuzi.share.utils.CommunityUtil;
 import com.xuzi.share.utils.FileUtil;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class FileController {

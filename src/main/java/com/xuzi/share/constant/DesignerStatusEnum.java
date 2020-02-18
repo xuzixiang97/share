@@ -2,7 +2,8 @@ package com.xuzi.share.constant;
 
 public enum DesignerStatusEnum {
     UNEXAMINE (0, "未审核"),
-    EXAMINED(1, "已审核");
+    UNEXAMINEING (1, "待审核"),
+    EXAMINED(2, "已审核");
 
     /**
      * 图片路径

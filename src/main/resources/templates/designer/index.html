@@ -59,7 +59,9 @@
                     <li>
                         <a href="#"><i class="fa fa-users"></i> <span class="nav-label">个人信息管理 </span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" th:href="@{/designer/review}">审核</a>
+                            <li><a class="J_menuItem" th:if="${designer.status == 0}" th:href="@{/designer/review/page}">审核</a>
+                            <li><a class="J_menuItem" th:if="${designer.status == 1}" th:href="@{/designer/reviewing/page}">审核中</a>
+                            <li><a class="J_menuItem" th:if="${designer.status == 2}" th:href="@{/designer/reviewed/page}">设计师认证</a>
                             </li>
                             <li><a class="J_menuItem" th:href="@{/designer/setting}">个人信息</a>
                             </li>

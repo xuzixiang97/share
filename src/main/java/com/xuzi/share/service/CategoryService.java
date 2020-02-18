@@ -34,6 +34,12 @@ public interface CategoryService {
     List<Category> selectAll();
 
     /**
+     * 根据parentId查询类目  一级类目parentId = 0
+     * @return
+     */
+    List<Category> selectByParentId(Integer parentId);
+
+    /**
      * 修改类目信息
      * @param category
      * @return

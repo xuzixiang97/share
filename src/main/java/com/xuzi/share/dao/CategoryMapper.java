@@ -18,4 +18,6 @@ public interface CategoryMapper {
     List<Category> selectbyCondition(Category category);
 
     List<Category> selectAll();
+
+    List<Category> selectByParentId(Integer parentId);
 }
