@@ -55,7 +55,7 @@
                             <div class="col-sm-3">
                                 <div class="input-group">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                        打开示例窗口
+                                        新增类目
                                     </button>
                                 </div>
                             </div>
@@ -82,18 +82,32 @@
                                         <td th:text="${category.name}"></td>
                                         <td th:text="${category.describe}"></td>
                                         <td th:text="${category.parentId}"></td>
-                                        <td><button th:name="${category.id}" type="button" class="btn btn-w-m btn-primary" onclick="test(this)">查看子类目</button></td>
+                                        <td><button th:name="${category.id}" type="button" class="btn btn-w-m btn-primary" onclick="test(this)">编辑类目</button></td>
                                         <td><button th:name="${category.id}" type="button" class="btn btn-w-m btn-primary">查看子类目</button></td>
-                                        <div class="modal fade" th:id="${category.id}" tabindex="-1" role="dialog" aria-labelledby="hintModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg" role="document">
+                                        <div id="modal-form" class="modal fade" th:id="${category.id}" aria-hidden="true">
+                                            <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="hintModalLabel">提示</h5>
-                                                    </div>
-                                                    <div class="modal-body" id="hintBody">
-                                                        发送完毕!
-
-                                                        <input th:value="${category.id}"/>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 b-r">
+                                                                <h3 class="m-t-none m-b">编辑类目</h3>
+                                                                <form role="form" th:id="'from'+${category.id}">
+                                                                    <input  th:value="${category.id}" class="form-control" type="hidden" name="id">
+                                                                    <div class="form-group">
+                                                                        <label>类目名称：</label>
+                                                                        <input  th:value="${category.name}" class="form-control" name="name">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>类目描述：</label>
+                                                                        <input  th:value="${category.describe}" class="form-control" name="describe">
+                                                                    </div>
+                                                                    <div>
+                                                                        <button th:name="${category.id}" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit" onclick="update(this)"><strong>保存</strong>
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,6 +155,21 @@
             alert(element.name);
             $('#'+element.name).modal("show");
         }
+
+        function update(element){
+            $.ajax({
+                url:"/share/admin/category/update",
+                method: "post",
+                dataType: "json",
+                data: $('#from'+element.name).serialize(),
+                // data: new FormData($('#from'+element.name)[0]),
+                success: function(data) {
+                    alert("成功!");
+                    window.location.href="/share/admin/category/findAll";
+                    }
+                });
+        }
+
     </script>
 
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
