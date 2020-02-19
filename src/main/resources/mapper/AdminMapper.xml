@@ -25,7 +25,7 @@
     delete from admin
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xuzi.share.entity.Admin" >
+  <insert id="insert" parameterType="com.xuzi.share.entity.Admin" useGeneratedKeys="true" keyProperty="id">
     insert into admin (id, username, password)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
   </insert>

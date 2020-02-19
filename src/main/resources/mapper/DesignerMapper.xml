@@ -66,7 +66,7 @@
     delete from designer
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xuzi.share.entity.Designer" >
+  <insert id="insert" parameterType="com.xuzi.share.entity.Designer" useGeneratedKeys="true" keyProperty="id">
     insert into designer (id, username, password, 
       nick_name, status, header_url, 
       `name`, identity_card, phone,

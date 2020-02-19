@@ -44,7 +44,7 @@
     delete from `user`
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xuzi.share.entity.User" >
+  <insert id="insert" parameterType="com.xuzi.share.entity.User" useGeneratedKeys="true" keyProperty="id">
     insert into user (id, username, password, 
       nick_name, email, `type`,
       status, header_url,

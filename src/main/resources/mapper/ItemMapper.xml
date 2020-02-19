@@ -3,6 +3,7 @@
 <mapper namespace="com.xuzi.share.dao.ItemMapper" >
   <resultMap id="BaseResultMap" type="com.xuzi.share.entity.Item" >
     <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="designer_id" property="designerId" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="describe" property="describe" jdbcType="VARCHAR" />
     <result column="authorize_unitprice" property="authorizeUnitprice" jdbcType="INTEGER" />
@@ -23,7 +24,7 @@
     <result column="extended_field" property="extendedField" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, describe, authorize_unitprice, buyout_unitprice, category_ids, show_img, 
+    id, designer_id, `name`, `describe`, authorize_unitprice, buyout_unitprice, category_ids, show_img,
     effect_img, structure_img, refenence_img, fabirc_img, product_information_img, cdr_download, 
     et_download, all_download, status, create_time, update_time, extended_field
   </sql>
@@ -44,6 +45,17 @@
     from `item`
     limit #{offset}, #{limit}
   </select>
+  <select id="selectRowsByDesignerId" resultType="int">
+    select count(id) from `item`
+    where designer_id = #{designerId}
+  </select>
+
+  <select id="findPageByDesignerId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from `item`
+    where designer_id = #{designerId}
+    limit #{offset}, #{limit}
+  </select>
   <select id="selectRows" resultType="int">
     select count(id) from `item`
   </select>
@@ -52,15 +64,15 @@
     delete from item
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xuzi.share.entity.Item" >
-    insert into item (id, name, describe, 
+  <insert id="insert" parameterType="com.xuzi.share.entity.Item" useGeneratedKeys="true" keyProperty="id">
+    insert into item (id,designer_id, `name`, `describe`,
       authorize_unitprice, buyout_unitprice, category_ids, 
       show_img, effect_img, structure_img, 
       refenence_img, fabirc_img, product_information_img, 
       cdr_download, et_download, all_download, 
       status, create_time, update_time, 
       extended_field)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER},#{designerId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR},
       #{authorizeUnitprice,jdbcType=INTEGER}, #{buyoutUnitprice,jdbcType=INTEGER}, #{categoryIds,jdbcType=VARCHAR}, 
       #{showImg,jdbcType=VARCHAR}, #{effectImg,jdbcType=VARCHAR}, #{structureImg,jdbcType=VARCHAR}, 
       #{refenenceImg,jdbcType=VARCHAR}, #{fabircImg,jdbcType=VARCHAR}, #{productInformationImg,jdbcType=VARCHAR}, 
@@ -71,11 +83,14 @@
   <update id="updateByPrimaryKey" parameterType="com.xuzi.share.entity.Item" >
     update item
     <set >
+      <if test="designerId != null" >
+        designer_id = #{designerId,jdbcType=VARCHAR},
+      </if>
       <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="describe != null" >
-        describe = #{describe,jdbcType=VARCHAR},
+        `describe` = #{describe,jdbcType=VARCHAR},
       </if>
       <if test="authorizeUnitprice != null" >
         authorize_unitprice = #{authorizeUnitprice,jdbcType=INTEGER},

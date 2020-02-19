@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
@@ -52,12 +53,13 @@ public class DesDesignerController {
      * @return
      */
     @RequestMapping("/login")
-    public String login(Model model, Designer designer, HttpServletResponse response) {
+    public String login(Model model, Designer designer, HttpServletResponse response, HttpSession session) {
 
         Map<String, Object> map = designerService.login(designer.getUsername(),designer.getPassword());
         //登录成功跳转首页
         if(map.containsKey("SuccessMessage")){
             Cookie cookie = new Cookie("designerId",map.get("designerId").toString());
+            session.setAttribute("designerId",map.get("designerId").toString());
             cookie.setPath(contextPath);//cookie范围
             cookie.setMaxAge(3600*12);//cookie有效时间
             response.addCookie(cookie);

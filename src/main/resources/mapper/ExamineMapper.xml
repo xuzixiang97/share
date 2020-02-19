@@ -40,7 +40,7 @@
     delete from examine
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xuzi.share.entity.Examine" >
+  <insert id="insert" parameterType="com.xuzi.share.entity.Examine" useGeneratedKeys="true" keyProperty="id" >
     insert into examine (id, apply_time, entity_id, 
       entity_type, check_result, checker, 
       reason, check_time, extended_field
