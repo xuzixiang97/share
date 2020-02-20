@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xuzi.share.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.xuzi.share.entity.Order" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="designer_id" property="designerId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+    <result column="earnest" property="earnest" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+    <result column="end_time" property="endTime" jdbcType="BIGINT" />
+    <result column="extended_field" property="extendedField" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, designer_id, `type`, status, amount, earnest, create_time, update_time,
+    end_time, extended_field
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from `order`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from `order`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xuzi.share.entity.Order" >
+    insert into `order` (id, user_id, designer_id,
+      `type`, status, amount,
+      earnest, create_time, update_time, 
+      end_time, extended_field)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, #{designerId,jdbcType=BIGINT}, 
+      #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{amount,jdbcType=BIGINT}, 
+      #{earnest,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
+      #{endTime,jdbcType=BIGINT}, #{extendedField,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xuzi.share.entity.Order" >
+    insert into `order`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="designerId != null" >
+        designer_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="earnest != null" >
+        earnest,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="extendedField != null" >
+        extended_field,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="designerId != null" >
+        #{designerId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="earnest != null" >
+        #{earnest,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="extendedField != null" >
+        #{extendedField,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.xuzi.share.entity.Order" >
+    update order
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="designerId != null" >
+        designer_id = #{designerId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="earnest != null" >
+        earnest = #{earnest,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="extendedField != null" >
+        extended_field = #{extendedField,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectbyCondition" parameterType="com.xuzi.share.entity.Order" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    FROM  `order`
+   <where>
+     <if test="userId != null" >
+       and user_id = #{userId,jdbcType=BIGINT},
+     </if>
+     <if test="designerId != null" >
+       and designer_id = #{designerId,jdbcType=BIGINT},
+     </if>
+     <if test="type != null" >
+       and `type` = #{type,jdbcType=INTEGER},
+     </if>
+     <if test="status != null" >
+       and status = #{status,jdbcType=INTEGER},
+     </if>
+     <if test="amount != null" >
+       and amount = #{amount,jdbcType=BIGINT},
+     </if>
+     <if test="earnest != null" >
+       and earnest = #{earnest,jdbcType=BIGINT},
+     </if>
+     <if test="createTime != null" >
+       and create_time = #{createTime,jdbcType=BIGINT},
+     </if>
+     <if test="updateTime != null" >
+       and update_time = #{updateTime,jdbcType=BIGINT},
+     </if>
+     <if test="endTime != null" >
+       and end_time = #{endTime,jdbcType=BIGINT},
+     </if>
+     <if test="extendedField != null" >
+       and extended_field = #{extendedField,jdbcType=VARCHAR},
+     </if>
+   </where>
+  </select>
+</mapper>
