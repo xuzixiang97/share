@@ -28,4 +28,6 @@ public interface ItemMapper {
     int selectRowsByDesignerId();
 
     List<Item> selectByCategoryId(Integer categoryIds);
+
+    Item selectById(Integer id);
 }

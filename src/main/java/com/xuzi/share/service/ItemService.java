@@ -43,6 +43,18 @@ public interface ItemService {
      */
     Item insert(Item item);
 
+    /**
+     * 根据类目查询商品列表
+     * @param categoryIds
+     * @return
+     */
     List<Item> selectByCategoryId(Integer categoryIds);
+
+    /**
+     * 根基id查询商品详情
+     * @param Id
+     * @return
+     */
+     Item selectById(Integer Id);
 
 }
