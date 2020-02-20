@@ -41,4 +41,9 @@ public class ItemServiceImpl implements ItemService {
         return item;
     }
 
+    @Override
+    public List<Item> selectByCategoryId(Integer categoryIds) {
+        return itemMapper.selectByCategoryId(categoryIds);
+    }
+
 }

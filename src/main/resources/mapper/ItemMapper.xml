@@ -56,6 +56,14 @@
     where designer_id = #{designerId}
     limit #{offset}, #{limit}
   </select>
+
+  <select id="selectByCategoryId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from `item`
+    where category_ids = #{categoryIds}
+  </select>
+
+
   <select id="selectRows" resultType="int">
     select count(id) from `item`
   </select>

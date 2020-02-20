@@ -26,4 +26,6 @@ public interface ItemMapper {
     List<Item> findPageByDesignerId(@Param("offset") int offset, @Param("limit") int limit,@Param("designerId") int designerId);
 
     int selectRowsByDesignerId();
+
+    List<Item> selectByCategoryId(Integer categoryIds);
 }

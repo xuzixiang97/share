@@ -11,7 +11,11 @@
 		<div class="head">
 			<div class="wrapper clearfix">
 				<div class="clearfix" id="top">
-					<h1 class="fl"><a href="index.html"><img src="img/logo.png"/></a></h1>
+					<h1 class="fl">
+						<a href="index.html">
+							<!--<img src="img/logo.png"/>-->
+						</a>
+					</h1>
 					<div class="fr clearfix" id="top1">
 						<p class="fl">
 							<a href="#" id="login">登录</a>
@@ -98,12 +102,12 @@
 				<ul class="slides">
 					<li>
 						<div class="slide">
-							<img src="img/banner2.jpg"/>
+							<img src="https://static.ttkuan.com/ttkuan/kkadPic/2019-11-28/901e445143cf213b532f2187cf61cc27.jpg"/>
 						</div>
 					</li>
 					<li>
 						<div class="slide">
-							<img src="img/banner1.jpg"/>
+							<img src="https://static.ttkuan.com/ttkuan/kkadPic/2019-04-10/c69c82badb51b6e3ba94a3c9b12d6e9b.jpg"/>
 						</div>
 					</li>
 				</ul>
@@ -113,71 +117,26 @@
 		<!------------------------------thImg------------------------------>
 		<div class="thImg">
 			<div class="clearfix">
-				<a href="vase_proList.html"><img src="img/i1.jpg"/></a>
-				<a href="proList.html"><img src="img/i2.jpg"/></a>
-				<a href="#2"><img src="img/i3.jpg"/></a>
+				<a href="vase_proList.html"><img src="https://static.ttkuan.com/ttkuan/kkadPic/2019-04-10/a53b131143e24cf2d848d1eea5e5d5f0.jpg" height="300"/>
+				</a>
+				<a href="proList.html"><img src="https://static.ttkuan.com/ttkuan/kkadPic/2019-12-20/1aa77c2851e2c2919485cd2a51cc1018.jpg" height="300"/></a>
+				<a href="#2"><img src="https://static.ttkuan.com/ttkuan/kkadPic/2019-04-10/39a8de3ac84e811b8117428a61636427.jpg" height="300"/></a>
 			</div>
 		</div>
 		
 		<!------------------------------news------------------------------>
 		<div class="news">
 			<div class="wrapper">
-				<h2><img src="img/ih1.jpg"/></h2>
-				<div class="top clearfix">
-					<a href="proDetail.html"><img src="img/n1.jpg"/><p></p></a>
-					<a href="proDetail.html"><img src="img/n2.jpg"/><p></p></a>
-					<a href="proDetail.html"><img src="img/n3.jpg"/><p></p></a>
-				</div>
-				<div class="bott clearfix">
-					<a href="proDetail.html"><img src="img/n4.jpg"/><p></p></a>
-					<a href="proDetail.html"><img src="img/n5.jpg"/><p></p></a>
-					<a href="proDetail.html"><img src="img/n6.jpg"/><p></p></a>
-				</div>
-				<h2><img src="img/ih2.jpg"/></h2>
-				<div class="flower clearfix tran">
-					<a href="proDetail.html" class="clearfix">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img src="img/flo1.jpg"/>
-								<span class="abr"></span>
-							</dt>
-							<dd>【花艺】七头美丽玫瑰仿真花束</dd>
-							<dd><span>¥ 79.00</span></dd>
-						</dl>
-					</a>
-					<a href="proDetail.html">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img src="img/flo2.jpg"/>
-								<span class="abr"></span>
-							</dt>
-							<dd>【花艺】七头美丽玫瑰仿真花束</dd>
-							<dd><span>¥ 79.00</span></dd>
-						</dl>
-					</a>
-					<a href="proDetail.html">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img src="img/flo3.jpg"/>
-								<span class="abr"></span>
-							</dt>
-							<dd>【花艺】七头美丽玫瑰仿真花束</dd>
-							<dd><span>¥ 79.00</span></dd>
-						</dl>
-					</a>
-				</div>
+				<h2><img src="img/ih5.jpg"/></h2>
 				<div class="flower clearfix tran">
 					<a href="proDetail.html">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/flo4.jpg"/>
+								<img th:src="${items1[0].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【花艺】七头美丽玫瑰仿真花束</dd>
+							<dd th:text="${items1[0].name}"></dd>
 							<dd><span>¥ 79.00</span></dd>
 						</dl>
 					</a>
@@ -185,10 +144,10 @@
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/flo5.jpg"/>
+								<img th:src="${items1[1].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【花艺】七头美丽玫瑰仿真花束</dd>
+							<dd th:text="${items1[1].name}"></dd>
 							<dd><span>¥ 79.00</span></dd>
 						</dl>
 					</a>
@@ -196,10 +155,117 @@
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/flo6.jpg"/>
+								<img th:src="${items1[2].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【花艺】七头美丽玫瑰仿真花束</dd>
+							<dd th:text="${items1[2].name}"></dd>
+							<dd><span>¥ 79.00</span></dd>
+						</dl>
+					</a>
+				</div><div class="flower clearfix tran">
+				<a href="proDetail.html" class="clearfix">
+					<dl>
+						<dt>
+							<span class="abl"></span>
+							<img th:src="${items1[3].showImg}" height="327" width="327" />
+							<span class="abr"></span>
+						</dt>
+						<dd th:text="${items1[3].name}"></dd>
+						<dd><span>¥ 79.00</span></dd>
+					</dl>
+				</a>
+				<a href="proDetail.html">
+					<dl>
+						<dt>
+							<span class="abl"></span>
+							<img th:src="${items1[4].showImg}" height="327" width="327" />
+							<span class="abr"></span>
+						</dt>
+						<dd th:text="${items1[4].name}"></dd>
+						<dd><span>¥ 79.00</span></dd>
+					</dl>
+				</a>
+				<a href="proDetail.html">
+					<dl>
+						<dt>
+							<span class="abl"></span>
+							<img th:src="${items1[5].showImg}" height="327" width="327" />
+							<span class="abr"></span>
+						</dt>
+						<dd th:text="${items1[5].name}"></dd>
+						<dd><span>¥ 79.00</span></dd>
+					</dl>
+				</a>
+			</div>
+
+
+				<h2><img src="img/ih6.jpg"/></h2>
+				<div class="flower clearfix tran">
+					<a href="proDetail.html">
+						<dl>
+							<dt>
+								<span class="abl"></span>
+								<img th:src="${items2[0].showImg}" height="327" width="327" />
+								<span class="abr"></span>
+							</dt>
+							<dd th:text="${items2[0].name}"></dd>
+							<dd><span>¥ 79.00</span></dd>
+						</dl>
+					</a>
+					<a href="proDetail.html">
+						<dl>
+							<dt>
+								<span class="abl"></span>
+								<img th:src="${items2[1].showImg}" height="327" width="327" />
+								<span class="abr"></span>
+							</dt>
+							<dd th:text="${items2[1].name}"></dd>
+							<dd><span>¥ 79.00</span></dd>
+						</dl>
+					</a>
+					<a href="proDetail.html">
+						<dl>
+							<dt>
+								<span class="abl"></span>
+								<img th:src="${items2[2].showImg}" height="327" width="327" />
+								<span class="abr"></span>
+							</dt>
+							<dd th:text="${items2[2].name}"></dd>
+							<dd><span>¥ 79.00</span></dd>
+						</dl>
+					</a>
+				</div>
+				<div class="flower clearfix tran">
+					<a href="proDetail.html">
+						<dl>
+							<dt>
+								<span class="abl"></span>
+								<img th:src="${items2[0].showImg}" height="327" width="327" />
+								<span class="abr"></span>
+							</dt>
+							<dd th:text="${items2[0].name}"></dd>
+							<dd><span>¥ 79.00</span></dd>
+						</dl>
+					</a>
+					<a href="proDetail.html">
+						<dl>
+							<dt>
+								<span class="abl"></span>
+								<img th:src="${items2[1].showImg}" height="327" width="327" />
+								<span class="abr"></span>
+							</dt>
+							<dd th:text="${items2[1].name}"></dd>
+							<dd><span>¥ 79.00</span></dd>
+						</dl>
+					</a>
+					<a href="proDetail.html">
+						<dl>
+							<dt>
+								<span class="abl"></span>
+								<img th:src="${items2[2].showImg}" height="327" width="327" />
+								<span class="abr"></span>
+							</dt>
+							<dd th:text="${items2[2].name}"></dd>
 							<dd><span>¥ 79.00</span></dd>
 						</dl>
 					</a>
@@ -207,56 +273,54 @@
 			</div>
 		</div>
 		
-		<!------------------------------ad------------------------------>
-		<a href="#" class="ad"><img src="img/ib1.jpg"/></a>
-		
+
 		<!------------------------------people------------------------------>
 		<div class="people">
 			<div class="wrapper">
-				<h2><img src="img/ih3.jpg"/></h2>
+				<h2><img src="img/ih5.jpg"/></h2>
 				<div class="pList clearfix tran">
 					<a href="proDetail.html">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/s7.jpg"/>
+								<img th:src="${items3[0].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【最家】不锈钢壁饰墙饰软装</dd>
-							<dd><span>￥688.00</span></dd>
+							<dd th:text="${items3[0].name}"></dd>
+							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
 						</dl>
 					</a>
 					<a href="proDetail.html">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/s10.jpg"/>
+								<img th:src="${items3[0].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【最家】小城动物木板画壁挂北欧</dd>
-							<dd><span>￥188.00</span></dd>
+							<dd th:text="${items3[0].name}"></dd>
+							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
 						</dl>
 					</a>
 					<a href="proDetail.html">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/s4.jpg"/>
+								<img th:src="${items3[0].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【最家】玄关假山水壁饰背景墙饰挂件创意</dd>
-							<dd><span>￥599.00</span></dd>
+							<dd th:text="${items3[0].name}"></dd>
+							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
 						</dl>
 					</a>
 					<a href="proDetail.html">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/s9.jpg"/>
+								<img th:src="${items3[0].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【最家】金属树枝壁饰铜鸟装饰品</dd>
-							<dd><span>￥928.00</span></dd>
+							<dd th:text="${items3[0].name}"></dd>
+							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
 						</dl>
 					</a>
 				</div>
@@ -265,44 +329,44 @@
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/s6.jpg"/>
+								<img th:src="${items3[0].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【最家】金属壁饰创意背景墙面挂件创意</dd>
-							<dd><span>￥228.00</span></dd>
+							<dd th:text="${items3[0].name}"></dd>
+							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
 						</dl>
 					</a>
 					<a href="proDetail.html">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/s8.jpg"/>
+								<img th:src="${items3[0].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【最家】小城动物木板画壁挂北欧</dd>
-							<dd><span>￥199.00</span></dd>
+							<dd th:text="${items3[0].name}"></dd>
+							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
 						</dl>
 					</a>
 					<a href="proDetail.html">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/s12.jpg"/>
+								<img th:src="${items3[0].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【最家】欧式复古挂钟创意餐厅钟表家居挂件</dd>
-							<dd><span>￥666.00</span></dd>
+							<dd th:text="${items3[0].name}"></dd>
+							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
 						</dl>
 					</a>
 					<a href="proDetail.html">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/s1.jpg"/>
+								<img th:src="${items3[0].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【最家】客厅地中海欧式现代相片墙创意</dd>
-							<dd><span>￥59.80</span></dd>
+							<dd th:text="${items3[0].name}"></dd>
+							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
 						</dl>
 					</a>
 				</div>
@@ -311,44 +375,44 @@
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/s5.jpg"/>
+								<img th:src="${items3[0].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【最家】铁艺荷叶壁挂软装背景墙上装饰品</dd>
-							<dd><span>￥800.00</span></dd>
+							<dd th:text="${items3[0].name}"></dd>
+							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
 						</dl>
 					</a>
 					<a href="proDetail.html">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/s3.jpg"/>
+								<img th:src="${items3[0].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【最家】欧式照片墙 创意组合结婚礼物</dd>
-							<dd><span>￥189.00</span></dd>
+							<dd th:text="${items3[0].name}"></dd>
+							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
 						</dl>
 					</a>
 					<a href="proDetail.html">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/s2.jpg"/>
+								<img th:src="${items3[0].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【最家】欧式钟表相框墙挂墙创意组合</dd>
-							<dd><span>￥148.00</span></dd>
+							<dd th:text="${items3[0].name}"></dd>
+							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
 						</dl>
 					</a>
 					<a href="proDetail.html">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img src="img/s11.jpg"/>
+								<img th:src="${items3[0].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd>【最家】小城动物木板画壁挂北欧</dd>
-							<dd><span>￥188.00</span></dd>
+							<dd th:text="${items3[0].name}"></dd>
+							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
 						</dl>
 					</a>
 				</div>

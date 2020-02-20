@@ -43,4 +43,6 @@ public interface ItemService {
      */
     Item insert(Item item);
 
+    List<Item> selectByCategoryId(Integer categoryIds);
+
 }
