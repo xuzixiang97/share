@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
             return map;
         }
         map.put("SuccessMessage", "登录成功");
+        map.put("userId", user.getId());
         return map;
     }
     @Override

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head lang="en">
 		<meta charset="utf-8" />
 		<title>ok</title>
-		<link rel="stylesheet" type="text/css" href="css/public.css"/>
-		<link rel="stylesheet" type="text/css" href="css/proList.css" />
+		<link rel="stylesheet" type="text/css" th:href="@{/user/css/public.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/user/css/proList.css}" />
 	</head>
 	<body>
 		<!----------------------------------------order------------------>
@@ -105,82 +105,68 @@
 			<h4>猜你喜欢</h4>
 			<div class="bottom">
 				<div class="hd">
-					<span class="prev"><img src="img/temp/prev.png"></span>
-					<span class="next"><img src="img/temp/next.png"></span>
+					<span class="prev"><img th:src="@{/user/img/temp/prev.png}"></span>
+					<span class="next"><img th:src="@{/user/img/temp/next.png}"></span>
 				</div>
 				<div class="imgCon wrapper bd">
 					<div class="likeList clearfix">
 						<div>
-							<a href="proDetail.html">
+							<a th:href="@{/user/item/detail(id=${items[0].id})}">
 								<dl>
-									<dt><img src="img/temp/like01.jpg"></dt>
-									<dd>【最家】复古文艺风玻璃花瓶</dd>
-									<dd>￥193.20</dd>
+									<dt><img th:src="${items[0].showImg}"></dt>
+									<dd th:text="${items[0].name}"></dd>
+									<dd><span th:text="${items[0].authorizeUnitprice}"></span></dd>
 								</dl>
 							</a>
-							<a href="proDetail.html">
+							<a th:href="@{/user/item/detail(id=${items[0].id})}">
 								<dl>
-									<dt><img src="img/temp/like02.jpg"></dt>
-									<dd>【最家】复古文艺风玻璃花瓶</dd>
-									<dd>￥193.20</dd>
+									<dt><img th:src="${items[0].showImg}"></dt>
+									<dd th:text="${items[0].name}"></dd>
+									<dd><span th:text="${items[0].authorizeUnitprice}"></span></dd>
 								</dl>
 							</a>
-							<a href="proDetail.html">
+							<a th:href="@{/user/item/detail(id=${items[0].id})}">
 								<dl>
-									<dt><img src="img/temp/like03.jpg"></dt>
-									<dd>【最家】复古文艺风玻璃花瓶</dd>
-									<dd>￥193.20</dd>
+									<dt><img th:src="${items[0].showImg}"></dt>
+									<dd th:text="${items[0].name}"></dd>
+									<dd><span th:text="${items[0].authorizeUnitprice}"></span></dd>
 								</dl>
 							</a>
-							<a href="proDetail.html">
+							<a th:href="@{/user/item/detail(id=${items[0].id})}">
 								<dl>
-									<dt><img src="img/temp/like04.jpg"></dt>
-									<dd>【最家】复古文艺风玻璃花瓶</dd>
-									<dd>￥193.20</dd>
-								</dl>
-							</a>
-							<a href="proDetail.html" class="last">
-								<dl>
-									<dt><img src="img/temp/like05.jpg"></dt>
-									<dd>【最家】复古文艺风玻璃花瓶</dd>
-									<dd>￥193.20</dd>
+									<dt><img th:src="${items[0].showImg}"></dt>
+									<dd th:text="${items[0].name}"></dd>
+									<dd><span th:text="${items[0].authorizeUnitprice}"></span></dd>
 								</dl>
 							</a>
 						</div>
 						<div>
-							<a href="proDetail.html">
+							<a th:href="@{/user/item/detail(id=${items[0].id})}">
 								<dl>
-									<dt><img src="img/temp/like01.jpg"></dt>
-									<dd>【最家】复古文艺风玻璃花瓶</dd>
-									<dd>￥193.20</dd>
+									<dt><img th:src="${items[0].showImg}"></dt>
+									<dd th:text="${items[0].name}"></dd>
+									<dd><span th:text="${items[0].authorizeUnitprice}"></span></dd>
 								</dl>
 							</a>
-							<a href="proDetail.html">
+							<a th:href="@{/user/item/detail(id=${items[1].id})}">
 								<dl>
-									<dt><img src="img/temp/like02.jpg"></dt>
-									<dd>【最家】复古文艺风玻璃花瓶</dd>
-									<dd>￥193.20</dd>
+									<dt><img th:src="${items[1].showImg}"></dt>
+									<dd th:text="${items[1].name}"></dd>
+									<dd><span th:text="${items[1].authorizeUnitprice}"></span></dd>
 								</dl>
 							</a>
-							<a href="proDetail.html">
+							<a th:href="@{/user/item/detail(id=${items[2].id})}">
 								<dl>
-									<dt><img src="img/temp/like03.jpg"></dt>
-									<dd>【最家】复古文艺风玻璃花瓶</dd>
-									<dd>￥193.20</dd>
+									<dt><img th:src="${items[2].showImg}"></dt>
+									<dd th:text="${items[2].name}"></dd>
+									<dd><span th:text="${items[2].authorizeUnitprice}"></span></dd>
 								</dl>
 							</a>
-							<a href="proDetail.html">
+							<a th:href="@{/user/item/detail(id=${items[3].id})}">
 								<dl>
-									<dt><img src="img/temp/like04.jpg"></dt>
-									<dd>【最家】复古文艺风玻璃花瓶</dd>
-									<dd>￥193.20</dd>
-								</dl>
-							</a>
-							<a href="proDetail.html" class="last">
-								<dl>
-									<dt><img src="img/temp/like05.jpg"></dt>
-									<dd>【最家】复古文艺风玻璃花瓶</dd>
-									<dd>￥193.20</dd>
+									<dt><img th:src="${items[3].showImg}"></dt>
+									<dd th:text="${items[3].name}"></dd>
+									<dd><span th:text="${items[3].authorizeUnitprice}"></span></dd>
 								</dl>
 							</a>
 						</div>

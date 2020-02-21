@@ -28,7 +28,7 @@
     delete from `order`
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.xuzi.share.entity.Order" >
+  <insert id="insert" parameterType="com.xuzi.share.entity.Order" useGeneratedKeys="true" keyProperty="id">
     insert into `order` (id, user_id, designer_id,
       `type`, status, amount,
       earnest, create_time, update_time, 
