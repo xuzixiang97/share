@@ -143,6 +143,6 @@
     select
     <include refid="Base_Column_List"/>
     FROM  order_items
-    where order_id = #{orderId,jdbcType=BIGINT}
+    where order_id = #{orderId}
   </select>
 </mapper>

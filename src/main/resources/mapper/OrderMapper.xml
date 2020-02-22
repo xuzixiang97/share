@@ -112,13 +112,13 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.xuzi.share.entity.Order" >
-    update order
+    update `order`
     <set >
       <if test="userId != null" >
-        user_id = #{userId,jdbcType=BIGINT},
+        user_id = #{userId},
       </if>
       <if test="designerId != null" >
-        designer_id = #{designerId,jdbcType=BIGINT},
+        designer_id = #{designerId},
       </if>
       <if test="type != null" >
         `type` = #{type,jdbcType=INTEGER},
@@ -127,10 +127,10 @@
         status = #{status,jdbcType=INTEGER},
       </if>
       <if test="amount != null" >
-        amount = #{amount,jdbcType=BIGINT},
+        amount = #{amount},
       </if>
       <if test="earnest != null" >
-        earnest = #{earnest,jdbcType=BIGINT},
+        earnest = #{earnest},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=BIGINT},
@@ -145,7 +145,7 @@
         extended_field = #{extendedField,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </update>
 
 

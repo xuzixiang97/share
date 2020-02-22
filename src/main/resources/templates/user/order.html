@@ -179,27 +179,29 @@
 					<div class="msg">
 						<h3>订单内容</h3>
 						<!--------ul---------------->
-						<ul class="clearfix">
-							<li class="fl">
-								<img th:src="${item.showImg}" width="87" height="87">
-							</li>
-							<li class="fl">
-								<p th:text="${item.name}">创意现代简约干花花瓶摆件</p>
-								<p th:text="${item.describe}">颜色分类：烟灰色玻璃瓶</p>
-								<p>数量：1</p>
-							</li>
-							<li class="fr" th:text="${item.authorizeUnitprice}">￥69.90</li>
-						</ul>
+						<tr th:each="item,iterStat : ${items}">
+							<ul class="clearfix">
+								<li class="fl">
+									<img th:src="${item.showImg}" width="87" height="87">
+								</li>
+								<li class="fl">
+									<p th:text="${item.name}">创意现代简约干花花瓶摆件</p>
+									<p th:text="${item.describe}">颜色分类：烟灰色玻璃瓶</p>
+									<p>数量：1</p>
+								</li>
+								<li class="fr" th:text="${item.authorizeUnitprice}">￥69.90</li>
+							</ul>
+						</tr>
 					</div>
 					<!--------tips---------------->
 					<div class="tips">
-						<p><span class="fl">商品金额：</span><span class="fr" th:text="${item.authorizeUnitprice}">￥139.80</span></p>
+						<p><span class="fl">商品金额：</span><span class="fr" th:text="${amount}">￥139.80</span></p>
 						<p><span class="fl">优惠金额：</span><span class="fr">￥0.00</span></p>
 						<p><span class="fl">其他：</span><span class="fr">无</span></p>
 					</div>
 					<!--------tips count---------------->
 					<div class="count tips">
-						<p><span class="fl">合计：</span><span class="fr" th:text="${item.authorizeUnitprice}">￥139.80</span></p>
+						<p><span class="fl">合计：</span><span class="fr" th:text="${amount}">￥139.80</span></p>
 					</div>
 					<!--<input type="button" name="" value="去支付"> -->
 					<a th:href="@{/user/order/pay/finish}" class="pay">去支付</a>

@@ -41,6 +41,7 @@ public class UserUserController {
     @RequestMapping("/login")
     public String getLogin(Model model, User user, HttpSession session){
         Map<String, Object> map = userService.login(user.getUsername(), user.getPassword());
+
         //登录成功跳转管理员页面
         if(map.containsKey("SuccessMessage")){
             session.setAttribute("userId",map.get("userId").toString());
@@ -50,6 +51,7 @@ public class UserUserController {
             model.addAttribute("items1", items1);
             model.addAttribute("items2", items2);
             model.addAttribute("items3", items3);
+            model.addAttribute("user", map.get("user"));
             return "user/index";
         }
         //登陆失败返回登录页面
