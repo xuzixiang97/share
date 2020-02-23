@@ -40,6 +40,7 @@ public class AdmAdminController {
         Map<String, Object> map = adminService.login(admin.getUsername(), admin.getPassword());
         //登录成功跳转管理员页面
         if(map.containsKey("SuccessMessage")){
+            model.addAttribute("admin",map.get("admin"));
             return "redirect:/admin/index";
         }
         //登陆失败返回登录页面

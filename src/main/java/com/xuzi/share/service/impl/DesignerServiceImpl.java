@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 @Service
 public class DesignerServiceImpl implements DesignerService {
@@ -77,5 +78,19 @@ public class DesignerServiceImpl implements DesignerService {
     public Boolean updateByCondition(Designer designer) {
         int i = designerMapper.updateByPrimaryKey(designer);
         return (i>0);
+    }
+
+    public List<Designer> findPage(int offset, int limit){
+        List<Designer> userList = designerMapper.findPage(offset, limit);
+        return userList;
+    }
+
+    public int selectRows(){
+        return  designerMapper.selectRows();
+    }
+
+    @Override
+    public List<Designer> findByStatus(Integer status) {
+        return designerMapper.findByStatus(status);
     }
 }

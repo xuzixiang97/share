@@ -21,6 +21,8 @@ public interface DesignerMapper {
 
     List<Designer> findPage(int offset, int limit);
 
+    List<Designer> findByStatus(Integer status);
+
     int selectRows();
 
     Designer findByUserName(String username);

@@ -27,6 +27,7 @@ public class AdminServiceImpl implements AdminService {
             return map;
         }
         map.put("SuccessMessage", "登录成功");
+        map.put("admin", admin);
         return map;
     }
 

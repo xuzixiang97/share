@@ -216,8 +216,9 @@ public class DesDesignerController {
      * @return
      */
     @RequestMapping("/review")
-    public String shenhe(Model model,Designer designer) {
-        designer.setId(hostHolder.getDesigner().getId());
+    public String shenhe(Model model,Designer designer,HttpSession httpSession) {
+        Object designerId = httpSession.getAttribute("designerId");
+        designer.setId(Integer.parseInt(designerId.toString()));
         //修改审核状态为待审核
         designer.setStatus(DesignerStatusEnum.UNEXAMINEING.getStatus());
         designerService.updateByCondition(designer);

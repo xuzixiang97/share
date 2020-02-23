@@ -186,4 +186,15 @@
      </if>
    </where>
   </select>
+
+  <select id="findPageByType" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from `order`
+    where `type` = #{type}
+    limit #{offset}, #{limit}
+  </select>
+  <select id="selectRowsByType" resultType="int">
+    select count(id) from `order`
+    where `type` = #{type}
+  </select>
 </mapper>

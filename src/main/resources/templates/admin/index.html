@@ -32,26 +32,28 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="img/profile_small.jpg" /></span>
+                            <span class="block m-t-xs"><img alt="image" class="img-circle" style="width:80px; height: 80px" src="http://q5xmgf6fo.bkt.clouddn.com/u=3703406506,2565705466&fm=26&gp=0.jpg" /><strong class="font-bold" th:text="'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;admin'">Beaut-zihan</strong></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
-                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+<!--                                    <span class="block m-t-xs"><strong class="font-bold">&nbsp;&nbsp;&nbsp;</strong></span>-->
+                                    <!--                                    <span class="block m-t-xs"><strong class="font-bold" th:text="${designer.username}">Beaut-zihan</strong></span>-->
+                                    <!--                                    <span class="block m-t-xs"><strong class="font-bold">&nbsp;&nbsp;&nbsp;</strong></span>-->
+                                    <!--                                    <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>-->
                                 </span>
                             </a>
-                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
-                                </li>
-                                <li><a class="J_menuItem" href="profile.html">个人资料</a>
-                                </li>
-                                <li><a class="J_menuItem" href="contacts.html">联系我们</a>
-                                </li>
-                                <li><a class="J_menuItem" href="mailbox.html">信箱</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li><a href="login.html">安全退出</a>
-                                </li>
-                            </ul>
+                            <!--                            <ul class="dropdown-menu animated fadeInRight m-t-xs">-->
+                            <!--                                <li><a class="J_menuItem" href="form_avatar.html">修改头像</a>-->
+                            <!--                                </li>-->
+                            <!--                                <li><a class="J_menuItem" href="profile.html">个人资料</a>-->
+                            <!--                                </li>-->
+                            <!--                                <li><a class="J_menuItem" href="contacts.html">联系我们</a>-->
+                            <!--                                </li>-->
+                            <!--                                <li><a class="J_menuItem" href="mailbox.html">信箱</a>-->
+                            <!--                                </li>-->
+                            <!--                                <li class="divider"></li>-->
+                            <!--                                <li><a th:href="@{/designer/login/page}">安全退出</a>-->
+                            <!--                                </li>-->
+                            <!--                            </ul>-->
                         </div>
                         <div class="logo-element">H+
                         </div>
@@ -67,9 +69,9 @@
                     <li>
                         <a href="#"><i class="fa fa-user"></i> <span class="nav-label">设计师管理 </span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" th:href="@{/admin/user/page}">设计师信息</a>
+                            <li><a class="J_menuItem" th:href="@{/admin/designer/page}">设计师信息</a>
                             </li>
-                            <li><a class="J_menuItem" th:href="@{/admin/user/page}">设计师审核</a>
+                            <li><a class="J_menuItem" th:href="@{/admin/designer/review}">设计师审核</a>
                             </li>
                         </ul>
                     </li>
@@ -77,7 +79,7 @@
                     <li>
                         <a href="#"><i class="fa fa-sticky-note-o"></i><span class="nav-label">订单管理 </span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a class="J_menuItem" th:href="@{/admin/user/page}">订单信息</a>
+                            <li><a class="J_menuItem" th:href="@{/admin/order/page(type = 1)}">订单信息</a>
                             </li>
                         </ul>
                     </li>

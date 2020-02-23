@@ -49,7 +49,7 @@
 
 <div class="container consolecon">
 
-        <form th:action="@{/designer/review}" method="post" class="form validateform studioform"
+        <form id="form1" method="post" class="form validateform studioform"
               enctype="multipart/form-data">
 
             <div class="row mt10">
@@ -224,7 +224,7 @@
                 <input type='hidden' name='csrfmiddlewaretoken' value='5RMJyWGXm4KUsh8aeq68HhWMlTwrVUai'/>
                 <input type="hidden" name="action" value="save">
                 <button type="submit" name="actionbutton" value="save" style="min-width: 150px;"
-                        class="btn btn-lg btn-primary actionbutton disabled">
+                        class="btn btn-lg btn-primary actionbutton disabled" onclick="sumbit()">
 
                     提交审核
                 </button>
@@ -236,7 +236,6 @@
             </div>
 
         </form>
-
 
         <script src="/static/js/jquery.validate-1.14.0.min.js"></script>
         <script src="/static/js/jquery-validate.bootstrap-tooltip.js"></script>
@@ -292,6 +291,20 @@
                     }
                 });
             });
+
+            function sumbit(){
+                $.ajax({
+                    url:"/share/designer/review",
+                    method: "post",
+                    dataType: "json",
+                    data: $('#from1').serialize(),
+                    // data: new FormData($('#from'+element.name)[0]),
+                    success: function(data) {
+                        alert("成功!");
+                        window.location.href="/share/admin/category/findAll";
+                    }
+                });
+            }
         </script>
 
 

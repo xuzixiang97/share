@@ -1,6 +1,7 @@
 package com.xuzi.share.service.impl;
 
 import com.xuzi.share.dao.OrderMapper;
+import com.xuzi.share.entity.Designer;
 import com.xuzi.share.entity.Order;
 import com.xuzi.share.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> selectbyCondition(Order record) {
         return orderMapper.selectbyCondition(record);
+    }
+
+    @Override
+    public List<Order> findPageByType(int offset, int limit, int type) {
+        return orderMapper.findPageByType(offset,limit,type);
+    }
+
+    @Override
+    public int selectRowsByType(int type) {
+        return orderMapper.selectRowsByType(type);
     }
 }

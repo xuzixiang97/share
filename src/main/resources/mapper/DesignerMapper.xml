@@ -48,6 +48,13 @@
     <include refid="Base_Column_List"/>
     FROM  `designer`
   </select>
+  <select id="findByStatus" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    FROM  `designer`
+    where status = #{status}
+  </select>
+
   <select id="findPage" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"></include>
     from `designer`
