@@ -117,47 +117,47 @@ $(function(){
 		}
 	});
 	
-	//删除购物车商品
-	$('.del').click(function(){
-		//单个删除
-		if($(this).parent().parent().hasClass("th")){
-			$(".mask").show();
-			$(".tipDel").show();
-			index = $(this).parents(".th").index()-1;
-			$('.cer').click(function(){
-				$(".mask").hide();
-				$(".tipDel").hide();
-				$(".th").eq(index).remove();
-				$('.cer').off('click');
-				if($(".th").length==0){
-					$(".table .goOn").show();
-				}
-			})
-		}else{
-			//选中多个一起删除
-			if($(".th input[type='checkbox']:checked").length==0){
-				$(".mask").show();
-				$(".pleaseC").show();
-			}
-			else{
-				$(".mask").show();
-				$(".tipDel").show();
-				$('.cer').click(function(){
-					$(".th input[type='checkbox']:checked").each(function(j){
-						index = $(this).parents('.th').index()-1;
-						$(".th").eq(index).remove();
-						if($(".th").length==0){
-							$(".table .goOn").show();
-						}
-					})
-					$(".mask").hide();
-					$(".tipDel").hide();
-					zg();
-					jisuan();
-				})
-			}
-		}
-	})
+	// //删除购物车商品
+	// 	// $('.del').click(function(){
+	// 	// 	//单个删除
+	// 	// 	if($(this).parent().parent().hasClass("th")){
+	// 	// 		$(".mask").show();
+	// 	// 		$(".tipDel").show();
+	// 	// 		index = $(this).parents(".th").index()-1;
+	// 	// 		$('.cer').click(function(){
+	// 	// 			$(".mask").hide();
+	// 	// 			$(".tipDel").hide();
+	// 	// 			$(".th").eq(index).remove();
+	// 	// 			$('.cer').off('click');
+	// 	// 			if($(".th").length==0){
+	// 	// 				$(".table .goOn").show();
+	// 	// 			}
+	// 	// 		})
+	// 	// 	}else{
+	// 	// 		//选中多个一起删除
+	// 	// 		if($(".th input[type='checkbox']:checked").length==0){
+	// 	// 			$(".mask").show();
+	// 	// 			$(".pleaseC").show();
+	// 	// 		}
+	// 	// 		else{
+	// 	// 			$(".mask").show();
+	// 	// 			$(".tipDel").show();
+	// 	// 			$('.cer').click(function(){
+	// 	// 				$(".th input[type='checkbox']:checked").each(function(j){
+	// 	// 					index = $(this).parents('.th').index()-1;
+	// 	// 					$(".th").eq(index).remove();
+	// 	// 					if($(".th").length==0){
+	// 	// 						$(".table .goOn").show();
+	// 	// 					}
+	// 	// 				})
+	// 	// 				$(".mask").hide();
+	// 	// 				$(".tipDel").hide();
+	// 	// 				zg();
+	// 	// 				jisuan();
+	// 	// 			})
+	// 	// 		}
+	// 	// 	}
+	// 	// })
 	$('.cancel').click(function(){
 		$(".mask").hide();
 		$(".tipDel").hide();

@@ -72,4 +72,9 @@ public class UserServiceImpl implements UserService {
         return map;
     }
 
+    @Override
+    public User findById(Integer id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
+
 }

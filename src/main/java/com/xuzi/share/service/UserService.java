@@ -35,4 +35,6 @@ public interface UserService {
      * @return
      */
     Map<String, Object> register(User user);
+
+    User findById(Integer id);
 }

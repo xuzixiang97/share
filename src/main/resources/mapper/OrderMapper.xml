@@ -155,34 +155,34 @@
     FROM  `order`
    <where>
      <if test="userId != null" >
-       and user_id = #{userId,jdbcType=BIGINT},
+       and user_id = #{userId,jdbcType=BIGINT}
      </if>
      <if test="designerId != null" >
-       and designer_id = #{designerId,jdbcType=BIGINT},
+       and designer_id = #{designerId,jdbcType=BIGINT}
      </if>
      <if test="type != null" >
-       and `type` = #{type,jdbcType=INTEGER},
+       and `type` = #{type,jdbcType=INTEGER}
      </if>
      <if test="status != null" >
-       and status = #{status,jdbcType=INTEGER},
+       and status = #{status,jdbcType=INTEGER}
      </if>
      <if test="amount != null" >
-       and amount = #{amount,jdbcType=BIGINT},
+       and amount = #{amount,jdbcType=BIGINT}
      </if>
      <if test="earnest != null" >
-       and earnest = #{earnest,jdbcType=BIGINT},
+       and earnest = #{earnest,jdbcType=BIGINT}
      </if>
      <if test="createTime != null" >
-       and create_time = #{createTime,jdbcType=BIGINT},
+       and create_time = #{createTime,jdbcType=BIGINT}
      </if>
      <if test="updateTime != null" >
-       and update_time = #{updateTime,jdbcType=BIGINT},
+       and update_time = #{updateTime,jdbcType=BIGINT}
      </if>
      <if test="endTime != null" >
-       and end_time = #{endTime,jdbcType=BIGINT},
+       and end_time = #{endTime,jdbcType=BIGINT}
      </if>
      <if test="extendedField != null" >
-       and extended_field = #{extendedField,jdbcType=VARCHAR},
+       and extended_field = #{extendedField,jdbcType=VARCHAR}
      </if>
    </where>
   </select>

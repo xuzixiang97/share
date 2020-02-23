@@ -142,7 +142,7 @@
 							</p>
 						</div>
 						<div class="price sAll" th:text="'￥' + ${cart.unitprice}">￥20.00</div>
-						<div class="price"><a class="del" href="#2">删除</a></div>
+						<div class="price"><a class="del" th:href="@{/user/cart/delete(id=${cart.id})}">删除</a></div>
 					</div>
 				</tr>
 

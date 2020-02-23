@@ -65,4 +65,19 @@ public class UserCartController {
         return  "user/cart";
     }
 
+    /**
+     * 删除购物车商品
+     * @param model
+     * @return
+     */
+    @RequestMapping("/delete")
+    public String delete(Model model, Integer id, HttpSession session) {
+        Object userId = session.getAttribute("userId");
+        cartService.deleteById(id);
+        //获取其他购物车商品
+        List<UserCartResponse> userCartResponses = cartService.selectByUserId(Integer.parseInt(userId.toString()));
+        model.addAttribute("carts", userCartResponses);
+        return  "user/cart";
+    }
+
 }
