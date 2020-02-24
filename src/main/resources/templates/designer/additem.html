@@ -259,6 +259,26 @@
                 }
             });
 
+            function handleFile() {
+                $.ajax({
+                    url: "http://upload-z2.qiniup.com",
+                    method: "post",
+                    processData: false,
+                    contentType: false,
+                    data: new FormData($("#uploadForm")[0]),
+                    success: function(data) {
+                        if(data && data.code == 0) {
+                            console.log(data);
+                            alert(data)
+                            alert("上传成功!");
+                        } else {
+                            alert("上传失败!");
+                        }
+                    }
+                });
+                return false;
+            }
+
 
             function add(){
                 $.ajax({

@@ -3,14 +3,8 @@ package com.xuzi.share.controller.user;
 import com.alibaba.fastjson.JSON;
 import com.xuzi.share.constant.OrderStatus;
 import com.xuzi.share.constant.OrderType;
-import com.xuzi.share.entity.Cart;
-import com.xuzi.share.entity.Item;
-import com.xuzi.share.entity.Order;
-import com.xuzi.share.entity.OrderItems;
-import com.xuzi.share.service.CartService;
-import com.xuzi.share.service.ItemService;
-import com.xuzi.share.service.OrderItemsService;
-import com.xuzi.share.service.OrderService;
+import com.xuzi.share.entity.*;
+import com.xuzi.share.service.*;
 import com.xuzi.share.utils.ShareUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +32,9 @@ public class UserOrderController {
 
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 商品详情页下单
@@ -154,10 +151,13 @@ public class UserOrderController {
      * @return
      */
     @RequestMapping("/pay/finish")
-    public String payPage(Model model){
+    public String payPage(Model model, HttpSession session){
+        Object userId = session.getAttribute("userId");
         //为你推荐商品
         List<Item> items = itemService.selectByCategoryId(303);
         model.addAttribute("items",items);
+        User user = userService.findById(Integer.parseInt(userId.toString()));
+        model.addAttribute("user", user);
         return "user/ok";
     }
 
