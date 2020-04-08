@@ -100,6 +100,25 @@ public class UserUrlController {
         return "user/index";
     }
 
+    /**
+     * 跳转搜索结果页面
+     * @param model
+     * @return
+     */
+    @RequestMapping("/search/page")
+    public String search(Model model, HttpSession session) {
+        Object userId = session.getAttribute("userId");
+        User user = userService.findById(Integer.parseInt(userId.toString()));
+        model.addAttribute("user", user);
+        List<Item> items1 = itemService.selectByCategoryId(301);//原创上衣
+        List<Item> items2 = itemService.selectByCategoryId(303);//时尚套裙
+        List<Item> items3 = itemService.selectByCategoryId(501);//春季新品
+        model.addAttribute("items1", items1);
+        model.addAttribute("items2", items2);
+        model.addAttribute("items3", items3);
+        return "user/search";
+    }
+
     public List<OrderDetail> transfer(List<Order> orderList) throws InvocationTargetException, IllegalAccessException {
         List<OrderDetail> orderDetailList = new ArrayList<>();
         if(orderList != null && orderList.size() >0){

@@ -37,4 +37,6 @@ public interface UserService {
     Map<String, Object> register(User user);
 
     User findById(Integer id);
+
+    User findByName(String userName);
 }

@@ -1,6 +1,8 @@
 package com.xuzi.share.controller.user;
 
 
+import com.xuzi.share.constant.UserStatus;
+import com.xuzi.share.constant.UserType;
 import com.xuzi.share.entity.Item;
 import com.xuzi.share.entity.User;
 import com.xuzi.share.service.ItemService;
@@ -60,6 +62,8 @@ public class UserUserController {
         return "user/login";
     }
 
+
+
     /**
      * 跳转注册页面
      * @param model
@@ -68,5 +72,18 @@ public class UserUserController {
     @RequestMapping("/register/page")
     public String getRegisterPage(Model model){
         return "user/reg";
+    }
+
+    /**
+     * 注册页面
+     * @param model
+     * @return
+     */
+    @RequestMapping("/register")
+    public String getRegister(Model model, User user){
+        user.setType(UserType.COMMON);
+        user.setStatus(UserStatus.NORMAL);
+        userService.register(user);
+        return "user/login";
     }
 }

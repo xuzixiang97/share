@@ -23,4 +23,6 @@ public interface UserMapper {
     int selectRows();
 
     User findByUserName(String username);
+
+    User selectByName(String userName);
 }

@@ -1,142 +1,104 @@
 <!DOCTYPE html>
-<html>
-	<head lang="en">
-		<meta charset="utf-8" />
-		<title>搜索</title>
-		<link rel="stylesheet" type="text/css" href="css/public.css"/>
-		<link rel="stylesheet" type="text/css" href="css/proList.css"/>
-	</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+	<meta charset="utf-8" />
+	<title>order</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/user/css/public.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/user/css/proList.css}" />
+</head>
 	<body>
-		<!------------------------------head------------------------------>
-		<div class="head ding">
-			<div class="wrapper clearfix">
-				<div class="clearfix" id="top">
-					<h1 class="fl"><a href="index.html"><img src="img/logo.png"/></a></h1>
-					<div class="fr clearfix" id="top1">
-						<p class="fl">
-							<a href="#" id="login">登录</a>
-							<a href="#" id="reg">注册</a>
-						</p>
-						<form action="#" method="get" class="fl">
-							<input type="text" placeholder="搜索" />
-							<input type="button" />
-						</form>
-						<div class="btn fl clearfix">
-							<a href="mygxin.html"><img src="img/grzx.png"/></a>
-							<a href="#" class="er1"><img src="img/ewm.png"/></a>
-							<a href="cart.html"><img src="img/gwc.png"/></a>
-							<p><a href="#"><img src="img/smewm.png"/></a></p>
-						</div>
+	<!----------------------------------------order------------------>
+	<div class="head ding">
+		<div class="wrapper clearfix">
+			<div class="clearfix" id="top">
+				<h1 class="fl"><a href="index.html"></a></h1>
+				<div class="fr clearfix" id="top1">
+					<p class="fl">
+						<a href="#" id="login">登录</a>
+						<a href="#" id="reg">注册</a>
+					</p>
+					<form action="#" method="get" class="fl">
+						<input type="text" placeholder="搜索" />
+						<input type="button" />
+					</form>
+					<div class="btn fl clearfix">
+						<a href="mygxin.html"><img src="img/grzx.png"/></a>
+						<a href="#" class="er1"><img src="img/ewm.png"/></a>
+						<a href="cart.html"><img src="img/gwc.png"/></a>
+						<p><a href="#"><img src="img/smewm.png"/></a></p>
 					</div>
 				</div>
-				<ul class="clearfix" id="bott">
-					<li><a href="index.html">首页</a></li>
-					<li>
-						<a href="#">所有商品</a>
-						<div class="sList">
-							<div class="wrapper  clearfix">
-								<a href="paint.html">
-									<dl>
-										<dt><img src="img/nav1.jpg"/></dt>
-										<dd>浓情欧式</dd>
-									</dl>
-								</a>
-								<a href="paint.html">
-									<dl>
-										<dt><img src="img/nav2.jpg"/></dt>
-										<dd>浪漫美式</dd>
-									</dl>
-								</a>
-								<a href="paint.html">
-									<dl>
-										<dt><img src="img/nav3.jpg"/></dt>
-										<dd>雅致中式</dd>
-									</dl>
-								</a>
-								<a href="paint.html">
-									<dl>
-										<dt><img src="img/nav6.jpg"/></dt>
-										<dd>简约现代</dd>
-									</dl>
-								</a>
-								<a href="paint.html">
-									<dl>
-										<dt><img src="img/nav7.jpg"/></dt>
-										<dd>创意装饰</dd>
-									</dl>
-								</a>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="flowerDer.html">装饰摆件</a>
-						<div class="sList2">
-							<div class="clearfix">
-								<a href="proList.html">干花花艺</a>
-								<a href="vase_proList.html">花瓶花器</a>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="decoration.html">布艺软饰</a>
-						<div class="sList2">
-							<div class="clearfix">
-								<a href="zbproList.html">桌布罩件</a>
-								<a href="bzproList.html">抱枕靠垫</a>
-							</div>
-						</div>
-					</li>
-					<li><a href="paint.html">墙式壁挂</a></li>
-					<li><a href="perfume.html">蜡艺香薰</a></li>
-					<li><a href="idea.html">创意家居</a></li>
-				</ul>
 			</div>
+			<ul class="clearfix" id="bott">
+				<li><a href="index.html">首页</a></li>
+				<li>
+					<a href="#">所有商品</a>
+					<div class="sList">
+						<div class="wrapper  clearfix">
+							<a href="paint.html">
+								<dl>
+									<dt><img src="img/nav1.jpg"/></dt>
+									<dd>浓情欧式</dd>
+								</dl>
+							</a>
+							<a href="paint.html">
+								<dl>
+									<dt><img src="img/nav2.jpg"/></dt>
+									<dd>浪漫美式</dd>
+								</dl>
+							</a>
+							<a href="paint.html">
+								<dl>
+									<dt><img src="img/nav3.jpg"/></dt>
+									<dd>雅致中式</dd>
+								</dl>
+							</a>
+							<a href="paint.html">
+								<dl>
+									<dt><img src="img/nav6.jpg"/></dt>
+									<dd>简约现代</dd>
+								</dl>
+							</a>
+							<a href="paint.html">
+								<dl>
+									<dt><img src="img/nav7.jpg"/></dt>
+									<dd>创意装饰</dd>
+								</dl>
+							</a>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="flowerDer.html">装饰摆件</a>
+					<div class="sList2">
+						<div class="clearfix">
+							<a href="proList.html">干花花艺</a>
+							<a href="vase_proList.html">花瓶花器</a>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="decoration.html">布艺软饰</a>
+					<div class="sList2">
+						<div class="clearfix">
+							<a href="zbproList.html">桌布罩件</a>
+							<a href="bzproList.html">抱枕靠垫</a>
+						</div>
+					</div>
+				</li>
+				<li><a href="paint.html">墙式壁挂</a></li>
+				<li><a href="perfume.html">蜡艺香薰</a></li>
+				<li><a href="idea.html">创意家居</a></li>
+			</ul>
 		</div>
-		<!------------------------------搜索列表------------------------------>
+	</div>
+	<!------------------------------搜索列表------------------------------>
 		<div class="schBox">
 			<ul class="wrapper sch">
 				<li>
-					<h4>干花类型：</h4>
-					<a href="#">干花枝</a>
-					<a href="#">干花包</a>
-					<a href="#">花瓣</a>
-					<a href="#">树叶</a>
-				</li>
-				<li>
-					<h4>摆放空间：</h4>
-					<a href="#">摆放花卉</a>
-					<a href="#">落地花卉</a>
-					<a href="#">挂壁花卉</a>
-					<a href="#">吊篮花卉</a>
-				</li>
-				<li>
-					<h4>干花类型：</h4>
-					<a href="#">干花枝</a>
-					<a href="#">干花包</a>
-					<a href="#">花瓣</a>
-					<a href="#">树叶</a>
-				</li>
-				<li>
-					<h4>适用对象：</h4>
-					<a href="#">朋友/同事</a>
-					<a href="#">客户</a>
-					<a href="#">爱人</a>
-					<a href="#">领导/长辈</a>
-				</li>
-				<li>
-					<h4>家居饰品：</h4>
-					<a href="#">干花/干枝/花瓣</a>
-					<a href="#">仿真花卉</a>
-					<a href="#">花瓶</a>
-					<a href="#">窗型花器</a>
-				</li>
-				<li>
 					<h4>您是不是想找：</h4>
-					<a href="#">干花花束</a>
-					<a href="#">满天星干花</a>
-					<a href="#">干花真花</a>
-					<a href="#">干花花瓶</a>
-					<a href="#">干花批发</a>
+					<a href="#">春季新品</a>
+					<a href="#">时尚裙装</a>
 				</li>
 			</ul>
 		</div>
@@ -145,13 +107,13 @@
 			<div class="wrapper clearfix">
 				<a href="index.html">首页</a>
 				<span>/</span>
-				<a class="on">搜索“干花”</a>
+				<a class="on">搜索“测试”</a>
 			</div>
 		</div>
 		<!-------------------current---------------------->
 		<div class="current">
 			<div class="wrapper clearfix">
-				<h3 class="fl">搜索结果：“干花”</h3> 
+				<h3 class="fl">搜索结果：“测试”</h3>
 				<div class="fr choice">
 					<p class="default">排序方式</p>
 					<ul class="select">
@@ -165,153 +127,386 @@
 			</div>
 		</div>
 		<!----------------proList------------------------->
-		<ul class="proList wrapper clearfix">
-			<li>
-				<a href="proDetail.html">
+<!--		<ul class="proList wrapper clearfix">-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro01.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro02.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro03.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro04.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro05.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro06.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro07.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro08.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro01.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro02.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro03.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro04.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro05.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro06.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro07.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--			<li>-->
+<!--				<a href="proDetail.html">-->
+<!--					<dl>-->
+<!--						<dt><img src="img/temp/pro08.jpg"></dt>-->
+<!--						<dd>【最家】跳舞兰仿真花干花</dd>-->
+<!--						<dd>￥17.90</dd>-->
+<!--					</dl>-->
+<!--				</a>-->
+<!--			</li>-->
+<!--		</ul>-->
+	<!------------------------------news------------------------------>
+	<div class="news">
+		<div class="wrapper">
+			<div class="flower clearfix tran">
+				<a th:href="@{/user/item/detail(id=${items1[0].id})}">
 					<dl>
-						<dt><img src="img/temp/pro01.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
+						<dt>
+							<span class="abl"></span>
+							<img th:src="${items1[0].showImg}" height="327" width="327" />
+							<span class="abr"></span>
+						</dt>
+						<dd th:text="${items1[0].name}"></dd>
+						<dd><span>¥ 79.00</span></dd>
 					</dl>
 				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
+				<a th:href="@{/user/item/detail(id=${items1[1].id})}">
 					<dl>
-						<dt><img src="img/temp/pro02.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
+						<dt>
+							<span class="abl"></span>
+							<img th:src="${items1[1].showImg}" height="327" width="327" />
+							<span class="abr"></span>
+						</dt>
+						<dd th:text="${items1[1].name}"></dd>
+						<dd><span>¥ 79.00</span></dd>
 					</dl>
 				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
+				<a th:href="@{/user/item/detail(id=${items1[2].id})}">
 					<dl>
-						<dt><img src="img/temp/pro03.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
+						<dt>
+							<span class="abl"></span>
+							<img th:src="${items1[2].showImg}" height="327" width="327" />
+							<span class="abr"></span>
+						</dt>
+						<dd th:text="${items1[2].name}"></dd>
+						<dd><span>¥ 79.00</span></dd>
 					</dl>
 				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
+			</div><div class="flower clearfix tran">
+			<a th:href="@{/user/item/detail(id=${items1[3].id})}" class="clearfix">
+				<dl>
+					<dt>
+						<span class="abl"></span>
+						<img th:src="${items1[3].showImg}" height="327" width="327" />
+						<span class="abr"></span>
+					</dt>
+					<dd th:text="${items1[3].name}"></dd>
+					<dd><span>¥ 79.00</span></dd>
+				</dl>
+			</a>
+			<a th:href="@{/user/item/detail(id=${items1[4].id})}">
+				<dl>
+					<dt>
+						<span class="abl"></span>
+						<img th:src="${items1[4].showImg}" height="327" width="327" />
+						<span class="abr"></span>
+					</dt>
+					<dd th:text="${items1[4].name}"></dd>
+					<dd><span>¥ 79.00</span></dd>
+				</dl>
+			</a>
+			<a th:href="@{/user/item/detail(id=${items1[5].id})}">
+				<dl>
+					<dt>
+						<span class="abl"></span>
+						<img th:src="${items1[5].showImg}" height="327" width="327" />
+						<span class="abr"></span>
+					</dt>
+					<dd th:text="${items1[5].name}"></dd>
+					<dd><span>¥ 79.00</span></dd>
+				</dl>
+			</a>
+		</div>
+
+			<h2><img th:src="@{/user/img/ih6.jpg}"/></h2>
+			<div class="flower clearfix tran">
+				<a th:href="@{/user/item/detail(id=${items1[2].id})}">
 					<dl>
-						<dt><img src="img/temp/pro04.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
+						<dt>
+							<span class="abl"></span>
+							<img th:src="${items2[0].showImg}" height="327" width="327" />
+							<span class="abr"></span>
+						</dt>
+						<dd th:text="${items2[0].name}"></dd>
+						<dd><span>¥ 79.00</span></dd>
 					</dl>
 				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
+				<a th:href="@{/user/item/detail(id=${items1[2].id})}">
 					<dl>
-						<dt><img src="img/temp/pro05.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
+						<dt>
+							<span class="abl"></span>
+							<img th:src="${items2[1].showImg}" height="327" width="327" />
+							<span class="abr"></span>
+						</dt>
+						<dd th:text="${items2[1].name}"></dd>
+						<dd><span>¥ 79.00</span></dd>
 					</dl>
 				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
+				<a th:href="@{/user/item/detail(id=${items1[2].id})}">
 					<dl>
-						<dt><img src="img/temp/pro06.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
+						<dt>
+							<span class="abl"></span>
+							<img th:src="${items2[2].showImg}" height="327" width="327" />
+							<span class="abr"></span>
+						</dt>
+						<dd th:text="${items2[2].name}"></dd>
+						<dd><span>¥ 79.00</span></dd>
 					</dl>
 				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
+			</div>
+			<div class="flower clearfix tran">
+				<a th:href="@{/user/item/detail(id=${items1[2].id})}">
 					<dl>
-						<dt><img src="img/temp/pro07.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
+						<dt>
+							<span class="abl"></span>
+							<img th:src="${items2[0].showImg}" height="327" width="327" />
+							<span class="abr"></span>
+						</dt>
+						<dd th:text="${items2[0].name}"></dd>
+						<dd><span>¥ 79.00</span></dd>
 					</dl>
 				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
+				<a th:href="@{/user/item/detail(id=${items1[2].id})}">
 					<dl>
-						<dt><img src="img/temp/pro08.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
+						<dt>
+							<span class="abl"></span>
+							<img th:src="${items2[1].showImg}" height="327" width="327" />
+							<span class="abr"></span>
+						</dt>
+						<dd th:text="${items2[1].name}"></dd>
+						<dd><span>¥ 79.00</span></dd>
 					</dl>
 				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
+				<a th:href="@{/user/item/detail(id=${items1[2].id})}">
 					<dl>
-						<dt><img src="img/temp/pro01.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
+						<dt>
+							<span class="abl"></span>
+							<img th:src="${items2[2].showImg}" height="327" width="327" />
+							<span class="abr"></span>
+						</dt>
+						<dd th:text="${items2[2].name}"></dd>
+						<dd><span>¥ 79.00</span></dd>
 					</dl>
 				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
-					<dl>
-						<dt><img src="img/temp/pro02.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
-					</dl>
-				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
-					<dl>
-						<dt><img src="img/temp/pro03.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
-					</dl>
-				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
-					<dl>
-						<dt><img src="img/temp/pro04.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
-					</dl>
-				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
-					<dl>
-						<dt><img src="img/temp/pro05.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
-					</dl>
-				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
-					<dl>
-						<dt><img src="img/temp/pro06.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
-					</dl>
-				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
-					<dl>
-						<dt><img src="img/temp/pro07.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
-					</dl>
-				</a>
-			</li>
-			<li>
-				<a href="proDetail.html">
-					<dl>
-						<dt><img src="img/temp/pro08.jpg"></dt>
-						<dd>【最家】跳舞兰仿真花干花</dd>
-						<dd>￥17.90</dd>
-					</dl>
-				</a>
-			</li>
-		</ul>
-		<!----------------mask------------------->
+			</div>
+		</div>
+	</div>
+
+	<!----------------------------------------order------------------>
+	<div class="head ding">
+		<div class="wrapper clearfix">
+			<div class="clearfix" id="top">
+				<h1 class="fl"><a href="index.html"></a></h1>
+				<div class="fr clearfix" id="top1">
+					<p class="fl">
+						<a href="#" id="login">登录</a>
+						<a href="#" id="reg">注册</a>
+					</p>
+					<form action="#" method="get" class="fl">
+						<input type="text" placeholder="搜索" />
+						<input type="button" />
+					</form>
+					<div class="btn fl clearfix">
+						<a href="mygxin.html"><img src="img/grzx.png"/></a>
+						<a href="#" class="er1"><img src="img/ewm.png"/></a>
+						<a href="cart.html"><img src="img/gwc.png"/></a>
+						<p><a href="#"><img src="img/smewm.png"/></a></p>
+					</div>
+				</div>
+			</div>
+			<ul class="clearfix" id="bott">
+				<li><a href="index.html">首页</a></li>
+				<li>
+					<a href="#">所有商品</a>
+					<div class="sList">
+						<div class="wrapper  clearfix">
+							<a href="paint.html">
+								<dl>
+									<dt><img src="img/nav1.jpg"/></dt>
+									<dd>浓情欧式</dd>
+								</dl>
+							</a>
+							<a href="paint.html">
+								<dl>
+									<dt><img src="img/nav2.jpg"/></dt>
+									<dd>浪漫美式</dd>
+								</dl>
+							</a>
+							<a href="paint.html">
+								<dl>
+									<dt><img src="img/nav3.jpg"/></dt>
+									<dd>雅致中式</dd>
+								</dl>
+							</a>
+							<a href="paint.html">
+								<dl>
+									<dt><img src="img/nav6.jpg"/></dt>
+									<dd>简约现代</dd>
+								</dl>
+							</a>
+							<a href="paint.html">
+								<dl>
+									<dt><img src="img/nav7.jpg"/></dt>
+									<dd>创意装饰</dd>
+								</dl>
+							</a>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="flowerDer.html">装饰摆件</a>
+					<div class="sList2">
+						<div class="clearfix">
+							<a href="proList.html">干花花艺</a>
+							<a href="vase_proList.html">花瓶花器</a>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="decoration.html">布艺软饰</a>
+					<div class="sList2">
+						<div class="clearfix">
+							<a href="zbproList.html">桌布罩件</a>
+							<a href="bzproList.html">抱枕靠垫</a>
+						</div>
+					</div>
+				</li>
+				<li><a href="paint.html">墙式壁挂</a></li>
+				<li><a href="perfume.html">蜡艺香薰</a></li>
+				<li><a href="idea.html">创意家居</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<!----------------mask------------------->
 		<div class="mask"></div>
 		<!-------------------mask内容------------------->
 		<div class="proDets">
