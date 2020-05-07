@@ -109,7 +109,7 @@
 					<div class="addres clearfix">
 						<div class="addre fl on">
 							<div class="tit clearfix">
-								<p class="fl">张三1
+								<p class="fl">徐子翔1
 									<span class="default">[默认地址]</span>
 								</p>
 								<p class="fr">
@@ -119,13 +119,13 @@
 								</p>
 							</div>
 							<div class="addCon">
-								<p>河北省&nbsp;唐山市&nbsp;路北区&nbsp;大学生公寓村</p>
+								<p>备注信息：无</p>
 								<p>15732570937</p>
 							</div>
 						</div>
 						<div class="addre fl">
 							<div class="tit clearfix">
-								<p class="fl">张三2
+								<p class="fl">徐子翔2
 								</p>
 								<p class="fr">
 									<a href="#" class="setDefault">设为默认</a>
@@ -136,13 +136,13 @@
 								</p>
 							</div>
 							<div class="addCon">
-								<p>河北省&nbsp;唐山市&nbsp;路北区&nbsp;大学生公寓村</p>
+								<p>备注信息：无</p>
 								<p>15732570937</p>
 							</div>
 						</div>
 						<div class="addre fl">
 							<div class="tit clearfix">
-								<p class="fl">张三3
+								<p class="fl">徐子翔3
 								</p>
 								<p class="fr">
 									<a href="#" class="setDefault">设为默认</a>
@@ -153,7 +153,7 @@
 								</p>
 							</div>
 							<div class="addCon">
-								<p>河北省&nbsp;唐山市&nbsp;路北区&nbsp;大学生公寓村</p>
+								<p>备注信息：无</p>
 								<p>15732570937</p>
 							</div>
 						</div>
@@ -166,15 +166,7 @@
 						<img  th:src="@{/user/img/temp/way03.jpg}">
 						<img  th:src="@{/user/img/temp/way04.jpg}">
 					</div>
-					<h3>选择快递</h3>
-					<!--------dis---------------->
-					<div class="dis clearfix">
-						<span class="on">顺风快递</span>
-						<span>百世汇通</span>
-						<span>圆通快递</span>
-						<span>中通快递</span>
-					</div>
-				</div>
+			</div>
 				<div class="orderR fr">
 					<div class="msg">
 						<h3>订单内容</h3>
@@ -189,13 +181,13 @@
 									<p th:text="${item.describe}">颜色分类：烟灰色玻璃瓶</p>
 									<p>数量：1</p>
 								</li>
-								<li class="fr" th:text="${item.authorizeUnitprice}">￥69.90</li>
+								<li class="fr" th:text="'￥'+ ${item.authorizeUnitprice}">￥69.90</li>
 							</ul>
 						</tr>
 					</div>
 					<!--------tips---------------->
 					<div class="tips">
-						<p><span class="fl">商品金额：</span><span class="fr" th:text="${amount}">￥139.80</span></p>
+						<p><span class="fl">商品金额：</span><span class="fr" th:text="'￥'+${amount}">￥139.80</span></p>
 						<p><span class="fl">优惠金额：</span><span class="fr">￥0.00</span></p>
 						<p><span class="fl">其他：</span><span class="fr">无</span></p>
 					</div>
@@ -236,6 +228,31 @@
 					<input type="button" value="取消" />
 				</div>
 			</form>
+		</div>
+
+		<!--footer-->
+		<div class="footer">
+			<div class="top">
+				<div class="wrapper">
+					<div class="clearfix">
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot1.png}"/></a>
+						<span class="fl">人才济济</span>
+					</div>
+					<div class="clearfix">
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot2.png}"/></a>
+						<span class="fl">作品丰富</span>
+					</div>
+					<div class="clearfix">
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot3.png}"/></a>
+						<span class="fl">优秀设计师</span>
+					</div>
+					<div class="clearfix">
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot4.png}"/></a>
+						<span class="fl">特色服务</span>
+					</div>
+				</div>
+			</div>
+			<p class="dibu">服装设计师技能共享平台</p>
 		</div>
 
 		<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>

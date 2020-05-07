@@ -1,10 +1,8 @@
 package com.xuzi.share.controller.designer;
 
 
-import com.xuzi.share.entity.Designer;
 import com.xuzi.share.service.impl.UserServiceImpl;
 import com.xuzi.share.utils.FileUtil;
-import com.xuzi.share.utils.HostHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +52,44 @@ public class DesUrlController {
         return "designer/setting";
     }
 
+
+    /**
+     * 跳转个人信息设置
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/test")
+    public String getSddettingPage(Model model) {
+        fileUtil.fileup(model);
+        return "designer/filetest";
+    }
+
+    /**
+     * 跳转个人信息设置
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/itemtable")
+    public String getSddettiedengPage(Model model) {
+        fileUtil.fileup(model);
+        return "designer/itemtable";
+    }
+
+
+
+    /**
+     * 跳转个人信息设置
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/aa")
+    public String getaa(Model model) {
+        fileUtil.fileup(model);
+        return "form_advanced";
+    }
 
 
 

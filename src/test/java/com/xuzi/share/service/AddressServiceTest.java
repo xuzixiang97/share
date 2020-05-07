@@ -37,6 +37,11 @@ public class AddressServiceTest {
 
     @Test
     public void insertCategory() {
-
+        double amount = 300;
+        for(int i = 0; i < 100; i++){
+            amount = amount * 1.03;
+            System.out.println("第"+i+"年金额："+amount+"万元");
+            System.out.println(amount/(i-7));
+        }
     }
 }

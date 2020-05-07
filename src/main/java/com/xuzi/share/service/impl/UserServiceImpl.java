@@ -3,6 +3,7 @@ package com.xuzi.share.service.impl;
 import com.xuzi.share.dao.AdminMapper;
 import com.xuzi.share.dao.UserMapper;
 import com.xuzi.share.entity.Admin;
+import com.xuzi.share.entity.Designer;
 import com.xuzi.share.entity.User;
 import com.xuzi.share.service.UserService;
 import org.apache.commons.lang3.StringUtils;
@@ -82,4 +83,9 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectByName(userName);
     }
 
+    @Override
+    public Boolean updateByCondition(User user) {
+        int i = userMapper.updateByPrimaryKey(user);
+        return (i>0);
+    }
 }

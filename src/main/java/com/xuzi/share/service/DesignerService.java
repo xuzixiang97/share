@@ -47,4 +47,6 @@ public interface DesignerService {
 
     List<Designer> findByStatus(Integer status);
 
+    Designer selectById(Integer designerId);
+
 }

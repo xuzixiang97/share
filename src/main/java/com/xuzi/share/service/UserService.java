@@ -1,5 +1,6 @@
 package com.xuzi.share.service;
 
+import com.xuzi.share.entity.Designer;
 import com.xuzi.share.entity.User;
 
 import java.util.List;
@@ -39,4 +40,6 @@ public interface UserService {
     User findById(Integer id);
 
     User findByName(String userName);
+
+    Boolean updateByCondition(User user);
 }

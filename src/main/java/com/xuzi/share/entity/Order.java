@@ -26,4 +26,14 @@ public class Order {
 
     private String extendedField;
 
+    private Integer refundStatus;
+
+    private String refundReason;
+
+    private String refuseReason;
+
+    private Integer refundAmount;
+
+    private String orderNo;
+
 }

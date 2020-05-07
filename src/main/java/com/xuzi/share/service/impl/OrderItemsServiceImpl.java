@@ -55,7 +55,7 @@ public class OrderItemsServiceImpl implements OrderItemsService {
             OrderItemDetailResponse orderItemDetailResponse =new OrderItemDetailResponse();
             orderItemDetailResponse.setId(orderItems.getId());
             orderItemDetailResponse.setOrderId(orderItems.getOrderId());
-            orderItemDetailResponse.setItemId(orderItems.getId());
+            orderItemDetailResponse.setItemId(orderItems.getEneityId());
             orderItemDetailResponse.setUnitprice(orderItems.getUnitprice());
             Item item  = itemMapper.selectByPrimaryKey(orderItems.getEneityId());
             orderItemDetailResponse.setItemName(item.getName());

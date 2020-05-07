@@ -51,10 +51,33 @@ public interface ItemService {
     List<Item> selectByCategoryId(Integer categoryIds);
 
     /**
+     * 根据设计师查询商品列表
+     * @param designerId
+     * @return
+     */
+    List<Item> selectByDesignerId(Integer designerId);
+
+    /**
+     * 根据风格查询商品列表
+     * @param styleIds
+     * @return
+     */
+    List<Item> selectByStyleId(String styleIds);
+
+    /**
      * 根基id查询商品详情
      * @param Id
      * @return
      */
      Item selectById(Integer Id);
+
+    /**
+     *
+     * @param item
+     * @return
+     */
+     List<Item> selectByCondition(Item item);
+
+     int updateByCondition(Item item);
 
 }

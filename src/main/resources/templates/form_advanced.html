@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -11,34 +11,35 @@
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
 
-    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link th:href="@{/admin/css/bootstrap.min.css?v=3.3.6}" rel="stylesheet">
+    <link th:href="@{/admin/css/font-awesome.css?v=4.4.0}" rel="stylesheet">
 
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/iCheck/custom.css}" rel="stylesheet">
 
-    <link href="css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/chosen/chosen.css}" rel="stylesheet">
 
-    <link href="css/plugins/colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/colorpicker/css/bootstrap-colorpicker.min.css}" rel="stylesheet">
 
-    <link href="css/plugins/cropper/cropper.min.css" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/cropper/cropper.min.css}" rel="stylesheet">
 
-    <link href="css/plugins/switchery/switchery.css" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/switchery/switchery.css}" rel="stylesheet">
 
-    <link href="css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/jasny/jasny-bootstrap.min.css}" rel="stylesheet">
 
-    <link href="css/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/nouslider/jquery.nouislider.css}" rel="stylesheet">
 
-    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/datapicker/datepicker3.css}" rel="stylesheet">
 
-    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
-    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/ionRangeSlider/ion.rangeSlider.css}" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css}" rel="stylesheet">
 
-    <link href="css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css}" rel="stylesheet">
 
-    <link href="css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/clockpicker/clockpicker.css}" rel="stylesheet">
 
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    <link th:href="@{/admin/css/animate.css}" rel="stylesheet}">
+    <link th:href="@{/admin/css/style.css?v=4.1.0}" rel="stylesheet">
 
 </head>
 
@@ -471,6 +472,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="col-sm-7">
                 <div class="ibox float-e-margins">
@@ -976,8 +978,8 @@
     </div>
 
     <!-- 全局js -->
-    <script src="js/jquery.min.js?v=2.1.4"></script>
-    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script th:src="@{/admin/js/jquery.min.js?v=2.1.4}"></script>
+    <script th:src="@{/admin/bootstrap.min.js?v=3.3.6}"></script>
 
     <!-- 自定义js -->
     <script src="js/content.js?v=1.0.0"></script>
@@ -989,13 +991,13 @@
     <script src="js/plugins/jsKnob/jquery.knob.js"></script>
 
     <!-- Input Mask-->
-    <script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
+    <script th:src="@{/admin/js/plugins/jasny/jasny-bootstrap.min.js}"></script>
 
     <!-- Data picker -->
     <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
 
     <!-- Prettyfile -->
-    <script src="js/plugins/prettyfile/bootstrap-prettyfile.js"></script>
+    <script th:src="@{/admin/js/plugins/prettyfile/bootstrap-prettyfile.js}"></script>
 
     <!-- NouSlider -->
     <script src="js/plugins/nouslider/jquery.nouislider.min.js"></script>

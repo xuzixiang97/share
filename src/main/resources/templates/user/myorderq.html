@@ -5,17 +5,24 @@
 		<title>最家</title>
 		<link rel="stylesheet" type="text/css" th:href="@{/user/css/public.css}"/>
 		<link rel="stylesheet" type="text/css" th:href="@{/user/css/myorder.css}" />
+		<!-- Sweet Alert -->
+		<link th:href="@{/admin/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet">
+		<link rel="stylesheet" href="https://formden.com/static/assets/demos/bootstrap-iso/bootstrap-iso/bootstrap-iso.css" />
 	</head>
 	<body>
 		<!------------------------------head------------------------------>
 		<div class="head ding">
 			<div class="wrapper clearfix">
 				<div class="clearfix" id="top">
-					<h1 class="fl"><a href="index.html"><img src="img/logo.png"/></a></h1>
+					<h1 class="fl">
+						<a href="index.html">
+							<!--<img src="img/logo.png"/>-->
+						</a>
+					</h1>
 					<div class="fr clearfix" id="top1">
-						<p class="fl">
-							<a href="#" id="login">登录</a>
-							<a href="#" id="reg">注册</a>
+						<p class="fl" th:text="'欢迎你' + ${user.nickName}">
+							<!--<a href="#" id="login">登录</a>
+                            <a href="#" id="reg">注册</a>-->
 						</p>
 						<form action="#" method="get" class="fl">
 							<input type="text" placeholder="搜索" />
@@ -30,65 +37,37 @@
 					</div>
 				</div>
 				<ul class="clearfix" id="bott">
-					<li><a href="index.html">首页</a></li>
+					<li><a th:href="@{/user/index/page}">首页</a></li>
 					<li>
 						<a href="#">所有商品</a>
 						<div class="sList">
 							<div class="wrapper  clearfix">
-								<a href="paint.html">
+								<a th:href="@{/user/item/detail(id=501)}">
 									<dl>
-										<dt><img src="img/nav1.jpg"/></dt>
-										<dd>浓情欧式</dd>
+										<dt><img th:src="@{/user/img/nav1.jpg}"/></dt>
+										<dd>春季精选</dd>
 									</dl>
 								</a>
-								<a href="paint.html">
+								<a th:href="@{/user/item/detail(id=301)}">
 									<dl>
-										<dt><img src="img/nav2.jpg"/></dt>
-										<dd>浪漫美式</dd>
+										<dt><img th:src="@{/user/img/nav2.jpg}"/></dt>
+										<dd>原创外套</dd>
 									</dl>
 								</a>
-								<a href="paint.html">
+								<a th:href="@{/user/item/detail(id=303)}">
 									<dl>
-										<dt><img src="img/nav3.jpg"/></dt>
-										<dd>雅致中式</dd>
-									</dl>
-								</a>
-								<a href="paint.html">
-									<dl>
-										<dt><img src="img/nav6.jpg"/></dt>
-										<dd>简约现代</dd>
-									</dl>
-								</a>
-								<a href="paint.html">
-									<dl>
-										<dt><img src="img/nav7.jpg"/></dt>
-										<dd>创意装饰</dd>
+										<dt><img th:src="@{/user/img/nav3.jpg}"/></dt>
+										<dd>时尚群套</dd>
 									</dl>
 								</a>
 							</div>
 						</div>
 					</li>
-					<li>
-						<a href="flowerDer.html">装饰摆件</a>
-						<div class="sList2">
-							<div class="clearfix">
-								<a href="proList.html">干花花艺</a>
-								<a href="vase_proList.html">花瓶花器</a>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="decoration.html">布艺软饰</a>
-						<div class="sList2">
-							<div class="clearfix">
-								<a href="zbproList.html">桌布罩件</a>
-								<a href="bzproList.html">抱枕靠垫</a>
-							</div>
-						</div>
-					</li>
-					<li><a href="paint.html">墙式壁挂</a></li>
-					<li><a href="perfume.html">蜡艺香薰</a></li>
-					<li><a href="idea.html">创意家居</a></li>
+					<li><a th:href="@{/user/item/detail(id=501)}">春季精选</a></li>
+					<li><a th:href="@{/user/item/detail(id=301)}">原创外套</a></li>
+					<li><a th:href="@{/user/item/detail(id=303)}">时尚裙装</a></li>
+					<li><a th:href="@{/user/dingzhi/page}">定制</a></li>
+					<li><a th:href="@{/letter/list}">消息</a></li>
 				</ul>
 			</div>
 		</div>
@@ -129,95 +108,74 @@
 					</div>
 				</div>
 
-				<div class="you fl">
+				<div class="you fl bootstrap-iso">
 					<div class="my clearfix">
 						<h2 class="fl">我的订单</h2>
-						<a href="#" class="fl">请谨防钓鱼链接或诈骗电话，了解更多&gt;</a>
 					</div>
 
 
 					<div class="dlist clearfix">
 						<ul class="fl clearfix" id="wa">
-							<li class="on"><a href="#2">全部订单</a></li>
-							<li><a href="#2">普通订单</a></li>
-							<li><a href="#2l">私人定制订单</a></li>
-							<li><a href="#2">竞标订单</a></li>
+							<li class="on" ><a th:href="@{/user/myorderq/page}">普通订单</a></li>
+							<li><a th:href="@{/user/myorderq2/page}">私人定制订单</a></li>
 						</ul>
-						<form action="#" method="get" class="fr clearfix">
-							<input type="text" name="" id="" value="" placeholder="请输入商品名称、订单号" />
-							<input type="button" name="" id="" value="" />
-						</form>
 					</div>
 
 					<tr th:each="common_order,iterStat : ${common_orders}">
-						<div class="dkuang clearfix deng">
-							<p class="one fl">普通订单</p>
-							<div class="word clearfix">
-								<ul class="fl clearfix">
-									<li th:text="${common_order.date}">2016年12月1日 18:53</li>
-									<li th:text="${user.nickName}">杨小黄</li>
-									<li th:text="'订单号：' + ${common_order.id}">订单号:5160513358520018</li>
-									<li>在线支付</li>
-								</ul>
-								<p class="fr">订单金额：<span th:text="${common_order.amount}">99.00</span>元</p>
-							</div>
-							<div class="shohou clearfix">
-								<a href="#" class="fl"><img th:src="${common_order.orderItemList[0].img}"/></a>
-								<p class="fl"><a href="#" th:text="${common_order.orderItemList[0].itemName}">家用创意菜盘子圆盘 釉下彩复古</a><a href="#">¥99.00×1</a></p>
-								<p class="fr">
-									<a href="#">确认收货</a>
-									<a href="orderxq.html">订单详情</a>
-								</p>
-							</div>
-						</div>
-					</tr>
-
-
-					<tr th:each="common_order,iterStat : ${person_orders}">
-					<div class="dkuang deng">
-						<p class="one">私人定制订单</p>
-						<div class="word clearfix">
-							<ul class="fl clearfix">
-								<li th:text="${common_order.updateTime}">2016年12月1日 18:53</li>
-								<li th:text="${user.nickName}">杨小黄</li>
-								<li th:text="'订单号：' + ${common_order.id}">订单号:5160513358520018</li>
-								<li>在线支付</li>
-							</ul>
-							<p class="fr">订单金额：<span th:text="${common_order.amount}">99.00</span>元</p>
-						</div>
-						<div class="shohou clearfix">
-							<a href="#" class="fl"><img src="img/g1.jpg"/></a>
-							<p class="fl"><a href="#" th:text="${common_order.extendedField}">家用创意菜盘子圆盘 釉下彩复古</a><a href="#">¥99.00×1</a></p>
-							<p class="fr">
-								<a href="#">确认收货</a>
-								<a href="orderxq.html">订单详情</a>
-							</p>
-						</div>
-					</div>
-					</tr>
-
-					<tr th:each="common_order,iterStat : ${bidding_order}">
 					<div class="dkuang">
-						<p class="one">竞标订单</p>
+						<p class="one f1">已收货</p>
 						<div class="word clearfix">
 							<ul class="fl clearfix">
-								<li th:text="${common_order.updateTime}">2016年12月1日 18:53</li>
+								<li th:text="${common_order.date}">2016年12月1日 18:53</li>
 								<li th:text="${user.nickName}">杨小黄</li>
 								<li th:text="'订单号：' + ${common_order.id}">订单号:5160513358520018</li>
 								<li>在线支付</li>
 							</ul>
-							<p class="fr">订单金额：<span th:text="${common_order.amount}">99.00</span>元</p>
+							<p class="fr">订单金额：<span th:text="${common_order.amount}" class="text">99.00</span>元</p>
 						</div>
 						<div class="shohou clearfix">
-							<a href="#" class="fl"><img src="img/g1.jpg"/></a>
-							<p class="fl"><a href="#" th:text="${common_order.extendedField}">家用创意菜盘子圆盘 釉下彩复古</a><a href="#">¥99.00×1</a></p>
+							<a href="#" class="fl"><img th:src="${common_order.orderItemList[0].img}"/></a>
+							<p class="fl"><a href="#" th:text="${common_order.orderItemList[0].itemName}">家用创意菜盘子圆盘 釉下彩复古</a><a href="#" th:text="'¥'+${common_order.orderItemList[0].unitprice}">¥99.00×1</a></p>
 							<p class="fr">
-								<a href="#">确认收货</a>
-								<a href="orderxq.html">订单详情</a>
+								<a th:href="'/share/user/myorderxq/page?orderId='+${common_order.id}">订单详情</a>
+								<a  th:if="${common_order.status == 1}" th:name="${common_order.id}" onclick="tuikuan(this)">申请退款</a>
+								<a  th:if="${common_order.status == 4}" >退款中</a>
+								<a  th:if="${common_order.status == 6}" >退款成功</a>
+								<a  th:if="${common_order.status == 5}" th:name="${common_order.id}" onclick="tuikuan(this)">退款失败，再次申请</a>
 							</p>
 						</div>
 					</div>
 					</tr>
+
+					<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="myModalLabel">申请退款</h4>
+								</div>
+								<div class="modal-body">
+									<form id="form1">
+										<div class="form-group">
+											<input  id="id" name="id" type="text" hidden="true" >
+											<label class="font-noraml">退款金额 *</label>
+											<input id="amount" name="refundAmount" type="text" class=" input-sm form-control required" style="width: 200px">
+										</div>
+										<div class="form-group">
+											<label class="font-noraml">退款原因 *</label>
+											<textarea id="reason" class="form-control" rows="8" name="refundReason"></textarea>
+										</div>
+									</form>
+								</div>
+
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+									<button type="button" class="btn btn-primary" name="" onclick="addTuiKuan(this)">申请</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal -->
+					</div>
 
 				</div>
 			</div>
@@ -255,28 +213,66 @@
 			<div class="top">
 				<div class="wrapper">
 					<div class="clearfix">
-						<a href="#2" class="fl"><img src="img/foot1.png"/></a>
-						<span class="fl">7天无理由退货</span>
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot1.png}"/></a>
+						<span class="fl">人才济济</span>
 					</div>
 					<div class="clearfix">
-						<a href="#2" class="fl"><img src="img/foot2.png"/></a>
-						<span class="fl">15天免费换货</span>
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot2.png}"/></a>
+						<span class="fl">作品丰富</span>
 					</div>
 					<div class="clearfix">
-						<a href="#2" class="fl"><img src="img/foot3.png"/></a>
-						<span class="fl">满599包邮</span>
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot3.png}"/></a>
+						<span class="fl">优秀设计师</span>
 					</div>
 					<div class="clearfix">
-						<a href="#2" class="fl"><img src="img/foot4.png"/></a>
-						<span class="fl">手机特色服务</span>
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot4.png}"/></a>
+						<span class="fl">特色服务</span>
 					</div>
 				</div>
 			</div>
-			<p class="dibu">最家家居&copy;2013-2017公司版权所有 京ICP备080100-44备0000111000号<br />
-			违法和不良信息举报电话：188-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</p>
+			<p class="dibu">服装设计师技能共享平台</p>
 		</div>
+
+
+
+
+		<!-- 全局js -->
+
 		<script th:src="@{/user/js/jquery-1.12.4.min.js}" type="text/javascript" charset="utf-8"></script>
+		<script th:src="@{/admin/js/bootstrap.min.js?v=3.3.6}"></script>
 		<script th:src="@{/user/js/public.js}" type="text/javascript" charset="utf-8"></script>
 		<script th:src="@{/user/js/user.js}" type="text/javascript" charset="utf-8"></script>
+
+	<script>
+		var idx ;
+		function tuikuan(element){
+			$("#myModal").modal("show");
+			idx  = element.name;
+		}
+
+		function addTuiKuan(element) {
+			$.ajax({
+				url:"/share/user/order/tuikuan",
+				method: "post",
+				dataType: "json",
+				data: {id:idx,amount:$("#amount").val(),reason:$("#reason").val()},
+				// data: new FormData($('#from'+element.name)[0]),
+				success: function(data) {
+					if(data && data.code == 0) {
+						swal({
+							title: "申请成功",
+							type: "success"
+						});
+
+					} else {
+						alert("上传失败!");
+					}
+				}
+			});
+		}
+
+	</script>
+		<!-- Sweet alert -->
+		<script th:src="@{/admin/js/plugins/sweetalert/sweetalert.min.js}"></script>
 	</body>
 </html>

@@ -18,6 +18,14 @@ public class Item {
 
     private String categoryIds;
 
+    private String materialIds;
+
+    private String technologyIds;
+
+    private String styleIds;
+
+    private String seasonIds;
+
     private String showImg;
 
     private String effectImg;
@@ -44,5 +52,12 @@ public class Item {
 
     private String extendedField;
 
+    private String showImg2;
+
+    private String showImg3;
+
+    private String age;
+
+    private String gender;
 
 }

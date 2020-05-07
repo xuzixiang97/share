@@ -22,11 +22,11 @@
 							<a href="#" id="reg">注册</a>-->
 						</p>
 						<form action="#" method="get" class="fl">
-							<input type="text" placeholder="热门搜索：干花花瓶" />
+							<input type="text" placeholder="热门搜索：新款" />
 							<input type="button" />
 						</form>
 						<div class="btn fl clearfix">
-							<a th:href="@{/user//mygxin/page}"><img th:src="@{/user/img/grzx.png}"/></a>
+							<a th:href="@{/user/mygxin/page}"><img th:src="@{/user/img/grzx.png}"/></a>
 							<a href="#" class="er1"><img th:src="@{/user/img/ewm.png}"/></a>
 							<a th:href="@{/user/cart/page}"><img th:src="@{/user/img/gwc.png}"/></a>
 							<p><a href="#"><img th:src="@{/user/img/smewm.png}"/></a></p>
@@ -63,6 +63,8 @@
 					<li><a th:href="@{/user/item/detail(id=501)}">春季精选</a></li>
 					<li><a th:href="@{/user/item/detail(id=301)}">原创外套</a></li>
 					<li><a th:href="@{/user/item/detail(id=303)}">时尚裙装</a></li>
+					<li><a th:href="@{/user/dingzhi/page}">定制</a></li>
+					<li><a th:href="@{/letter/list}">消息</a></li>
 				</ul>
 			</div>
 		</div>
@@ -98,6 +100,7 @@
 		<div class="news">
 			<div class="wrapper">
 				<h2><img th:src="@{/user/img/ih5.jpg}"/></h2>
+				<!--原创外套-->
 				<div class="flower clearfix tran">
 					<a th:href="@{/user/item/detail(id=${items1[0].id})}">
 						<dl>
@@ -107,7 +110,7 @@
 								<span class="abr"></span>
 							</dt>
 							<dd th:text="${items1[0].name}"></dd>
-							<dd><span>¥ 79.00</span></dd>
+							<dd><span th:text="'¥'+${items1[0].authorizeUnitprice}">¥ 79.00</span></dd>
 						</dl>
 					</a>
 					<a th:href="@{/user/item/detail(id=${items1[1].id})}">
@@ -118,7 +121,7 @@
 								<span class="abr"></span>
 							</dt>
 							<dd th:text="${items1[1].name}"></dd>
-							<dd><span>¥ 79.00</span></dd>
+							<dd><span th:text="'¥'+${items1[1].authorizeUnitprice}">¥ 79.00</span></dd>
 						</dl>
 					</a>
 					<a th:href="@{/user/item/detail(id=${items1[2].id})}">
@@ -129,7 +132,7 @@
 								<span class="abr"></span>
 							</dt>
 							<dd th:text="${items1[2].name}"></dd>
-							<dd><span>¥ 79.00</span></dd>
+							<dd><span th:text="'¥'+${items1[2].authorizeUnitprice}">¥ 79.00</span></dd>
 						</dl>
 					</a>
 				</div><div class="flower clearfix tran">
@@ -141,7 +144,7 @@
 							<span class="abr"></span>
 						</dt>
 						<dd th:text="${items1[3].name}"></dd>
-						<dd><span>¥ 79.00</span></dd>
+						<dd><span th:text="'¥'+${items1[4].authorizeUnitprice}">¥ 79.00</span></dd>
 					</dl>
 				</a>
 				<a th:href="@{/user/item/detail(id=${items1[4].id})}">
@@ -152,7 +155,7 @@
 							<span class="abr"></span>
 						</dt>
 						<dd th:text="${items1[4].name}"></dd>
-						<dd><span>¥ 79.00</span></dd>
+						<dd><span th:text="'¥'+${items1[4].authorizeUnitprice}">¥ 79.00</span></dd>
 					</dl>
 				</a>
 				<a th:href="@{/user/item/detail(id=${items1[5].id})}">
@@ -163,14 +166,15 @@
 							<span class="abr"></span>
 						</dt>
 						<dd th:text="${items1[5].name}"></dd>
-						<dd><span>¥ 79.00</span></dd>
+						<dd><span th:text="'¥'+${items1[5].authorizeUnitprice}">¥ 79.00</span></dd>
 					</dl>
 				</a>
 			</div>
 
 				<h2><img th:src="@{/user/img/ih6.jpg}"/></h2>
+				<!--时尚群套-->
 				<div class="flower clearfix tran">
-					<a th:href="@{/user/item/detail(id=${items1[2].id})}">
+					<a th:href="@{/user/item/detail(id=${items2[0].id})}">
 						<dl>
 							<dt>
 								<span class="abl"></span>
@@ -178,10 +182,10 @@
 								<span class="abr"></span>
 							</dt>
 							<dd th:text="${items2[0].name}"></dd>
-							<dd><span>¥ 79.00</span></dd>
+							<dd><span th:text="'¥'+${items2[0].authorizeUnitprice}">¥ 79.00</span></dd>
 						</dl>
 					</a>
-					<a th:href="@{/user/item/detail(id=${items1[2].id})}">
+					<a th:href="@{/user/item/detail(id=${items2[1].id})}">
 						<dl>
 							<dt>
 								<span class="abl"></span>
@@ -189,10 +193,10 @@
 								<span class="abr"></span>
 							</dt>
 							<dd th:text="${items2[1].name}"></dd>
-							<dd><span>¥ 79.00</span></dd>
+							<dd><span th:text="'¥'+${items2[1].authorizeUnitprice}">¥ 79.00</span></dd>
 						</dl>
 					</a>
-					<a th:href="@{/user/item/detail(id=${items1[2].id})}">
+					<a th:href="@{/user/item/detail(id=${items2[2].id})}">
 						<dl>
 							<dt>
 								<span class="abl"></span>
@@ -200,192 +204,50 @@
 								<span class="abr"></span>
 							</dt>
 							<dd th:text="${items2[2].name}"></dd>
-							<dd><span>¥ 79.00</span></dd>
+							<dd><span th:text="'¥'+${items2[2].authorizeUnitprice}">¥ 79.00</span></dd>
 						</dl>
 					</a>
 				</div>
 				<div class="flower clearfix tran">
-					<a th:href="@{/user/item/detail(id=${items1[2].id})}">
+					<a th:href="@{/user/item/detail(id=${items2[3].id})}">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img th:src="${items2[0].showImg}" height="327" width="327" />
+								<img th:src="${items2[3].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd th:text="${items2[0].name}"></dd>
-							<dd><span>¥ 79.00</span></dd>
+							<dd th:text="${items2[3].name}"></dd>
+							<dd><span th:text="'¥'+${items2[3].authorizeUnitprice}">¥ 79.00</span></dd>
 						</dl>
 					</a>
-					<a th:href="@{/user/item/detail(id=${items1[2].id})}">
+					<a th:href="@{/user/item/detail(id=${items2[4].id})}">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img th:src="${items2[1].showImg}" height="327" width="327" />
+								<img th:src="${items2[4].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd th:text="${items2[1].name}"></dd>
-							<dd><span>¥ 79.00</span></dd>
+							<dd th:text="${items2[4].name}"></dd>
+							<dd><span th:text="'¥'+${items2[4].authorizeUnitprice}">¥ 79.00</span></dd>
 						</dl>
 					</a>
-					<a th:href="@{/user/item/detail(id=${items1[2].id})}">
+					<a th:href="@{/user/item/detail(id=${items2[5].id})}">
 						<dl>
 							<dt>
 								<span class="abl"></span>
-								<img th:src="${items2[2].showImg}" height="327" width="327" />
+								<img th:src="${items2[5].showImg}" height="327" width="327" />
 								<span class="abr"></span>
 							</dt>
-							<dd th:text="${items2[2].name}"></dd>
-							<dd><span>¥ 79.00</span></dd>
+							<dd th:text="${items2[5].name}"></dd>
+							<dd><span th:text="'¥'+${items2[5].authorizeUnitprice}">¥ 79.00</span></dd>
 						</dl>
 					</a>
 				</div>
-			</div>
-		</div>
-		
 
-		<!------------------------------people------------------------------>
-		<div class="people">
-			<div class="wrapper">
-				<h2><img th:src="@{/user/img/ih5.jpg}"/></h2>
-				<div class="pList clearfix tran">
-					<a th:href="@{/user/item/detail(id=${items3[0].id})}">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img th:src="${items3[0].showImg}" height="327" width="327" />
-								<span class="abr"></span>
-							</dt>
-							<dd th:text="${items3[0].name}"></dd>
-							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
-						</dl>
-					</a>
-					<a th:href="@{/user/item/detail(id=${items3[0].id})}">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img th:src="${items3[0].showImg}" height="327" width="327" />
-								<span class="abr"></span>
-							</dt>
-							<dd th:text="${items3[0].name}"></dd>
-							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
-						</dl>
-					</a>
-					<a th:href="@{/user/item/detail(id=${items3[0].id})}">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img th:src="${items3[0].showImg}" height="327" width="327" />
-								<span class="abr"></span>
-							</dt>
-							<dd th:text="${items3[0].name}"></dd>
-							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
-						</dl>
-					</a>
-					<a th:href="@{/user/item/detail(id=${items3[0].id})}">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img th:src="${items3[0].showImg}" height="327" width="327" />
-								<span class="abr"></span>
-							</dt>
-							<dd th:text="${items3[0].name}"></dd>
-							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
-						</dl>
-					</a>
-				</div>
-				<div class="pList clearfix tran">
-					<a th:href="@{/user/item/detail(id=${items3[0].id})}">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img th:src="${items3[0].showImg}" height="327" width="327" />
-								<span class="abr"></span>
-							</dt>
-							<dd th:text="${items3[0].name}"></dd>
-							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
-						</dl>
-					</a>
-					<a th:href="@{/user/item/detail(id=${items3[0].id})}">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img th:src="${items3[0].showImg}" height="327" width="327" />
-								<span class="abr"></span>
-							</dt>
-							<dd th:text="${items3[0].name}"></dd>
-							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
-						</dl>
-					</a>
-					<a th:href="@{/user/item/detail(id=${items3[0].id})}">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img th:src="${items3[0].showImg}" height="327" width="327" />
-								<span class="abr"></span>
-							</dt>
-							<dd th:text="${items3[0].name}"></dd>
-							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
-						</dl>
-					</a>
-					<a th:href="@{/user/item/detail(id=${items3[0].id})}">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img th:src="${items3[0].showImg}" height="327" width="327" />
-								<span class="abr"></span>
-							</dt>
-							<dd th:text="${items3[0].name}"></dd>
-							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
-						</dl>
-					</a>
-				</div>
-				<div class="pList clearfix tran">
-					<a th:href="@{/user/item/detail(id=${items3[0].id})}">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img th:src="${items3[0].showImg}" height="327" width="327" />
-								<span class="abr"></span>
-							</dt>
-							<dd th:text="${items3[0].name}"></dd>
-							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
-						</dl>
-					</a>
-					<a th:href="@{/user/item/detail(id=${items3[0].id})}">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img th:src="${items3[0].showImg}" height="327" width="327" />
-								<span class="abr"></span>
-							</dt>
-							<dd th:text="${items3[0].name}"></dd>
-							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
-						</dl>
-					</a>
-					<a th:href="@{/user/item/detail(id=${items3[0].id})}">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img th:src="${items3[0].showImg}" height="327" width="327" />
-								<span class="abr"></span>
-							</dt>
-							<dd th:text="${items3[0].name}"></dd>
-							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
-						</dl>
-					</a>
-					<a th:href="@{/user/item/detail(id=${items3[0].id})}">
-						<dl>
-							<dt>
-								<span class="abl"></span>
-								<img th:src="${items3[0].showImg}" height="327" width="327" />
-								<span class="abr"></span>
-							</dt>
-							<dd th:text="${items3[0].name}"></dd>
-							<dd><span th:text="${items3[0].authorizeUnitprice}"></span></dd>
-						</dl>
-					</a>
-				</div>
+				<!--时尚群套-->
+
 			</div>
+
 		</div>
 
 		<!-------------------login-------------------------->
@@ -394,25 +256,24 @@
 			<div class="top">
 				<div class="wrapper">
 					<div class="clearfix">
-						<a href="#2" class="fl"><img src="img/foot1.png"/></a>
-						<span class="fl">7天无理由退货</span>
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot1.png}"/></a>
+						<span class="fl">人才济济</span>
 					</div>
 					<div class="clearfix">
-						<a href="#2" class="fl"><img src="img/foot2.png"/></a>
-						<span class="fl">15天免费换货</span>
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot2.png}"/></a>
+						<span class="fl">作品丰富</span>
 					</div>
 					<div class="clearfix">
-						<a href="#2" class="fl"><img src="img/foot3.png"/></a>
-						<span class="fl">满599包邮</span>
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot3.png}"/></a>
+						<span class="fl">优秀设计师</span>
 					</div>
 					<div class="clearfix">
-						<a href="#2" class="fl"><img src="img/foot4.png"/></a>
-						<span class="fl">手机特色服务</span>
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot4.png}"/></a>
+						<span class="fl">特色服务</span>
 					</div>
 				</div>
 			</div>
-			<p class="dibu">最家家居&copy;2013-2017公司版权所有 京ICP备080100-44备0000111000号<br />
-			违法和不良信息举报电话：400-800-8200，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</p>
+			<p class="dibu">服装设计师技能共享平台</p>
 		</div>
 		
 		<script th:src="@{/user/js/jquery-1.12.4.min.js}" type="text/javascript" charset="utf-8"></script>

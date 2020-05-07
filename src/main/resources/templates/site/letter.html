@@ -3,11 +3,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
 	<link rel="stylesheet" th:href="@{/css/global.css}" />
 	<link rel="stylesheet" th:href="@{/css/letter.css}" />
-	<title>我的社区-私信列表</title>
+	<title>私信列表</title>
 </head>
 <body>
 	<div class="nk-container">
@@ -112,7 +111,7 @@
 			var toName = $("#recipient-name").val();
 			var content = $("#message-text").val();
 			$.post(
-					CONTEXT_PATH+"/letter/send",
+					"/share/letter/send",
 					{"toName":toName,"content":content},
 					function (data) {
 						data = $.parseJSON(data);

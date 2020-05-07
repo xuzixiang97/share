@@ -1,0 +1,597 @@
+ <!DOCTYPE html>
+ <html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>H+ 后台主题UI框架 - 基础表格</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" th:href="@{/admin/favicon.ico}">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+
+    <link th:href="@{/admin/css/plugins/iCheck/custom.css}" rel="stylesheet">
+    <link th:href="@{/admin/css/font-awesome.min.css?v=4.4.0}" rel="stylesheet">
+    <link th:href="@{/admin/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/admin/css/style.css?v=4.1.0}" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link th:href="@{/admin/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>用户信息</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_basic.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="table_basic.html#">选项1</a>
+                                </li>
+                                <li><a href="table_basic.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-5 m-b-xs">
+                                <div id="toolbox">
+                                    <button class="btn" onclick="edit()"><span class="glyphicon glyphicon-edit" ></span> 编辑</button>
+                                    <button class="btn"  onclick="remove()" ><span class="glyphicon glyphicon-remove"></span> 删除</button>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 m-b-xs">
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input type="text" placeholder="请输入关键词" class="input-sm form-control"> <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary"> 搜索</button> </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <table id="data-table"></table>
+
+                        <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">编辑作品</h4>
+                                    </div>
+                                    <form id="form1">
+                                    <div class="modal-body col-sm-6">
+
+                                        <div class="form-group">
+                                            <input  id="id" name="id" type="text" hidden="true" >
+                                            <label class="font-noraml">作品名称</label>
+                                            <input id="name" name="name" type="text" class=" input-sm form-control required" style="width: 200px">
+                                        </div>
+                                        <div class="form-group" id="data_5">
+                                            <label class="font-noraml">上架时间</label>
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input type="text" class="input-sm form-control" name="start" value="2020-5-1" />
+                                                <span class="input-group-addon">到</span>
+                                                <input type="text" class="input-sm form-control" name="end" value="2020-11-1" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">价格（单位：元）*</label>
+                                            <input id="authorizeUnitprice" name="authorizeUnitprice" type="text" class="input-sm form-control required" style="width:200px;">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">工艺*</label>
+                                            <select class="form-control" name="technologyIds" id="technologyIds">
+                                                <option>花边</option>
+                                                <option>拼接</option>
+                                                <option>两套</option>
+                                                <option>印花</option>
+                                                <option>拉链</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">材质*</label>
+                                            <select class="form-control" name="materialIds" id="materialIds">
+                                                <option>针织</option>
+                                                <option>纤维</option>
+                                                <option>纯棉</option>
+                                                <option>复合</option>
+                                                <option>涤纶</option>
+                                                <option>棉麻</option>
+                                                <option>毛织</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">类目*</label>
+                                            <select class="form-control" data-placeholder="选择省份..." name="categoryIds" id="categoryIds">
+                                                <option>T恤</option>
+                                                <option>衬衫</option>
+                                                <option>卫衣</option>
+                                                <option>小衫</option>
+                                                <option>毛衣</option>
+                                                <option>背心</option>
+                                                <option>内衣</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">面辅料图*</label>
+                                            <input  type="hidden"  id="token4" name="token4" th:value="${uploadToken4}">
+                                            <input  type="hidden" id="key4" name="key4" th:value="${fileName4}">
+                                            <input  type="file" class="form-control"  id="img4" name="file" onchange="handleFile4()">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">作品信息图*</label>
+                                            <input  type="hidden" id="token5" name="token5" th:value="${uploadToken5}">
+                                            <input  type="hidden" id="key5" name="key5" th:value="${fileName5}">
+                                            <input  type="file" class="form-control"  id="img5" name="file" onchange="handleFile5()">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">CDR*</label>
+                                            <input  type="hidden" id="token6" name="token6" th:value="${uploadToken6}">
+                                            <input  type="hidden" id="key6" name="key6" th:value="${fileName6}">
+                                            <input  type="file" class="form-control"  id="img6" name="file" onchange="handleFile6()">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">ET纸样*</label>
+                                            <input  type="hidden" id="token7" name="token7" th:value="${uploadToken7}">
+                                            <input  type="hidden" id="key7" name="key7" th:value="${fileName7}">
+                                            <input  type="file" class="form-control" id="img7" name="file" onchange="handleFile7()">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="modal-body col-sm-6">
+                                        <div class="form-group">
+                                            <label class="font-noraml">作品描述 *<a id="aa">aa</a></label>
+                                            <textarea class="form-control" rows="7" name="describe" id="describe"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">风格*</label>
+                                            <select class="form-control" name="styleIds" id="styleIds">
+                                                <option>复古</option>
+                                                <option>百搭</option>
+                                                <option>民族</option>
+                                                <option>街头</option>
+                                                <option>田园</option>
+                                                <option>甜美</option>
+                                                <option>原创上衣</option>
+                                                <option>时尚群套</option>
+                                                <option>春季新品</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">季节*</label>
+                                            <select class="form-control" name="seasonIds" id="seasonIds">
+                                                <option>春</option>
+                                                <option>夏</option>
+                                                <option>秋</option>
+                                                <option>冬</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">性别*</label>
+                                            <select class="form-control" name="gender">
+                                                <option>男</option>
+                                                <option>女</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">展示图片一*</label>
+                                            <input  type="hidden" name="token" th:value="${uploadToken}">
+                                            <input  type="hidden" name="key" th:value="${fileName}">
+                                            <input  type="file" class="form-control"  name="file" onchange="handleFile1()" id="img1">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">展示图片二*</label>
+                                            <input  type="hidden" id="token2"  name="token2" th:value="${uploadToken2}">
+                                            <input  type="hidden" id="key2" name="key2" th:value="${fileName2}">
+                                            <input  type="file" class="form-control" id="img2" name="file" onchange="handleFile2()">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">展示图片三*</label>
+                                            <input  type="hidden"  id="token3" name="token3" th:value="${uploadToken3}">
+                                            <input  type="hidden" id="key3" name="key3" th:value="${fileName3}">
+                                            <input  type="file" class="form-control"  id="img3" name="file" onchange="handleFile3()">
+                                        </div>
+
+
+
+                                    </div>
+                                    </form>
+
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                        <button type="button" class="btn btn-primary" name="" onclick="save()">保存</button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script th:src="@{/admin/js/jquery.min.js?v=2.1.4}"></script>
+    <script th:src="@{/admin/js/bootstrap.min.js?v=3.3.6}"></script>
+
+
+
+    <!-- Peity -->
+    <script th:src="@{/admin/js/plugins/peity/jquery.peity.min.js}"></script>
+
+    <!-- 自定义js -->
+    <script th:src="@{/admin/js/content.js?v=1.0.0}"></script>
+
+
+    <!-- iCheck -->
+    <script th:src="@{/admin/js/plugins/iCheck/icheck.min.js}"></script>
+
+    <!-- Peity -->
+    <script th:src="@{/admin/js/demo/peity-demo.js}"></script>
+
+        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+        <script>
+            var $table = $('#data-table');
+
+            $table.bootstrapTable({
+                url: "/share/designer/item/itemdata",
+                method: 'get',
+                columns: [
+                    {
+                        field: "state",
+                        checkbox: true
+                    },{
+                        field: 'id',
+                        title: 'id'
+                    },{
+                    field: 'name',
+                    title: '商品名称'
+                }, {
+                    field: 'describe',
+                    title: '商品描述'
+                }, {
+                    field: 'authorizeUnitprice',
+                    title: '授权使用价格（元）'
+                }, {
+                        field: 'buyoutUnitprice',
+                        title: '买断价格（元）'
+                    },
+                    {
+                        field: 'categoryIds',
+                        title: '类目'
+                    },
+                    {
+                        field: 'materialIds',
+                        title: '材质'
+                    },
+                    {
+                        field: 'technologyIds',
+                        title: '工艺'
+                    },{
+                        field: 'styleIds',
+                        title: '样式'
+                    },{
+                        field: 'fabircImg',
+                        title: '面辅料图'
+                    },{
+                        field: 'productInformationImg',
+                        title: '作品信息图'
+                    },{
+                        field: 'cdrDownload',
+                        title: 'cdr'
+                    },{
+                        field: 'etDownload',
+                        title: 'ET'
+                    },{
+                        field: 'showImg',
+                        title: '展示图片1'
+                    },{
+                        field: 'showImg2',
+                        title: '展示图片2'
+                    },{
+                        field: 'showImg3',
+                        title: '展示图片3'
+                    },],
+                striped : false, //是否显示行间隔色
+                pageNumber : 1, //初始化加载第一页
+                pagination : true,//是否分页
+                sidePagination : 'client',//server:服务器端分页|client：前端分页
+                pageSize : 5,//单页记录数
+
+
+            });
+
+            $('#data-table').bootstrapTable('hideColumn',"id");
+            $('#data-table').bootstrapTable('hideColumn',"showImg");
+            $('#data-table').bootstrapTable('hideColumn',"showImg2");
+            $('#data-table').bootstrapTable('hideColumn',"showImg3");
+            $('#data-table').bootstrapTable('hideColumn',"etDownload");
+            $('#data-table').bootstrapTable('hideColumn',"cdrDownload");
+            $('#data-table').bootstrapTable('hideColumn',"fabircImg");
+            $('#data-table').bootstrapTable('hideColumn',"productInformationImg");
+
+            var keyList = "key0";
+
+            function edit() {
+                var row=$("#data-table").bootstrapTable('getSelections');
+                $("#name").val(row[0].name);
+                $("#id").val(row[0].id);
+                $("#describe").val(row[0].describe);
+                $("#authorizeUnitprice").val(row[0].authorizeUnitprice);
+                $("#technologyIds").val(row[0].technologyIds);
+                $("#materialIds").val(row[0].materialIds);
+                $("#categoryIds").val(row[0].categoryIds);
+                // $("#img4").val(row[0].fabircImg);
+                // $("#img5").val(row[0].productInformationImg);
+                // $("#img6").val(row[0].cdrDownload);
+                // $("#img7").val(row[0].etDownload);
+                $("#styleIds").val(row[0].styleIds);
+                $("#seasonIds").val(row[0].seasonIds);
+                $("#gender").val(row[0].gender);
+                // $("#img1").val(row[0].showImg);
+                // $("#img2").val(row[0].showImg2);
+                // $("#img3").val(row[0].showImg3);
+                 $("#aa").attr('href',row[0].showImg3);
+                $("#myModal").modal("show");
+            }
+
+            function save() {
+                $.ajax({
+                    url:"/share/designer/item/update?keyList="+keyList,
+                    method: "post",
+                    dataType: "json",
+                    data: $('#form1').serialize(),
+                    success: function(data) {
+                        swal({
+                            title: "修改成功",
+                            type: "success"
+                        });
+
+                    }
+                });
+                $("#data-table").bootstrapTable('refresh');
+            }
+
+            function handleFile1() {
+                $.ajax({
+                    url: "http://upload-z2.qiniup.com",
+                    method: "post",
+                    processData: false,
+                    contentType: false,
+                    data: new FormData($("#form1")[0]),
+                    success: function(data) {
+                        if(data && data.code == 0) {
+                            keyList = keyList + ',key';
+                        } else {
+                            alert("上传失败!");
+                        }
+                    }
+                });
+                return false;
+            }
+
+            function handleFile2() {
+                var formData = new FormData($("#form1")[0])
+                formData.delete('file');
+                formData.delete('token');
+                formData.delete('key');
+                formData.set('file',document.querySelector("#img2").files[0]);
+                formData.set('token',$(" #token2").val());
+                formData.set('key',$(" #key2").val());
+                $.ajax({
+                    url: "http://upload-z2.qiniup.com",
+                    method: "post",
+                    processData: false,
+                    contentType: false,
+                    data:formData,
+                    success: function(data) {
+                        if(data && data.code == 0) {
+                            keyList = keyList + ',key2';
+                            alert(keyList)
+                        } else {
+                            alert("上传失败!");
+                        }
+                    }
+                });
+                return false;
+            }
+
+            function handleFile3() {
+                var formData = new FormData($("#form1")[0])
+                formData.delete('file');
+                formData.delete('token');
+                formData.delete('key');
+                formData.set('file',document.querySelector("#form1 input[id=img3]").files[0]);
+                formData.set('token',$(" #token3").val());
+                formData.set('key',$(" #key3").val());
+                $.ajax({
+                    url: "http://upload-z2.qiniup.com",
+                    method: "post",
+                    processData: false,
+                    contentType: false,
+                    data:formData,
+                    success: function(data) {
+                        if(data && data.code == 0) {
+                            keyList = keyList + ',key3';
+                        } else {
+                            alert("上传失败!");
+                        }
+                    }
+                });
+                return false;
+            }
+
+            function handleFile4() {
+                var formData = new FormData($("#form1")[0])
+                formData.delete('file');
+                formData.delete('token');
+                formData.delete('key');
+                formData.set('file',document.querySelector("#form1 input[id=img4]").files[0]);
+                formData.set('token',$(" #token4").val());
+                formData.set('key',$(" #key4").val());
+                $.ajax({
+                    url: "http://upload-z2.qiniup.com",
+                    method: "post",
+                    processData: false,
+                    contentType: false,
+                    data:formData,
+                    success: function(data) {
+                        if(data && data.code == 0) {
+                            keyList = keyList + ',key4';
+                        } else {
+                            alert("上传失败!");
+                        }
+                    }
+                });
+                return false;
+            }
+
+            function handleFile5() {
+                var formData = new FormData($("#form1")[0])
+                formData.delete('file');
+                formData.delete('token');
+                formData.delete('key');
+                formData.set('file',document.querySelector("#form1 input[id=img5]").files[0]);
+                formData.set('token',$(" #token5").val());
+                formData.set('key',$(" #key5").val());
+                $.ajax({
+                    url: "http://upload-z2.qiniup.com",
+                    method: "post",
+                    processData: false,
+                    contentType: false,
+                    data:formData,
+                    success: function(data) {
+                        if(data && data.code == 0) {
+                            keyList = keyList + ',key5';
+                        } else {
+                            alert("上传失败!");
+                        }
+                    }
+                });
+                return false;
+            }
+
+            function handleFile6() {
+                var formData = new FormData($("#form1")[0])
+                formData.delete('file');
+                formData.delete('token');
+                formData.delete('key');
+                formData.set('file',document.querySelector("#form1 input[id=img6]").files[0]);
+                formData.set('token',$(" #token6").val());
+                formData.set('key',$(" #key6").val());
+                $.ajax({
+                    url: "http://upload-z2.qiniup.com",
+                    method: "post",
+                    processData: false,
+                    contentType: false,
+                    data:formData,
+                    success: function(data) {
+                        if(data && data.code == 0) {
+                            keyList = keyList + ',key6';
+                        } else {
+                            alert("上传失败!");
+                        }
+                    }
+                });
+                return false;
+            }
+
+            function handleFile7() {
+                var formData = new FormData($("#form1")[0])
+                formData.delete('file');
+                formData.delete('token');
+                formData.delete('key');
+                formData.set('file',document.querySelector("#form1 input[id=img7]").files[0]);
+                formData.set('token',$(" #token7").val());
+                formData.set('key',$(" #key7").val());
+                $.ajax({
+                    url: "http://upload-z2.qiniup.com",
+                    method: "post",
+                    processData: false,
+                    contentType: false,
+                    data:formData,
+                    success: function(data) {
+                        if(data && data.code == 0) {
+                            keyList = keyList + ',key7';
+                        } else {
+                            alert("上传失败!");
+                        }
+                    }
+                });
+                return false;
+            }
+
+
+            function handleFile() {
+                $.ajax({
+                    url: "http://upload-z2.qiniup.com",
+                    method: "post",
+                    processData: false,
+                    contentType: false,
+                    data: new FormData($("#form1")[0]),
+                    success: function(data) {
+                        if(data && data.code == 0) {
+
+
+                        } else {
+                            alert("上传失败!");
+                        }
+                    }
+                });
+            }
+
+            function add(){
+                $.ajax({
+                    url:"/share/designer/item/add",
+                    method: "post",
+                    dataType: "json",
+                    data: $('#form1').serialize(),
+                    success: function(data) {
+                        alert("新增作品成功!");
+                    }
+                });
+            }
+        </script>
+
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+    <!--统计代码，可删除-->
+        <!-- Sweet alert -->
+        <script th:src="@{/admin/js/plugins/sweetalert/sweetalert.min.js}"></script>
+
+</body>
+
+</html>

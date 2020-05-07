@@ -32,7 +32,7 @@
             </div>
             <h3>欢迎注册 H+</h3>
             <p>创建一个H+新账户</p>
-            <form id="uploadForm" class="m-t" role="form" th:action="@{/designer/register}">
+            <form id="form1" class="m-t" role="form" th:action="@{/designer/register}">
                 <div class="form-group">
                     <input type="text" name="username" class="form-control" placeholder="请输入用户名" required="">
                 </div>
@@ -53,6 +53,14 @@
                     <input  type="hidden" id="token2" name="token2" th:value="${uploadToken2}">
                     <input  type="hidden" id="key2" name="key2" th:value="${fileName2}">
                     <input type="file" class="form-control" id="head-image2" name="file" lang="es" required="" onchange="handleFile2()">
+                </div>
+
+
+                <div class="form-group">
+                    <label class="font-noraml">展示图片三*</label>
+                    <input  type="hidden" name="token3" th:value="${uploadToken3}">
+                    <input  type="hidden" name="key3" th:value="${fileName3}">
+                    <input  type="file" class="form-control"  id="img3" name="file" onchange="handleFile3()">
                 </div>
 
                 <div class="form-group text-left">
@@ -85,7 +93,7 @@
                 method: "post",
                 processData: false,
                 contentType: false,
-                data: new FormData($("#uploadForm")[0]),
+                data: new FormData($("#form1")[0]),
                 success: function(data) {
                     if(data && data.code == 0) {
                         console.log(data);
@@ -100,11 +108,11 @@
         }
 
         function handleFile2() {
-            var formData = new FormData($("#uploadForm")[0])
+            var formData = new FormData($("#form1")[0])
             formData.delete('file');
             formData.delete('token');
             formData.delete('key');
-            formData.set('file',document.querySelector("#uploadForm input[id=head-image2]").files[0]);
+            formData.set('file',document.querySelector("#form1 input[id=head-image2]").files[0]);
             formData.set('token',$(" #token2").val());
             formData.set('key',$(" #key2").val());
             $.ajax({

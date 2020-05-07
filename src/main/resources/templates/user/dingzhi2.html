@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+	<meta charset="utf-8" />
+	<title>定制</title>
+
+	<link rel="stylesheet" type="text/css" th:href="@{/user/css/public.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/user/css/index.css}" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+	<meta name="360-site-verification" content="fe248e685636c6afe831c23af1352579">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+	<link rel="icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/venders.min.css?v106}">
+	<script th:src="@{js/venders.min.js?v106}"></script>
+	<script>
+		var langroot = '';
+		var langcode = 'zh-cn';
+	</script>
+
+
+
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/common.min.css?v124}">
+
+	<script th:src="@{/js/common.min.js?v124}"></script>
+
+
+
+
+
+
+
+
+	<style type="text/css">
+		.popover {
+			max-width: inherit;
+		}
+	</style>
+	<script>
+		$(function () {
+			$('[data-toggle="popover"]').popover();
+		});
+	</script>
+
+</head>
+<body>
+<!------------------------------head------------------------------>
+<div class="head">
+	<div class="wrapper clearfix">
+		<div class="clearfix" id="top">
+			<h1 class="fl">
+				<a href="index.html">
+					<!--<img src="img/logo.png"/>-->
+				</a>
+			</h1>
+			<div class="fr clearfix" id="top1">
+				<p class="fl" th:text="'欢迎你' + ${user.nickName}">
+					<!--<a href="#" id="login">登录</a>
+                    <a href="#" id="reg">注册</a>-->
+				</p>
+				<form action="#" method="get" class="fl">
+					<input type="text" placeholder="热门搜索：干花花瓶" />
+					<input type="button" />
+				</form>
+				<div class="btn fl clearfix">
+					<a th:href="@{/user//mygxin/page}"><img th:src="@{/user/img/grzx.png}"/></a>
+					<a href="#" class="er1"><img th:src="@{/user/img/ewm.png}"/></a>
+					<a th:href="@{/user/cart/page}"><img th:src="@{/user/img/gwc.png}"/></a>
+					<p><a href="#"><img th:src="@{/user/img/smewm.png}"/></a></p>
+				</div>
+			</div>
+		</div>
+		<ul class="clearfix" id="bott">
+			<li><a th:href="@{/user/index/page}">首页</a></li>
+			<li>
+				<a href="#">所有商品</a>
+				<div class="sList">
+					<div class="wrapper  clearfix">
+						<a th:href="@{/user/item/detail(id=501)}">
+							<dl>
+								<dt><img th:src="@{/user/img/nav1.jpg}"/></dt>
+								<dd>春季精选</dd>
+							</dl>
+						</a>
+						<a th:href="@{/user/item/detail(id=301)}">
+							<dl>
+								<dt><img th:src="@{/user/img/nav2.jpg}"/></dt>
+								<dd>原创外套</dd>
+							</dl>
+						</a>
+						<a th:href="@{/user/item/detail(id=303)}">
+							<dl>
+								<dt><img th:src="@{/user/img/nav3.jpg}"/></dt>
+								<dd>时尚群套</dd>
+							</dl>
+						</a>
+					</div>
+				</div>
+			</li>
+			<li><a th:href="@{/user/item/detail(id=501)}">春季精选</a></li>
+			<li><a th:href="@{/user/item/detail(id=301)}">原创外套</a></li>
+			<li><a th:href="@{/user/item/detail(id=303)}">时尚裙装</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="container">
+	<form role="form" th:id="from">
+		<input  class="form-control" type="hidden" name="id">
+		<div class="form-group">
+			<label><strong>定制需求描述:</strong></label>
+			<textarea name="describe" rows="3" class="form-control required"
+					  placeholder="关于定制的套色、尺寸、配色要求、定制需求描述等信息。"
+					  data-msg="请填写该项内容."></textarea>
+		</div>
+
+		<div class="form-group">
+			<label><strong>稿件数量:</strong></label>
+			<input type="text" name="quantity" class="form-control required"
+				   placeholder="稿件数量"
+				   onkeyup="this.value=this.value.replace(/\D/g, '');" maxlength="4"
+				   value=""
+				   data-msg="请填写该项内容." style="width: 300px"/>
+		</div>
+
+		<div class="form-group" style="position: relative;">
+			<label><strong>完成日期:</strong></label>
+
+                                        <input type="text" name="endTime" class="form-control datetimepicker required"
+					   placeholder="2016-06-06" onblur="this.value=(/^\d{4}-\d{1,2}-\d{1,2}$/.test(this.value))?this.value:'';"
+					   value=""
+					   data-msg="请填写该项内容."  style="width: 300px"/>
+		</div>
+
+		<div class="form-group">
+			<label><strong>稿件单价:</strong></label>
+			<input type="text" name="amount" class="form-control required price"
+				   placeholder="定制价格不能低于399"
+				   onkeyup="this.value=this.value.replace(/\D/g, '');" maxlength="4"
+				   value=""
+				   data-msg="请填写该项内容."  style="width: 300px"/>
+			<p class="priceinfo text-danger mt5 hidden">定制价格不能低于399</p>
+
+			<script>
+				$(function () {
+					$('.datetimepicker').datetimepicker({
+						viewMode: 'days',
+						format: 'YYYY-MM-DD'
+					});
+
+					$('.price').on('change', function () {
+						var price = parseInt($(this).val());
+						if (price < 399) {
+							$('.price').val('');
+							$('.priceinfo').removeClass('hidden');
+						}
+					});
+				});
+			</script>
+		</div>
+
+		<button type="button" class="btn btn-primary mw188 mt30" onclick="add()"
+				>发布新定制</button>
+
+
+	</form>
+
+
+</div>
+
+
+<!-------------------login-------------------------->
+<!--footer-->
+<div class="footer">
+	<div class="top">
+		<div class="wrapper">
+			<div class="clearfix">
+				<a href="#2" class="fl"><img th:src="@{/user/img/foot1.png}"/></a>
+				<span class="fl">人才济济</span>
+			</div>
+			<div class="clearfix">
+				<a href="#2" class="fl"><img th:src="@{/user/img/foot2.png}"/></a>
+				<span class="fl">作品丰富</span>
+			</div>
+			<div class="clearfix">
+				<a href="#2" class="fl"><img th:src="@{/user/img/foot3.png}"/></a>
+				<span class="fl">优秀设计师</span>
+			</div>
+			<div class="clearfix">
+				<a href="#2" class="fl"><img th:src="@{/user/img/foot4.png}"/></a>
+				<span class="fl">特色服务</span>
+			</div>
+		</div>
+	</div>
+	<p class="dibu">服装设计师技能共享平台</p>
+</div>
+
+<script th:src="@{/user/js/jquery-1.12.4.min.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/user/js/public.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/user/js/nav.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/user/js/jquery.flexslider-min.js}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#home_slider').flexslider({
+			animation: 'slide',
+			controlNav: true,
+			directionNav: true,
+			animationLoop: true,
+			slideshow: true,
+			slideshowSpeed:2000,
+			useCSS: false
+		});
+
+	});
+
+	function add(){
+		$.ajax({
+			url:"/share/user/bidding/add",
+			method: "post",
+			dataType: "json",
+			data: $('#from').serialize(),
+			success: function(data) {
+				window.location.href ="/share/user/dingzhi/page";}
+		});
+	}
+</script>
+</body>
+</html>

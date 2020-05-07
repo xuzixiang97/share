@@ -1,0 +1,182 @@
+ <!DOCTYPE html>
+ <html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>H+ 后台主题UI框架 - 基础表格</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" th:href="@{/admin/favicon.ico}">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+
+    <link th:href="@{/admin/css/plugins/iCheck/custom.css}" rel="stylesheet">
+    <link th:href="@{/admin/css/font-awesome.min.css?v=4.4.0}" rel="stylesheet">
+    <link th:href="@{/admin/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/admin/css/style.css?v=4.1.0}" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link th:href="@{/admin/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>用户信息</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_basic.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="table_basic.html#">选项1</a>
+                                </li>
+                                <li><a href="table_basic.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-5 m-b-xs">
+                                <div id="toolbox">
+                                    <button class="btn" onclick="okk()"><span class="glyphicon glyphicon-plus" ></span> 同意</button>
+                                    <button class="btn"  onclick="noo()" ><span class="glyphicon glyphicon-remove"></span> 拒绝</button>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 m-b-xs">
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input type="text" placeholder="请输入关键词" class="input-sm form-control"> <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary"> 搜索</button> </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <table id="data-table"></table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script th:src="@{/admin/js/jquery.min.js?v=2.1.4}"></script>
+    <script th:src="@{/admin/js/bootstrap.min.js?v=3.3.6}"></script>
+
+
+
+    <!-- Peity -->
+    <script th:src="@{/admin/js/plugins/peity/jquery.peity.min.js}"></script>
+
+    <!-- 自定义js -->
+    <script th:src="@{/admin/js/content.js?v=1.0.0}"></script>
+
+
+    <!-- iCheck -->
+    <script th:src="@{/admin/js/plugins/iCheck/icheck.min.js}"></script>
+
+    <!-- Peity -->
+    <script th:src="@{/admin/js/demo/peity-demo.js}"></script>
+
+        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+        <script>
+            var $table = $('#data-table');
+
+            $table.bootstrapTable({
+                url: "/share/designer/order/refunddata",
+                method: 'get',
+                columns: [
+                    {
+                        field: "state",
+                        checkbox: true
+                    },{
+                        field: 'id',
+                        title: '订单id'
+                    },{
+                    field: 'orderNo',
+                    title: '订单编号'
+                }, {
+                    field: 'refundReason',
+                    title: '退款原因'
+                }, {
+                    field: 'refundAmount',
+                    title: '退款金额（元）'
+                }, {
+                        field: 'amount',
+                        title: '订单金额（元）'
+                    }, ],
+                striped : false, //是否显示行间隔色
+                pageNumber : 1, //初始化加载第一页
+                pagination : true,//是否分页
+                sidePagination : 'client',//server:服务器端分页|client：前端分页
+                pageSize : 5,//单页记录数
+
+
+            });
+
+            $('#data-table').bootstrapTable('hideColumn',"id");
+
+            function okk() {
+                var row=$("#data-table").bootstrapTable('getSelections');
+
+                $.ajax({
+                    url:"/share/designer/order/ok",
+                    method: "post",
+                    dataType: "json",
+                    data: {id:row[0].id},
+                    success: function(data) {
+                        swal({
+                            title: "已同意",
+                            type: "success"
+                        });
+                        $("#data-table").bootstrapTable('refresh');
+                    }
+                });
+
+            }
+
+            function noo() {
+
+
+
+            }
+
+        </script>
+
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+    <!--统计代码，可删除-->
+        <!-- Sweet alert -->
+        <script th:src="@{/admin/js/plugins/sweetalert/sweetalert.min.js}"></script>
+
+</body>
+
+</html>

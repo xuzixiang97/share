@@ -13,10 +13,14 @@
     <result column="update_time" property="updateTime" jdbcType="BIGINT" />
     <result column="end_time" property="endTime" jdbcType="BIGINT" />
     <result column="extended_field" property="extendedField" jdbcType="VARCHAR" />
+    <result column="refund_status" property="refundStatus" jdbcType="INTEGER" />
+    <result column="refund_reason" property="refundReason" jdbcType="VARCHAR" />
+    <result column="refund_amount" property="refundAmount" jdbcType="INTEGER" />
+    <result column="refuse_reason" property="refuseReason" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, user_id, designer_id, `type`, status, amount, earnest, create_time, update_time,
-    end_time, extended_field
+    end_time, extended_field,refund_status,refund_reason,refund_amount,refuse_reason
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -143,6 +147,15 @@
       </if>
       <if test="extendedField != null" >
         extended_field = #{extendedField,jdbcType=VARCHAR},
+      </if>
+      <if test="refundStatus != null" >
+        refund_status = #{refundStatus},
+      </if>
+      <if test="refundReason != null" >
+        refund_reason = #{refundReason},
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount = #{refundAmount},
       </if>
     </set>
     where id = #{id}

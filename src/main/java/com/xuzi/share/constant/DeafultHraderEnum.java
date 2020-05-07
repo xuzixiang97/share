@@ -1,7 +1,7 @@
 package com.xuzi.share.constant;
 
 public enum DeafultHraderEnum {
-    DSEIGNER("http://q5xmgf6fo.bkt.clouddn.com/1.png", "设计师"),
+    DSEIGNER("http://q8gozduwf.bkt.clouddn.com/designer.jpg", "设计师"),
     User("#", "用户");
 
     /**

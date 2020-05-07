@@ -93,4 +93,9 @@ public class DesignerServiceImpl implements DesignerService {
     public List<Designer> findByStatus(Integer status) {
         return designerMapper.findByStatus(status);
     }
+
+    @Override
+    public Designer selectById(Integer designerId) {
+        return designerMapper.selectByPrimaryKey(designerId);
+    }
 }

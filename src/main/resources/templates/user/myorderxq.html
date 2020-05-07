@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head lang="en">
+		<meta charset="utf-8" />
+		<title>最家</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/user/css/public.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/user/css/myorder.css}" />
+		<link rel="stylesheet" href="https://formden.com/static/assets/demos/bootstrap-iso/bootstrap-iso/bootstrap-iso.css" />
+	</head>
+	<body>
+		<!------------------------------head------------------------------>
+		<div class="head ding">
+			<div class="wrapper clearfix">
+				<div class="clearfix" id="top">
+					<h1 class="fl">
+						<a href="index.html">
+							<!--<img src="img/logo.png"/>-->
+						</a>
+					</h1>
+					<div class="fr clearfix" id="top1">
+						<p class="fl" th:text="'欢迎你' + ${user.nickName}">
+							<!--<a href="#" id="login">登录</a>
+                            <a href="#" id="reg">注册</a>-->
+						</p>
+						<form action="#" method="get" class="fl">
+							<input type="text" placeholder="搜索" />
+							<input type="button" />
+						</form>
+						<div class="btn fl clearfix">
+							<a href="mygxin.html"><img src="img/grzx.png"/></a>
+							<a href="#" class="er1"><img src="img/ewm.png"/></a>
+							<a href="cart.html"><img src="img/gwc.png"/></a>
+							<p><a href="#"><img src="img/smewm.png"/></a></p>
+						</div>
+					</div>
+				</div>
+				<ul class="clearfix" id="bott">
+					<li><a th:href="@{/user/index/page}">首页</a></li>
+					<li>
+						<a href="#">所有商品</a>
+						<div class="sList">
+							<div class="wrapper  clearfix">
+								<a th:href="@{/user/item/detail(id=501)}">
+									<dl>
+										<dt><img th:src="@{/user/img/nav1.jpg}"/></dt>
+										<dd>春季精选</dd>
+									</dl>
+								</a>
+								<a th:href="@{/user/item/detail(id=301)}">
+									<dl>
+										<dt><img th:src="@{/user/img/nav2.jpg}"/></dt>
+										<dd>原创外套</dd>
+									</dl>
+								</a>
+								<a th:href="@{/user/item/detail(id=303)}">
+									<dl>
+										<dt><img th:src="@{/user/img/nav3.jpg}"/></dt>
+										<dd>时尚群套</dd>
+									</dl>
+								</a>
+							</div>
+						</div>
+					</li>
+					<li><a th:href="@{/user/item/detail(id=501)}">春季精选</a></li>
+					<li><a th:href="@{/user/item/detail(id=301)}">原创外套</a></li>
+					<li><a th:href="@{/user/item/detail(id=303)}">时尚裙装</a></li>
+					<li><a th:href="@{/user/dingzhi/page}">定制</a></li>
+					<li><a th:href="@{/letter/list}">消息</a></li>
+				</ul>
+			</div>
+		</div>
+		<!------------------------------idea------------------------------>
+		<div class="address mt" id="add">
+			<div class="wrapper clearfix">
+				<a th:href="@{/user/index/page}" class="fl">首页</a>
+				<span>/</span>
+				<a th:href="@{/user/myorderq/page}" class="on">我的订单</a>
+			</div>
+		</div>
+		
+		<!------------------------------Bott------------------------------>
+		<div class="Bott">
+			<div class="wrapper clearfix">
+				<div class="zuo fl">
+					<h3>
+						<a href="#"><img th:src="${user.headerUrl}" height="92" width="92"/></a>
+						<p class="clearfix"><span class="fl" th:text="${user.nickName}">[羊羊羊]</span><span class="fr">[退出登录]</span></p>
+					</h3>
+					<div>
+						<h4>我的交易</h4>
+						<ul>
+							<li><a th:href="@{/user/cart/page}">我的购物车</a></li>
+							<li><a th:href="@{/user/myorderq/page}">我的订单</a></li>
+							<li><a href="myprod.html">评价晒单</a></li>
+						</ul>
+						<h4>个人中心</h4>
+						<ul>
+							<li  class="on"><a th:href="@{/user/mygxin/page}">我的中心</a></li>
+							<li><a href="address.html">地址管理</a></li>
+						</ul>
+						<h4>账户管理</h4>
+						<ul>
+							<li><a href="mygrxx.html">个人信息</a></li>
+							<li><a href="remima.html">修改密码</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="you fl">
+					<div class="my clearfix">
+						<h2>订单详情<a href="#">请谨防钓鱼链接或诈骗电话，了解更多&gt;</a></h2>
+						<h3>订单号：<span th:text="'#000'+${order.id}">54163846846848468</span></h3>
+					</div>
+					<div class="orderList">
+						<div class="orderList1">
+							<h3>已收货</h3>
+							<div class="clearfix">
+								<a href="#" class="fl"><img th:src="${item.showImg}" width="65px" height="65px"/></a>
+								<p class="fl"><a href="#" th:text="${item.name}">家用创意菜盘子圆盘 釉下彩复古</a><a href="#" th:text="'¥'+${item.authorizeUnitprice}">¥99.00×1</a></p>
+							</div>
+						</div>
+						<div class="orderList1 bootstrap-iso">
+							<h3>下载</h3>
+							<button type="button" class="btn btn-default" th:name="${item.etDownload}" onclick="down(this)"> ET文件</button>
+							<button type="button" class="btn btn-default" th:name="${item.productInformationImg}" onclick="down(this)"> 作品信息图</button>
+							<button type="button" class="btn btn-default" th:name="${item.fabircImg}" onclick="down(this)"> 面辅料图</button>
+							<button type="button" class="btn btn-default" th:name="${item.cdrDownload}" onclick="down(this)"> CDR文件</button>
+						</div>
+						<div class="orderList1 hei">
+							<h3><strong>商品总价：</strong><span th:text="${order.amount}+'元'">¥99</span></h3>
+							<p><strong>订单金额：</strong><span th:text="${order.amount}+'元'">¥99</span></p>
+							<p><strong>实付金额：</strong><span th:text="${order.amount}+'元'">¥99</span></p>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!--返回顶部-->
+		<div class="gotop">
+			<a href="cart.html">
+			<dl>
+				<dt><img src="img/gt1.png"/></dt>
+				<dd>去购<br />物车</dd>
+			</dl>
+			</a>
+			<a href="#" class="dh">
+			<dl>
+				<dt><img src="img/gt2.png"/></dt>
+				<dd>联系<br />客服</dd>
+			</dl>
+			</a>
+			<a href="mygxin.html">
+			<dl>
+				<dt><img src="img/gt3.png"/></dt>
+				<dd>个人<br />中心</dd>
+			</dl>
+			</a>
+			<a href="#" class="toptop" style="display: none">
+			<dl>
+				<dt><img src="img/gt4.png"/></dt>
+				<dd>返回<br />顶部</dd>
+			</dl>
+			</a>
+			<p>400-800-8200</p>
+		</div>
+		<!--footer-->
+		<div class="footer">
+			<div class="top">
+				<div class="wrapper">
+					<div class="clearfix">
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot1.png}"/></a>
+						<span class="fl">人才济济</span>
+					</div>
+					<div class="clearfix">
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot2.png}"/></a>
+						<span class="fl">作品丰富</span>
+					</div>
+					<div class="clearfix">
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot3.png}"/></a>
+						<span class="fl">优秀设计师</span>
+					</div>
+					<div class="clearfix">
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot4.png}"/></a>
+						<span class="fl">特色服务</span>
+					</div>
+				</div>
+			</div>
+			<p class="dibu">服装设计师技能共享平台</p>
+		</div>
+
+
+
+
+		<!-- 全局js -->
+
+		<script th:src="@{/user/js/jquery-1.12.4.min.js}" type="text/javascript" charset="utf-8"></script>
+		<script th:src="@{/admin/js/bootstrap.min.js?v=3.3.6}"></script>
+		<script th:src="@{/user/js/public.js}" type="text/javascript" charset="utf-8"></script>
+		<script th:src="@{/user/js/user.js}" type="text/javascript" charset="utf-8"></script>
+
+	<script>
+		var idx ;
+		function tuikuan(element){
+			$("#myModal").modal("show");
+			idx  = element.name;
+		}
+
+		function addTuiKuan(element) {
+			alert(idx);
+			$.ajax({
+				url:"/share/user/order/tuikuan",
+				method: "post",
+				dataType: "json",
+				data: {id:idx,amount:$("#amount").val(),reason:$("#reason").val()},
+				// data: new FormData($('#from'+element.name)[0]),
+				success: function(data) {
+					if(data && data.code == 0) {
+						alert("上传成功!");
+
+					} else {
+						alert("上传失败!");
+					}
+				}
+			});
+		}
+
+		function down(element) {
+			var $eleForm = $("<form method='get'></form>");
+
+			$eleForm.attr("action",element.name);
+
+			$(document.body).append($eleForm);
+
+			//提交表单，实现下载
+			$eleForm.submit();
+		}
+
+	</script>
+	</body>
+</html>

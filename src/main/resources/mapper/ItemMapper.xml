@@ -9,6 +9,10 @@
     <result column="authorize_unitprice" property="authorizeUnitprice" jdbcType="INTEGER" />
     <result column="buyout_unitprice" property="buyoutUnitprice" jdbcType="INTEGER" />
     <result column="category_ids" property="categoryIds" jdbcType="VARCHAR" />
+    <result column="material_ids" property="materialIds" jdbcType="VARCHAR" />
+    <result column="technology_ids" property="technologyIds" jdbcType="VARCHAR" />
+    <result column="style_ids" property="styleIds" jdbcType="VARCHAR" />
+    <result column="season_ids" property="seasonIds" jdbcType="VARCHAR" />
     <result column="show_img" property="showImg" jdbcType="VARCHAR" />
     <result column="effect_img" property="effectImg" jdbcType="VARCHAR" />
     <result column="structure_img" property="structureImg" jdbcType="VARCHAR" />
@@ -22,11 +26,15 @@
     <result column="create_time" property="createTime" jdbcType="BIGINT" />
     <result column="update_time" property="updateTime" jdbcType="BIGINT" />
     <result column="extended_field" property="extendedField" jdbcType="VARCHAR" />
+    <result column="show_img2" property="showImg2" jdbcType="VARCHAR" />
+    <result column="show_img3" property="showImg3" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, designer_id, `name`, `describe`, authorize_unitprice, buyout_unitprice, category_ids, show_img,
+    id, designer_id, `name`, `describe`, authorize_unitprice, buyout_unitprice, category_ids, show_img,material_ids,technology_ids,style_ids,season_ids,
     effect_img, structure_img, refenence_img, fabirc_img, product_information_img, cdr_download, 
-    et_download, all_download, status, create_time, update_time, extended_field
+    et_download, all_download, status, create_time, update_time, extended_field,show_img2,show_img3,age,gender
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -43,7 +51,9 @@
   <select id="findPage" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"></include>
     from `item`
+    order by create_time desc
     limit #{offset}, #{limit}
+
   </select>
   <select id="selectRowsByDesignerId" resultType="int">
     select count(id) from `item`
@@ -54,6 +64,7 @@
     select <include refid="Base_Column_List"></include>
     from `item`
     where designer_id = #{designerId}
+    order by create_time desc
     limit #{offset}, #{limit}
   </select>
 
@@ -61,6 +72,18 @@
     select <include refid="Base_Column_List"></include>
     from `item`
     where category_ids = #{categoryIds}
+  </select>
+
+  <select id="selectByDesignerId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from `item`
+    where designer_id = #{designerId}
+  </select>
+
+  <select id="selectByStyleId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from `item`
+    where style_ids = #{styleIds}
   </select>
 
   <select id="selectById" resultMap="BaseResultMap">
@@ -80,19 +103,19 @@
   </delete>
   <insert id="insert" parameterType="com.xuzi.share.entity.Item" useGeneratedKeys="true" keyProperty="id">
     insert into item (id,designer_id, `name`, `describe`,
-      authorize_unitprice, buyout_unitprice, category_ids, 
+      authorize_unitprice, buyout_unitprice, category_ids, material_ids,technology_ids,style_ids,season_ids,
       show_img, effect_img, structure_img, 
       refenence_img, fabirc_img, product_information_img, 
       cdr_download, et_download, all_download, 
       status, create_time, update_time, 
-      extended_field)
+      extended_field,show_img2,show_img3,age,gender)
     values (#{id,jdbcType=INTEGER},#{designerId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR},
-      #{authorizeUnitprice,jdbcType=INTEGER}, #{buyoutUnitprice,jdbcType=INTEGER}, #{categoryIds,jdbcType=VARCHAR}, 
+      #{authorizeUnitprice,jdbcType=INTEGER}, #{buyoutUnitprice,jdbcType=INTEGER}, #{categoryIds,jdbcType=VARCHAR}, #{materialIds},#{technologyIds},#{styleIds},#{seasonIds},
       #{showImg,jdbcType=VARCHAR}, #{effectImg,jdbcType=VARCHAR}, #{structureImg,jdbcType=VARCHAR}, 
       #{refenenceImg,jdbcType=VARCHAR}, #{fabircImg,jdbcType=VARCHAR}, #{productInformationImg,jdbcType=VARCHAR}, 
       #{cdrDownload,jdbcType=VARCHAR}, #{etDownload,jdbcType=VARCHAR}, #{allDownload,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
-      #{extendedField,jdbcType=VARCHAR})
+      #{extendedField,jdbcType=VARCHAR},#{showImg2},#{showImg3},#{age},#{gender})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.xuzi.share.entity.Item" >
     update item
@@ -150,6 +173,18 @@
       </if>
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="extendedField != null" >
+        extended_field = #{extendedField,jdbcType=VARCHAR},
+      </if>
+      <if test="showImg2 != null" >
+        show_img2 = #{showImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="showImg3 != null" >
+        show_img3 = #{showImg3,jdbcType=VARCHAR},
+      </if>
+      <if test="extendedField != null" >
+        extended_field = #{extendedField,jdbcType=VARCHAR},
       </if>
       <if test="extendedField != null" >
         extended_field = #{extendedField,jdbcType=VARCHAR},

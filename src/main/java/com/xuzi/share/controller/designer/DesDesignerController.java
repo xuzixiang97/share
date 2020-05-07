@@ -1,8 +1,12 @@
 package com.xuzi.share.controller.designer;
 
 import com.xuzi.share.constant.DesignerStatusEnum;
+import com.xuzi.share.constant.UserStatus;
+import com.xuzi.share.constant.UserType;
 import com.xuzi.share.entity.Designer;
+import com.xuzi.share.entity.User;
 import com.xuzi.share.service.DesignerService;
+import com.xuzi.share.service.UserService;
 import com.xuzi.share.utils.ShareUtil;
 import com.xuzi.share.utils.FileUtil;
 import com.xuzi.share.utils.HostHolder;
@@ -28,6 +32,9 @@ public class DesDesignerController {
 
     @Autowired
     private DesignerService designerService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private HostHolder hostHolder;
@@ -60,6 +67,7 @@ public class DesDesignerController {
         if(map.containsKey("SuccessMessage")){
             Cookie cookie = new Cookie("designerId",map.get("designerId").toString());
             session.setAttribute("designerId",map.get("designerId").toString());
+            session.setAttribute("userId",map.get("designerId").toString());
             cookie.setPath(contextPath);//cookie范围
             cookie.setMaxAge(3600*12);//cookie有效时间
             response.addCookie(cookie);
@@ -101,7 +109,20 @@ public class DesDesignerController {
     @RequestMapping("/register")
     public String register(Model model, Designer designer) {
 
+        Integer id = (int)Math.random() * 100000;
+        designer.setId(id);
         Map<String, Object> map = designerService.register(designer);
+
+        User user  = new User();
+        user.setId(id);
+        user.setUsername(designer.getUsername());
+        user.setPassword(designer.getPassword());
+        user.setHeaderUrl(designer.getHeaderUrl());
+        user.setNickName(designer.getNickName());
+        user.setEmail(designer.getEmail());
+        user.setType(UserType.COMMON);
+        user.setStatus(UserStatus.NORMAL);
+        userService.register(user);
         //注册成功跳转登录页面
         if(map.containsKey("SuccessMessage")){
             return "redirect:/designer/login/page";

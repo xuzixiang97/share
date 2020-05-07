@@ -47,8 +47,28 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<Item> selectByDesignerId(Integer designerId) {
+        return itemMapper.selectByDesignerId(designerId);
+    }
+
+    @Override
+    public List<Item> selectByStyleId(String styleIds) {
+        return itemMapper.selectByStyleId(styleIds);
+    }
+
+    @Override
     public Item selectById(Integer id) {
         return itemMapper.selectById(id);
+    }
+
+    @Override
+    public List<Item> selectByCondition(Item item) {
+        return null;
+    }
+
+    @Override
+    public int updateByCondition(Item item) {
+        return itemMapper.updateByPrimaryKey(item);
     }
 
 }

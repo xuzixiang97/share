@@ -1,5 +1,6 @@
 package com.xuzi.share.controller.designer;
 
+import com.alibaba.fastjson.JSON;
 import com.xuzi.share.entity.Designer;
 import com.xuzi.share.entity.Item;
 import com.xuzi.share.entity.Page;
@@ -40,7 +41,8 @@ public class DesignerItemController {
         page.setRows(itemService.selectRowsByDesignerId(Integer.parseInt(designerId.toString())));
         List<Item> list = itemService.findPageByDesignerId(page.getOffset(), page.getLimit(),Integer.parseInt(designerId.toString()));
         model.addAttribute("items", list);
-        return "designer/item";
+        fileUtil.fileupItem(model);
+        return "designer/itemlist";
     }
 
     /**
@@ -51,9 +53,22 @@ public class DesignerItemController {
     @RequestMapping("/add/page")
     public String addPage(Model model) {
         model.addAttribute("hello", "aaaaaaaaaaaa");
-        fileUtil.fileup(model);
+        fileUtil.fileupItem(model);
         return "designer/additem1";
     }
+
+    /**
+     * 用户信息页面 展示用户信息
+     * @param model
+     * @return
+     */
+    @RequestMapping("/add/page2")
+    public String addPage1(Model model) {
+        model.addAttribute("hello", "aaaaaaaaaaaa");
+        fileUtil.fileupItem(model);
+        return "designer/additem2";
+    }
+
 
     /**
      * 新增作品
@@ -62,18 +77,75 @@ public class DesignerItemController {
      */
     @RequestMapping("/add")
     @ResponseBody
-    public String add(Model model, Item item, Designer designer,HttpSession session,String key) {
+    public String add(Model model, Item item, Designer designer,HttpSession session,String key,String key2,String key3,String key4,String key5,String key6,String key7) {
         Object designerId = session.getAttribute("designerId");
         String url = fileUtil.getUrl(key);
         //todo 目前是测试
         item.setDesignerId(Integer.parseInt(designerId.toString()));
-        Item item1 = BeanUtil.initClassInfo(Item.class);
-        item1.setDesignerId(item.getDesignerId());
-        item1.setName(item.getName());
-        item1.setDescribe(item.getDescribe());
-        item1.setShowImg(url);
-        itemService.insert(item1);
+        item.setBuyoutUnitprice(item.getAuthorizeUnitprice());
+        item.setShowImg(url);
+        item.setShowImg2(fileUtil.getUrl(key2));
+        item.setShowImg3(fileUtil.getUrl(key3));
+        item.setCdrDownload(fileUtil.getUrl(key6));
+        item.setEtDownload(fileUtil.getUrl(key7));
+        item.setFabircImg(fileUtil.getUrl(key4));
+        item.setProductInformationImg(fileUtil.getUrl(key5));
+        item.setStatus(1);
+        item.setCreateTime(System.currentTimeMillis());
+        item.setUpdateTime(System.currentTimeMillis());
+        itemService.insert(item);
         return ShareUtil.getJSONString(0);
     }
 
+
+    /**
+     * 作品数据
+     * @param model
+     * @return
+     */
+    @RequestMapping("/itemdata")
+    @ResponseBody
+    public String itemdata(Model model,HttpSession session) {
+        Object designerId = session.getAttribute("designerId");
+        List<Item> items = itemService.selectByDesignerId(Integer.parseInt(designerId.toString()));
+        String s = JSON.toJSONString(items);
+        return s;
+    }
+
+    /**
+     * 修改作品
+     * @param model
+     * @return
+     */
+    @RequestMapping("/update")
+    @ResponseBody
+    public String update(Model model,HttpSession session,Item item,String keyList,String key,String key2,String key3,String key4,String key5,String key6,String key7) {
+        String[] strings = keyList.split(",");
+        for (String string : strings) {
+            if(string.equals("key")){
+                String url = fileUtil.getUrl(key);
+                item.setShowImg(url);
+            }
+            if(string.equals("key2")){
+                item.setShowImg2(fileUtil.getUrl(key2));
+            }
+            if(string.equals("key3")){
+                item.setShowImg3(fileUtil.getUrl(key3));
+            }
+            if(string.equals("key4")){
+                item.setFabircImg(fileUtil.getUrl(key4));
+            }
+            if(string.equals("key5")){
+                item.setProductInformationImg(fileUtil.getUrl(key5));
+            }
+            if(string.equals("key6")){
+                item.setCdrDownload(fileUtil.getUrl(key6));
+            }
+            if(string.equals("key7")){
+                item.setEtDownload(fileUtil.getUrl(key7));
+            }
+        }
+        itemService.updateByCondition(item);
+        return ShareUtil.getJSONString(0);
+    }
 }

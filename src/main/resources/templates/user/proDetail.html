@@ -7,101 +7,71 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/user/css/proList.css}" />
 </head>
 	<body>
-		<!------------------------------head------------------------------>
-		<div class="head">
-			<div class="wrapper clearfix">
-				<div class="clearfix" id="top">
-					<h1 class="fl"><a href="index.html"></a></h1>
-					<div class="fr clearfix" id="top1">
-						<p class="fl">
-							<a href="#" id="login">登录</a>
-							<a href="#" id="reg">注册</a>
-						</p>
-						<form action="#" method="get" class="fl">
-							<input type="text" placeholder="搜索" />
-							<input type="button" />
-						</form>
-						<div class="btn fl clearfix">
-							<a href="mygxin.html"><img th:src="@{/user/img/grzx.png}"/></a>
-							<a href="#" class="er1"><img th:src="@{/user/img/ewm.png}"/></a>
-							<a href="cart.html"><img th:src="@{/user/img/gwc.png}"/></a>
-							<p><a href="#"><img th:src="@{/user/img/smewm.png}"/></a></p>
-						</div>
+	<!------------------------------head------------------------------>
+	<div class="head">
+		<div class="wrapper clearfix">
+			<div class="clearfix" id="top">
+				<h1 class="fl">
+					<a href="index.html">
+						<!--<img src="img/logo.png"/>-->
+					</a>
+				</h1>
+				<div class="fr clearfix" id="top1">
+					<p class="fl" th:text="'欢迎你' + ${user.nickName}">
+						<!--<a href="#" id="login">登录</a>
+                        <a href="#" id="reg">注册</a>-->
+					</p>
+					<form action="#" method="get" class="fl">
+						<input type="text" placeholder="热门搜索：干花花瓶" />
+						<input type="button" />
+					</form>
+					<div class="btn fl clearfix">
+						<a th:href="@{/user//mygxin/page}"><img th:src="@{/user/img/grzx.png}"/></a>
+						<a href="#" class="er1"><img th:src="@{/user/img/ewm.png}"/></a>
+						<a th:href="@{/user/cart/page}"><img th:src="@{/user/img/gwc.png}"/></a>
+						<p><a href="#"><img th:src="@{/user/img/smewm.png}"/></a></p>
 					</div>
 				</div>
-				<ul class="clearfix" id="bott">
-					<li><a href="index.html">首页</a></li>
-					<li>
-						<a href="#">所有商品</a>
-						<div class="sList">
-							<div class="wrapper  clearfix">
-								<a href="paint.html">
-									<dl>
-										<dt><img src="img/nav1.jpg"/></dt>
-										<dd>浓情欧式</dd>
-									</dl>
-								</a>
-								<a href="paint.html">
-									<dl>
-										<dt><img src="img/nav2.jpg"/></dt>
-										<dd>浪漫美式</dd>
-									</dl>
-								</a>
-								<a href="paint.html">
-									<dl>
-										<dt><img src="img/nav3.jpg"/></dt>
-										<dd>雅致中式</dd>
-									</dl>
-								</a>
-								<a href="paint.html">
-									<dl>
-										<dt><img src="img/nav6.jpg"/></dt>
-										<dd>简约现代</dd>
-									</dl>
-								</a>
-								<a href="paint.html">
-									<dl>
-										<dt><img src="img/nav7.jpg"/></dt>
-										<dd>创意装饰</dd>
-									</dl>
-								</a>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="flowerDer.html">装饰摆件</a>
-						<div class="sList2">
-							<div class="clearfix">
-								<a href="proList.html">干花花艺</a>
-								<a href="vase_proList.html">花瓶花器</a>
-							</div>
-						</div>
-					</li>
-					<li>
-						<a href="decoration.html">布艺软饰</a>
-						<div class="sList2">
-							<div class="clearfix">
-								<a href="zbproList.html">桌布罩件</a>
-								<a href="bzproList.html">抱枕靠垫</a>
-							</div>
-						</div>
-					</li>
-					<li><a href="paint.html">墙式壁挂</a></li>
-					<li><a href="perfume.html">蜡艺香薰</a></li>
-					<li><a href="idea.html">创意家居</a></li>
-				</ul>
 			</div>
+			<ul class="clearfix" id="bott">
+				<li><a th:href="@{/user/index/page}">首页</a></li>
+				<li>
+					<a href="#">所有商品</a>
+					<div class="sList">
+						<div class="wrapper  clearfix">
+							<a th:href="@{/user/item/detail(id=501)}">
+								<dl>
+									<dt><img th:src="@{/user/img/nav1.jpg}"/></dt>
+									<dd>春季精选</dd>
+								</dl>
+							</a>
+							<a th:href="@{/user/item/detail(id=301)}">
+								<dl>
+									<dt><img th:src="@{/user/img/nav2.jpg}"/></dt>
+									<dd>原创外套</dd>
+								</dl>
+							</a>
+							<a th:href="@{/user/item/detail(id=303)}">
+								<dl>
+									<dt><img th:src="@{/user/img/nav3.jpg}"/></dt>
+									<dd>时尚群套</dd>
+								</dl>
+							</a>
+						</div>
+					</div>
+				</li>
+				<li><a th:href="@{/user/item/detail(id=501)}">春季精选</a></li>
+				<li><a th:href="@{/user/item/detail(id=301)}">原创外套</a></li>
+				<li><a th:href="@{/user/item/detail(id=303)}">时尚裙装</a></li>
+				<li><a th:href="@{/user/dingzhi/page}">定制</a></li>
+			</ul>
 		</div>
+	</div>
 		<!-----------------address------------------------------->
 		<div class="address">
 			<div class="wrapper clearfix">
 				<a href="index.html">首页</a>
-				<span>/</span>
-				<a href="flowerDer.html">装饰摆件</a>
-				<span>/</span>
-				<a href="proList.html">干花花艺</a>
-				<span>/</span>
-				<a href="#" class="on">【最家】非洲菊仿真花干花</a>
+				<a href="#" class="on" th:text="${item.name}">【最家】非洲菊仿真花干花</a>
 			</div>
 		</div>
 		<!-----------------------Detail------------------------------>
@@ -121,7 +91,7 @@
 						<div class="title">
 							<h4 th:text="${item.name}">【最家】非洲菊仿真花干花</h4>
 							<p th:text="${item.describe}">【破损补寄】【适合放室内、卧室、书房、餐桌、办公室、客厅、电视柜等地方】【无理由退换货】【包邮】【白色现代简约花瓶】</p>
-							<span>授权价格￥59.90</span>
+							<span th:text="${item.authorizeUnitprice}">授权价格￥59.90</span>
 						</div>
 						<div class="proIntro">
 							<div class="num clearfix">
@@ -143,7 +113,7 @@
 			<div class="msgL fl">
 				<div class="msgTit clearfix">
 					<a class="on">商品详情</a>
-					<a>所有评价</a>
+					<a th:href="'/share/comment/detail/' + ${item.id}">所有评价</a>
 				</div>
 				<div class="msgAll">
 					<div class="msgImgs">
@@ -157,60 +127,32 @@
 					</div>
 			</div>
 
-
-		<!--返回顶部-->
-		<div class="gotop">
-			<a href="cart.html">
-			<dl class="goCart">
-				<dt><img src="img/gt1.png"/></dt>
-				<dd>去购<br />物车</dd>
-				<span>1</span>
-			</dl>
-			</a>
-			<a href="#" class="dh">
-			<dl>
-				<dt><img src="img/gt2.png"/></dt>
-				<dd>联系<br />客服</dd>
-			</dl>
-			</a>
-			<a href="mygxin.html">
-			<dl>
-				<dt><img src="img/gt3.png"/></dt>
-				<dd>个人<br />中心</dd>
-			</dl>
-			</a>
-			<a href="#" class="toptop" style="display: none;">
-			<dl>
-				<dt><img src="img/gt4.png"/></dt>
-				<dd>返回<br />顶部</dd>
-			</dl>
-			</a>
-			<p>400-800-8200</p>
-		</div>
-		<div class="msk"></div>
-		<!--footer-->
-		<div class="footer">
-			<div class="top">
-				<div class="wrapper">
-					<div class="clearfix">
-						<a href="#2" class="fl"><img src="img/foot1.png"/></a>
-						<span class="fl">7天无理由退货</span>
+				<!--footer-->
+				<div class="footer">
+					<div class="top">
+						<div class="wrapper">
+							<div class="clearfix">
+								<a href="#2" class="fl"><img th:src="@{/user/img/foot1.png}"/></a>
+								<span class="fl">人才济济</span>
+							</div>
+							<div class="clearfix">
+								<a href="#2" class="fl"><img th:src="@{/user/img/foot2.png}"/></a>
+								<span class="fl">作品丰富</span>
+							</div>
+							<div class="clearfix">
+								<a href="#2" class="fl"><img th:src="@{/user/img/foot3.png}"/></a>
+								<span class="fl">优秀设计师</span>
+							</div>
+							<div class="clearfix">
+								<a href="#2" class="fl"><img th:src="@{/user/img/foot4.png}"/></a>
+								<span class="fl">特色服务</span>
+							</div>
+						</div>
 					</div>
-					<div class="clearfix">
-						<a href="#2" class="fl"><img src="img/foot2.png"/></a>
-						<span class="fl">15天免费换货</span>
-					</div>
-					<div class="clearfix">
-						<a href="#2" class="fl"><img src="img/foot3.png"/></a>
-						<span class="fl">满599包邮</span>
-					</div>
-					<div class="clearfix">
-						<a href="#2" class="fl"><img src="img/foot4.png"/></a>
-						<span class="fl">手机特色服务</span>
-					</div>
+					<p class="dibu">服装设计师技能共享平台</p>
 				</div>
-			</div>
-		</div>
+
+
 		<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/public.js" type="text/javascript" charset="utf-8"></script>

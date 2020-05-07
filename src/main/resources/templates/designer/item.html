@@ -64,13 +64,14 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>id</th>
-                                        <th>设计师id</th>
+                                        <th>作品名称</th>
                                         <th>描述</th>
-                                        <th>授权使用价格</th>
-                                        <th>头像</th>
-                                        <th>更多信息</th>
-                                        <th>编辑作品</th>
+                                        <th>价格</th>
+                                        <th>类目</th>
+                                        <th>风格</th>
+                                        <th>工艺</th>
+                                        <th>材质</th>
+                                        <th>编辑</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,13 +79,13 @@
                                         <td>
                                             <input type="checkbox" checked class="i-checks" name="input[]">
                                         </td>
-                                        <td th:text="${item.id}"></td>
-                                        <td th:text="${item.designerId}"></td>
                                         <td th:text="${item.name}"></td>
                                         <td th:text="${item.describe}"></td>
                                         <td th:text="${item.authorizeUnitprice}"></td>
-                                        <td th:text="${item.buyoutUnitprice}"></td>
-                                        <td><button th:name="${item.id}" type="button" class="btn btn-w-m btn-primary" >更多信息</button></td>
+                                        <td th:text="${item.categoryIds}"></td>
+                                        <td th:text="${item.styleIds}"></td>
+                                        <td th:text="${item.technologyIds}"></td>
+                                        <td th:text="${item.materialIds}"></td>
                                         <td><button th:name="${item.id}" type="button" class="btn btn-w-m btn-primary" >编辑作品</button></td>
                                     </tr>
                                 </tbody>

@@ -154,7 +154,7 @@ public class UserOrderController {
     public String payPage(Model model, HttpSession session){
         Object userId = session.getAttribute("userId");
         //为你推荐商品
-        List<Item> items = itemService.selectByCategoryId(303);
+        List<Item> items = itemService.selectByStyleId("原创上衣");//原创上衣
         model.addAttribute("items",items);
         User user = userService.findById(Integer.parseInt(userId.toString()));
         model.addAttribute("user", user);
@@ -183,7 +183,51 @@ public class UserOrderController {
     }
 
 
+    /**
+     * 商品详情页下单
+     * @param model
+     * @return
+     */
+    @RequestMapping("/bidding")
+    public String bidding(Model model, Integer designerId,Integer amount, HttpSession session) {
+        //TODO 暂时默认授权使用
+        Integer paytype = 1;
 
+        //生成订单信息
+        Order order = new Order();
+        if(paytype == 1){
+            order.setAmount(100);
+        }
+        order.setType(OrderType.BIDDING_ORDER);
+        order.setCreateTime(System.currentTimeMillis());
+        order.setDesignerId(designerId);
+        order.setEarnest(0);
+        order.setEndTime(0L);
+        order.setStatus(OrderStatus.INIT);
+        order.setUpdateTime(System.currentTimeMillis());
+        order.setUserId(Integer.parseInt(session.getAttribute("userId").toString()));
+        Order insert = orderService.insert(order);
+        model.addAttribute("order", order);
+        model.addAttribute("amount", 100);
+        return  "user/bidorder";
+    }
+
+
+    /**
+     * 申请退款
+     * @param model
+     * @return
+     */
+    @RequestMapping("/tuikuan")
+    @ResponseBody
+    public String tuikuan(Model model, HttpSession session,Order order,Integer amount,String reason){
+        order.setRefundStatus(1);
+        order.setRefundAmount(amount);
+        order.setRefundReason(reason);
+        order.setStatus(OrderStatus.REFUNDING);
+        orderService.updateById(order);
+        return ShareUtil.getJSONString(0);
+    }
 
 
 

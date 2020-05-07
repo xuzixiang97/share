@@ -29,5 +29,9 @@ public interface ItemMapper {
 
     List<Item> selectByCategoryId(Integer categoryIds);
 
+    List<Item> selectByDesignerId(Integer designerId);
+
     Item selectById(Integer id);
+
+    List<Item> selectByStyleId(String styleIds);
 }

@@ -17,5 +17,21 @@ public class OrderStatus {
      */
     public static Integer PAID = 3;
 
+    /**
+     * 退款中
+     */
+    public static Integer REFUNDING = 4;
+
+    /**
+     * 退款失败
+     */
+    public static Integer UNREFUND = 5;
+
+    /**
+     * 退款成功
+     */
+    public static Integer REFUNDED = 6;
+
+
 
 }

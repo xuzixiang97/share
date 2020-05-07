@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:padding-left="http://www.w3.org/1999/xhtml">
+
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>H+ 后台主题UI框架 - 基本表单</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link th:href="@{/admin/css/bootstrap.min.css?v=3.3.6}" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/iCheck/custom.css}" rel="stylesheet">
+    <link th:href="@{/admin/css/font-awesome.min.css?v=4.4.0}" rel="stylesheet">
+    <link th:href="@{/admin/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/admin/css/style.css?v=4.1.0}" rel="stylesheet">
+
+    <link th:href="@{/admin/css/plugins/iCheck/custom.css}" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/steps/jquery.steps.css}" rel="stylesheet">
+
+    <link th:href="@{/admin/css/font-awesome.css?v=4.4.0}" rel="stylesheet">
+
+    <link th:href="@{/admin/css/plugins/iCheck/custom.css}" rel="stylesheet">
+
+    <link th:href="@{/admin/css/plugins/chosen/chosen.css}" rel="stylesheet">
+
+    <link th:href="@{/admin/css/plugins/colorpicker/css/bootstrap-colorpicker.min.css}" rel="stylesheet">
+
+    <link th:href="@{/admin/css/plugins/cropper/cropper.min.css}" rel="stylesheet">
+
+    <link th:href="@{/admin/css/plugins/switchery/switchery.css}" rel="stylesheet">
+
+    <link th:href="@{/admin/css/plugins/jasny/jasny-bootstrap.min.css}" rel="stylesheet">
+
+    <link th:href="@{/admin/css/plugins/nouslider/jquery.nouislider.css}" rel="stylesheet">
+
+    <link th:href="@{/admin/css/plugins/datapicker/datepicker3.css}" rel="stylesheet">
+
+    <link th:href="@{/admin/css/plugins/ionRangeSlider/ion.rangeSlider.css}" rel="stylesheet">
+    <link th:href="@{/admin/css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css}" rel="stylesheet">
+
+    <link th:href="@{/admin/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css}" rel="stylesheet">
+
+    <link th:href="@{/admin/css/plugins/clockpicker/clockpicker.css}" rel="stylesheet">
+
+    <!-- Sweet Alert -->
+    <link th:href="@{/admin/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet">
+
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>新增作品</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="form_wizard.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="form_wizard.html#">选项1</a>
+                                </li>
+                                <li><a href="form_wizard.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <h2>
+                            作品上传
+                        </h2>
+                        <p>
+                            尊敬的设计师您好，请按照提示上传您的作品！
+                        </p>
+
+                        <form id="form1"  class="wizard-big">
+                            <h1>作品信息</h1>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-sm-6 b-r">
+                                        <div class="form-group">
+                                            <label class="font-noraml">作品名称 *</label>
+                                            <input id="password1" name="name" type="text" class=" input-sm form-control required" >
+                                        </div>
+                                        <div class="form-group" id="data_5">
+                                            <label class="font-noraml">上架时间</label>
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input type="text" class="input-sm form-control" name="start" value="2020-5-1" />
+                                                <span class="input-group-addon">到</span>
+                                                <input type="text" class="input-sm form-control" name="end" value="2020-11-1" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">价格（单位：元）*</label>
+                                            <input id="confirm" name="authorizeUnitprice" type="text" class="input-sm form-control required" style="width:200px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="font-noraml">作品描述 *</label>
+                                            <textarea class="form-control" rows="8" name="describe"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                            <h1>类目信息</h1>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="font-noraml">风格*</label>
+                                            <select class="form-control" name="styleIds">
+                                                <option>复古</option>
+                                                <option>百搭</option>
+                                                <option>民族</option>
+                                                <option>街头</option>
+                                                <option>田园</option>
+                                                <option>甜美</option>
+                                                <option>原创上衣</option>
+                                                <option>时尚群套</option>
+                                                <option>春季新品</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">季节*</label>
+                                            <select class="form-control" name="seasonIds">
+                                                <option>春</option>
+                                                <option>夏</option>
+                                                <option>秋</option>
+                                                <option>冬</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">性别*</label>
+                                            <select class="form-control" name="gender">
+                                                <option>男</option>
+                                                <option>女</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="font-noraml">工艺*</label>
+                                            <select class="form-control" name="technologyIds">
+                                                <option>花边</option>
+                                                <option>拼接</option>
+                                                <option>两套</option>
+                                                <option>印花</option>
+                                                <option>拉链</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">材质*</label>
+                                            <select class="form-control" name="materialIds">
+                                                <option>针织</option>
+                                                <option>纤维</option>
+                                                <option>纯棉</option>
+                                                <option>复合</option>
+                                                <option>涤纶</option>
+                                                <option>棉麻</option>
+                                                <option>毛织</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">类目*</label>
+                                            <select class="form-control" data-placeholder="选择省份..." name="categoryIds">
+                                                <option>T恤</option>
+                                                <option>衬衫</option>
+                                                <option>卫衣</option>
+                                                <option>小衫</option>
+                                                <option>毛衣</option>
+                                                <option>背心</option>
+                                                <option>内衣</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="font-noraml">年龄*</label>
+                                            <select class="form-control" data-placeholder="选择省份..." name="age">
+                                                <option>婴儿</option>
+                                                <option>儿童</option>
+                                                <option>成人</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <h1>上传资料</h1>
+                            <fieldset id="aa">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="font-noraml">展示图片一*</label>
+                                        <input  type="hidden" name="token" th:value="${uploadToken}">
+                                        <input  type="hidden" name="key" th:value="${fileName}">
+                                        <input  type="file" class="form-control"  name="file" onchange="handleFile1()">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-noraml">展示图片二*</label>
+                                        <input  type="hidden" id="token2"  name="token2" th:value="${uploadToken2}">
+                                        <input  type="hidden" id="key2" name="key2" th:value="${fileName2}">
+                                        <input  type="file" class="form-control" id="img2" name="file" onchange="handleFile2()">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-noraml">展示图片三*</label>
+                                        <input  type="hidden"  id="token3" name="token3" th:value="${uploadToken3}">
+                                        <input  type="hidden" id="key3" name="key3" th:value="${fileName3}">
+                                        <input  type="file" class="form-control"  id="img3" name="file" onchange="handleFile3()">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="font-noraml">面辅料图*</label>
+                                        <input  type="hidden"  id="token4" name="token4" th:value="${uploadToken4}">
+                                        <input  type="hidden" id="key4" name="key4" th:value="${fileName4}">
+                                        <input  type="file" class="form-control"  id="img4" name="file" onchange="handleFile4()">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-noraml">作品信息图*</label>
+                                        <input  type="hidden" id="token5" name="token5" th:value="${uploadToken5}">
+                                        <input  type="hidden" id="key5" name="key5" th:value="${fileName5}">
+                                        <input  type="file" class="form-control"  id="img5" name="file" onchange="handleFile5()">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="font-noraml">CDR*</label>
+                                        <input  type="hidden" id="token6" name="token6" th:value="${uploadToken6}">
+                                        <input  type="hidden" id="key6" name="key6" th:value="${fileName6}">
+                                        <input  type="file" class="form-control"  id="img6" name="file" onchange="handleFile6()">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-noraml">ET纸样*</label>
+                                        <input  type="hidden" id="token7" name="token7" th:value="${uploadToken7}">
+                                        <input  type="hidden" id="key7" name="key7" th:value="${fileName7}">
+                                        <input  type="file" class="form-control" id="img7" name="file" onchange="handleFile7()">
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <h1>完成</h1>
+                            <fieldset>
+                                <h2>完成</h2>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script th:src="@{/admin/js/jquery.min.js?v=2.1.4}"></script>
+    <script th:src="@{/admin/js/bootstrap.min.js?v=3.3.6}"></script>
+
+
+
+    <!-- Peity -->
+    <script th:src="@{/admin/js/plugins/peity/jquery.peity.min.js}"></script>
+
+    <!-- 自定义js -->
+    <script th:src="@{/admin/js/content.js?v=1.0.0}"></script>
+
+    <!-- Steps -->
+    <script th:src="@{/admin/js/plugins/staps/jquery.steps.min.js}"></script>
+
+    <!-- Jquery Validate -->
+    <script th:src="@{/admin/plugins/validate/jquery.validate.min.js}"></script>
+    <script th:src="@{/admin/js/plugins/validate/messages_zh.min.js}"></script>
+
+
+    <!-- iCheck -->
+    <script th:src="@{/admin/js/plugins/iCheck/icheck.min.js}"></script>
+
+    <!-- Peity -->
+    <script th:src="@{/admin/js/demo/peity-demo.js}"></script>
+    <script>
+        function handleFile1() {
+            $.ajax({
+                url: "http://upload-z2.qiniup.com",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data: new FormData($("#form1")[0]),
+                success: function(data) {
+                    if(data && data.code == 0) {
+
+                    } else {
+                        alert("上传失败!");
+                    }
+                }
+            });
+            return false;
+        }
+
+        function handleFile2() {
+            var formData = new FormData($("#form1")[0])
+            formData.delete('file');
+            formData.delete('token');
+            formData.delete('key');
+            formData.set('file',document.querySelector("#img2").files[0]);
+            formData.set('token',$(" #token2").val());
+            formData.set('key',$(" #key2").val());
+            $.ajax({
+                url: "http://upload-z2.qiniup.com",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data:formData,
+                success: function(data) {
+                    if(data && data.code == 0) {
+
+                    } else {
+                        alert("上传失败!");
+                    }
+                }
+            });
+            return false;
+        }
+
+        function handleFile3() {
+            var formData = new FormData($("#form1")[0])
+            formData.delete('file');
+            formData.delete('token');
+            formData.delete('key');
+            formData.set('file',document.querySelector("#form1 input[id=img3]").files[0]);
+            formData.set('token',$(" #token3").val());
+            formData.set('key',$(" #key3").val());
+            $.ajax({
+                url: "http://upload-z2.qiniup.com",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data:formData,
+                success: function(data) {
+                    if(data && data.code == 0) {
+                    } else {
+                        alert("上传失败!");
+                    }
+                }
+            });
+            return false;
+        }
+
+        function handleFile4() {
+            var formData = new FormData($("#form1")[0])
+            formData.delete('file');
+            formData.delete('token');
+            formData.delete('key');
+            formData.set('file',document.querySelector("#form1 input[id=img4]").files[0]);
+            formData.set('token',$(" #token4").val());
+            formData.set('key',$(" #key4").val());
+            $.ajax({
+                url: "http://upload-z2.qiniup.com",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data:formData,
+                success: function(data) {
+                    if(data && data.code == 0) {
+                    } else {
+                        alert("上传失败!");
+                    }
+                }
+            });
+            return false;
+        }
+
+        function handleFile5() {
+            var formData = new FormData($("#form1")[0])
+            formData.delete('file');
+            formData.delete('token');
+            formData.delete('key');
+            formData.set('file',document.querySelector("#form1 input[id=img5]").files[0]);
+            formData.set('token',$(" #token5").val());
+            formData.set('key',$(" #key5").val());
+            $.ajax({
+                url: "http://upload-z2.qiniup.com",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data:formData,
+                success: function(data) {
+                    if(data && data.code == 0) {
+                    } else {
+                        alert("上传失败!");
+                    }
+                }
+            });
+            return false;
+        }
+
+        function handleFile6() {
+            var formData = new FormData($("#form1")[0])
+            formData.delete('file');
+            formData.delete('token');
+            formData.delete('key');
+            formData.set('file',document.querySelector("#form1 input[id=img6]").files[0]);
+            formData.set('token',$(" #token6").val());
+            formData.set('key',$(" #key6").val());
+            $.ajax({
+                url: "http://upload-z2.qiniup.com",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data:formData,
+                success: function(data) {
+                    if(data && data.code == 0) {
+                    } else {
+                        alert("上传失败!");
+                    }
+                }
+            });
+            return false;
+        }
+
+        function handleFile7() {
+            var formData = new FormData($("#form1")[0])
+            formData.delete('file');
+            formData.delete('token');
+            formData.delete('key');
+            formData.set('file',document.querySelector("#form1 input[id=img7]").files[0]);
+            formData.set('token',$(" #token7").val());
+            formData.set('key',$(" #key7").val());
+            $.ajax({
+                url: "http://upload-z2.qiniup.com",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data:formData,
+                success: function(data) {
+                    if(data && data.code == 0) {
+                    } else {
+                        alert("上传失败!");
+                    }
+                }
+            });
+            return false;
+        }
+
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+
+        function handleFile() {
+            $.ajax({
+                url: "http://upload-z2.qiniup.com",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data: new FormData($("#form1")[0]),
+                success: function(data) {
+                    if(data && data.code == 0) {
+
+
+                    } else {
+                        alert("上传失败!");
+                    }
+                }
+            });
+        }
+
+        function add(){
+            $.ajax({
+                url:"/share/designer/item/add",
+                method: "post",
+                dataType: "json",
+                data: $('#form1').serialize(),
+                success: function(data) {
+                    alert("新增作品成功!");
+                }
+            });
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#wizard").steps();
+            $("#form1").steps({
+                bodyTag: "fieldset",
+                onStepChanging: function (event, currentIndex, newIndex) {
+                    // Always allow going backward even if the current step contains invalid fields!
+
+                        return true;
+
+
+                },
+                onStepChanged: function (event, currentIndex, priorIndex) {
+                    // Suppress (skip) "Warning" step if the user is old enough.
+                    if (currentIndex === 2 && Number($("#age").val()) >= 18) {
+                        $(this).steps("next");
+                    }
+
+                    // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                    if (currentIndex === 2 && priorIndex === 3) {
+                        $(this).steps("previous");
+                    }
+                },
+                onFinishing: function (event, currentIndex) {
+                    var form = $(this);
+                    $.ajax({
+                        url:"/share/designer/item/add",
+                        method: "post",
+                        dataType: "json",
+                        data: $('#form1').serialize(),
+                        success: function(data) {
+                            swal({
+                                title: "上传成功",
+                                type: "success"
+                            });
+                        }
+                    });
+                    return true;
+                },
+
+            })
+        });
+    </script>
+    <!-- Data picker -->
+    <script th:src="@{/admin/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
+
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+    <!--统计代码，可删除-->
+
+    <!-- Chosen -->
+    <script th:src="@{/admin/js/plugins/chosen/chosen.jquery.js}"></script>
+
+    <!-- JSKnob -->
+    <script th:src="@{/admin/js/plugins/jsKnob/jquery.knob.js}"></script>
+
+    <!-- Input Mask-->
+    <script th:src="@{/admin/js/plugins/jasny/jasny-bootstrap.min.js}"></script>
+
+    <!-- Data picker -->
+    <script th:src="@{/admin/js/plugins/datapicker/bootstrap-datepicker.js}"></script>
+
+    <!-- Prettyfile -->
+    <script th:src="@{/admin/js/plugins/prettyfile/bootstrap-prettyfile.js}"></script>
+
+    <!-- NouSlider -->
+    <script th:src="@{/admin/js/plugins/nouslider/jquery.nouislider.min.js}"></script>
+
+    <!-- Switchery -->
+    <script th:src="@{/admin/js/plugins/switchery/switchery.js}"></script>
+
+    <!-- IonRangeSlider -->
+    <script th:src="@{/admin/js/plugins/ionRangeSlider/ion.rangeSlider.min.js}"></script>
+
+    <!-- iCheck -->
+    <script th:src="@{/admin/js/plugins/iCheck/icheck.min.js}"></script>
+
+    <!-- MENU -->
+    <script th:src="@{/admin/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+
+    <!-- Color picker -->
+    <script th:src="@{/admin/js/plugins/colorpicker/bootstrap-colorpicker.min.js}"></script>
+
+    <!-- Clock picker -->
+    <script th:src="@{/admin/js/plugins/clockpicker/clockpicker.js}"></script>
+
+    <!-- Image cropper -->
+    <script th:src="@{/admin/js/plugins/cropper/cropper.min.js}"></script>
+
+    <script th:src="@{/admin/js/demo/form-advanced-demo.js}"></script>
+\
+    <!-- 自定义js -->
+    <script th:src="@{/admin/js/content.js?v=1.0.0}"></script>
+
+    <!-- Sweet alert -->
+    <script th:src="@{/admin/js/plugins/sweetalert/sweetalert.min.js}"></script>
+
+
+</body>
+
+</html>

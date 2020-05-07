@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+	<title>我的社区-账号设置</title>
+
+	<link rel="shortcut icon" th:href="@{/admin/favicon.ico}">
+	<link th:href="@{/admin/css/bootstrap.min.css?v=3.3.6}" rel="stylesheet">
+	<link th:href="@{/admin/css/font-awesome.css?v=4.4.0}" rel="stylesheet">
+
+	<link th:href="@{/admin/css/animate.css}" rel="stylesheet">
+	<link th:href="@{/admin/css/style.css?v=4.1.0}" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="https://www.huangwx.cn/css/sweetalert.css">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body>
+<div class="nk-container">
+
+	<!-- 内容 -->
+	<div class="main">
+		<div class="container p-5 mt-3 mb-3">
+			<!-- 上传头像 -->
+			<h4>上传头像</h4>
+			<!--上传到七牛云-->
+			<form class="mt-5"  method="post" id="uploadForm" >
+				<div class="form-group row mt-4">
+					<label for="head-image" class="col-sm-2 col-form-label text-right">选择头像:</label>
+					<div class="col-sm-10">
+						<div class="custom-file">
+							<input type="hidden" name="token" th:value="${uploadToken}">
+							<input type="hidden" id="key" name="key" th:value="${fileName}">
+							<input type="file" class="custom-file-input" id="head-image" name="file" lang="es" required="" onchange="handleFile()" >
+							<label class="custom-file-label" for="head-image" data-browse="文件">选择一张图片</label>
+							<div class="invalid-feedback">
+								该账号不存在!
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group row mt-4">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-10 text-center">
+						<button id="upheader" type="submit" class="btn btn-primary btn-rounded btn-block demo2" >立即保存</button>
+					</div>
+				</div>
+			</form>
+			<!-- 修改密码 -->
+			<h4>修改密码</h4>
+			<form class="mt-5" method="post" th:action="@{/designer/updatepassword}">
+				<div class="form-group row mt-4">
+					<label for="old-password" class="col-sm-2 col-form-label text-right">原密码:</label>
+					<div class="col-sm-10">
+						<input type="password" th:class="|form-control ${oldPasswordMsg!=null?'is-invalid':''}|"
+							   id="old-password" name="oldPassword" placeholder="请输入原始密码!" required>
+						<div class="invalid-feedback" th:text="${oldPasswordMsg}">
+							密码长度不能小于8位!
+						</div>
+					</div>
+				</div>
+				<div class="form-group row mt-4">
+					<label for="new-password" class="col-sm-2 col-form-label text-right">新密码:</label>
+					<div class="col-sm-10">
+						<input type="password" th:class="|form-control ${newPasswordMsg!=null?'is-invalid':''}|"
+							   id="new-password" name="newPassword" placeholder="请输入新的密码!" required>
+						<div class="invalid-feedback" th:text="${newPasswordMsg}">
+							密码长度不能小于8位!
+						</div>
+					</div>
+				</div>
+				<div class="form-group row mt-4">
+					<label for="confirm-password" class="col-sm-2 col-form-label text-right">确认密码:</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="confirm-password" placeholder="再次输入新密码!" required>
+						<div class="invalid-feedback">
+							两次输入的密码不一致!
+						</div>
+					</div>
+				</div>
+				<div class="form-group row mt-4">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-10 text-center">
+						<button type="submit" class="btn btn-primary btn-rounded btn-block" >立即保存</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js" crossorigin="anonymous"></script>
+<!-- layer javascript -->
+<script th:src="@{/admin/js/plugins/layer/layer.min.js}"></script>
+
+<script>
+    $(function(){
+        bsCustomFileInput.init();
+        $("form").submit(check_data);
+        $("input").focus(clear_error);
+    });
+
+
+	$('.demo2').click(function () {
+		//获取标题和内容，异步请求
+		//发送异步请求
+		$.post(
+				"/share/user/header/url",
+				{"key":$("input[name='key']").val(),"filename":$("input[name='file']").val()},
+				function (data) {
+					data = $.parseJSON(data);
+					if (data.code == 1){
+						swal("?????????");
+					}else{
+						parent.layer.alert('内容')
+						parent.window.location.reload();
+						//alert("Hello world!");
+					}
+
+				}
+		);
+
+
+
+	});
+
+	function handleFile() {
+		$.ajax({
+			url: "http://upload-z2.qiniup.com",
+			method: "post",
+			processData: false,
+			contentType: false,
+			data: new FormData($("#uploadForm")[0]),
+			success: function(data) {
+				if(data && data.code == 0) {
+
+
+				} else {
+					alert("上传失败!");
+				}
+			}
+		});
+	}
+
+
+
+    function check_data() {
+        var pwd1 = $("#new-password").val();
+        var pwd2 = $("#confirm-password").val();
+        if(pwd1 != pwd2) {
+            $("#confirm-password").addClass("is-invalid");
+            return false;
+        }
+        return true;
+    }
+
+    function clear_error() {
+        $(this).removeClass("is-invalid");
+    }
+</script>
+</body>
+</html>
