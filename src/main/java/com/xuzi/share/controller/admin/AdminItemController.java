@@ -1,6 +1,5 @@
 package com.xuzi.share.controller.admin;
 
-import com.xuzi.share.entity.Designer;
 import com.xuzi.share.entity.Item;
 import com.xuzi.share.entity.Page;
 import com.xuzi.share.service.ItemService;

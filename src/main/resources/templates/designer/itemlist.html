@@ -140,25 +140,25 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label class="font-noraml">面辅料图*</label>
+                                            <label class="font-noraml">面辅料图*<a id="url4" target="_blank">查看</a></label>
                                             <input  type="hidden"  id="token4" name="token4" th:value="${uploadToken4}">
                                             <input  type="hidden" id="key4" name="key4" th:value="${fileName4}">
                                             <input  type="file" class="form-control"  id="img4" name="file" onchange="handleFile4()">
                                         </div>
                                         <div class="form-group">
-                                            <label class="font-noraml">作品信息图*</label>
+                                            <label class="font-noraml">作品信息图*<a id="url5" target="_blank">查看</a></label>
                                             <input  type="hidden" id="token5" name="token5" th:value="${uploadToken5}">
                                             <input  type="hidden" id="key5" name="key5" th:value="${fileName5}">
                                             <input  type="file" class="form-control"  id="img5" name="file" onchange="handleFile5()">
                                         </div>
                                         <div class="form-group">
-                                            <label class="font-noraml">CDR*</label>
+                                            <label class="font-noraml">CDR*<a id="url6" target="_blank">查看</a></label>
                                             <input  type="hidden" id="token6" name="token6" th:value="${uploadToken6}">
                                             <input  type="hidden" id="key6" name="key6" th:value="${fileName6}">
                                             <input  type="file" class="form-control"  id="img6" name="file" onchange="handleFile6()">
                                         </div>
                                         <div class="form-group">
-                                            <label class="font-noraml">ET纸样*</label>
+                                            <label class="font-noraml">ET纸样*<a id="url7" target="_blank">查看</a></label>
                                             <input  type="hidden" id="token7" name="token7" th:value="${uploadToken7}">
                                             <input  type="hidden" id="key7" name="key7" th:value="${fileName7}">
                                             <input  type="file" class="form-control" id="img7" name="file" onchange="handleFile7()">
@@ -168,7 +168,7 @@
 
                                     <div class="modal-body col-sm-6">
                                         <div class="form-group">
-                                            <label class="font-noraml">作品描述 *<a id="aa">aa</a></label>
+                                            <label class="font-noraml">作品描述 *</label>
                                             <textarea class="form-control" rows="7" name="describe" id="describe"></textarea>
                                         </div>
                                         <div class="form-group">
@@ -202,19 +202,19 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label class="font-noraml">展示图片一*</label>
+                                            <label class="font-noraml">展示图片一*<a id="url1" target="_blank">查看</a></label>
                                             <input  type="hidden" name="token" th:value="${uploadToken}">
                                             <input  type="hidden" name="key" th:value="${fileName}">
                                             <input  type="file" class="form-control"  name="file" onchange="handleFile1()" id="img1">
                                         </div>
                                         <div class="form-group">
-                                            <label class="font-noraml">展示图片二*</label>
+                                            <label class="font-noraml">展示图片二*<a id="url2" target="_blank">查看</a></label>
                                             <input  type="hidden" id="token2"  name="token2" th:value="${uploadToken2}">
                                             <input  type="hidden" id="key2" name="key2" th:value="${fileName2}">
                                             <input  type="file" class="form-control" id="img2" name="file" onchange="handleFile2()">
                                         </div>
                                         <div class="form-group">
-                                            <label class="font-noraml">展示图片三*</label>
+                                            <label class="font-noraml">展示图片三*<a id="url3" target="_blank">查看</a></label>
                                             <input  type="hidden"  id="token3" name="token3" th:value="${uploadToken3}">
                                             <input  type="hidden" id="key3" name="key3" th:value="${fileName3}">
                                             <input  type="file" class="form-control"  id="img3" name="file" onchange="handleFile3()">
@@ -355,17 +355,16 @@
                 $("#technologyIds").val(row[0].technologyIds);
                 $("#materialIds").val(row[0].materialIds);
                 $("#categoryIds").val(row[0].categoryIds);
-                // $("#img4").val(row[0].fabircImg);
-                // $("#img5").val(row[0].productInformationImg);
-                // $("#img6").val(row[0].cdrDownload);
-                // $("#img7").val(row[0].etDownload);
+                $("#url4").attr('href',row[0].fabircImg);
+                $("#url5").attr('href',row[0].productInformationImg);
+                $("#url6").attr('href',row[0].cdrDownload);
+                $("#url7").attr('href',row[0].etDownload);
                 $("#styleIds").val(row[0].styleIds);
                 $("#seasonIds").val(row[0].seasonIds);
                 $("#gender").val(row[0].gender);
-                // $("#img1").val(row[0].showImg);
-                // $("#img2").val(row[0].showImg2);
-                // $("#img3").val(row[0].showImg3);
-                 $("#aa").attr('href',row[0].showImg3);
+                $("#url1").attr('href',row[0].showImg);
+                $("#url2").attr('href',row[0].showImg2);
+                $("#img3").attr('href',row[0].showImg3);
                 $("#myModal").modal("show");
             }
 
@@ -380,10 +379,10 @@
                             title: "修改成功",
                             type: "success"
                         });
-
+                        $("#data-table").bootstrapTable('refresh');
                     }
                 });
-                $("#data-table").bootstrapTable('refresh');
+
             }
 
             function handleFile1() {

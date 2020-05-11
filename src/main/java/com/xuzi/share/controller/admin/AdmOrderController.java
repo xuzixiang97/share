@@ -40,4 +40,28 @@ public class AdmOrderController {
 
 
 
+    /**
+     * 用户信息页面 展示用户信息
+     * @param model
+     * @return
+     */
+    @RequestMapping("/common")
+    public String common(Model model, Page page , Integer type) {
+        return "admin/common";
+    }
+
+
+
+    /**
+     * 用户信息页面 展示用户信息
+     * @param model
+     * @return
+     */
+    @RequestMapping("/bidding")
+    public String bidding(Model model, Page page , Integer type) {
+        return "admin/bidding";
+    }
+
+
+
 }

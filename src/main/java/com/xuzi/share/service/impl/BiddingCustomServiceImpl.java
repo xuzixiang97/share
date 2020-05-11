@@ -19,6 +19,11 @@ public class BiddingCustomServiceImpl implements BiddingCustomService {
     }
 
     @Override
+    public List<BiddingCustom> findAll() {
+        return biddingCustomMapper.findAll();
+    }
+
+    @Override
     public int selectRows() {
         return biddingCustomMapper.selectRows();
     }

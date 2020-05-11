@@ -189,7 +189,7 @@
 
 						接单设计师：
 						<a th:text="${aa.username}" onclick="index(this)" th:name="${aa.id}">aa</a>
-						<a  onclick="bidding(this)" th:name="${aa.id}">选择</a>
+						<a  onclick="bidding(this)" th:name="${aa.id}" th:id="${item.id}">选择</a>
 
 					</div>
 				</div>
@@ -245,7 +245,8 @@
 			});
 
 			function bidding(element) {
-				window.location.href ="/share/user/order/bidding?designerId=" +element.name;
+				alert("/share/user/order/bidding?designerId=" +element.name+"&id="+element.id)
+				window.location.href ="/share/user/order/bidding?designerId=" +element.name+"&id="+element.id;
 			}
 
 			function index(element) {

@@ -135,7 +135,7 @@
 						</div>
 						<div class="shohou clearfix">
 							<a href="#" class="fl"><img th:src="${common_order.orderItemList[0].img}"/></a>
-							<p class="fl"><a href="#" th:text="${common_order.orderItemList[0].itemName}">家用创意菜盘子圆盘 釉下彩复古</a><a href="#" th:text="'¥'+${common_order.orderItemList[0].unitprice}">¥99.00×1</a></p>
+							<p class="fl"><a href="#" th:text="${common_order.orderItemList[0].itemName}">家用创意菜盘子圆盘 釉下彩复古</a><a href="#" th:text="'¥'+${common_order.amount}">¥99.00×1</a></p>
 							<p class="fr">
 								<a th:href="'/share/user/myorderxq/page?orderId='+${common_order.id}">订单详情</a>
 								<a  th:if="${common_order.status == 1}" th:name="${common_order.id}" onclick="tuikuan(this)">申请退款</a>
@@ -146,6 +146,7 @@
 						</div>
 					</div>
 					</tr>
+
 
 					<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
@@ -255,7 +256,7 @@
 				url:"/share/user/order/tuikuan",
 				method: "post",
 				dataType: "json",
-				data: {id:idx,amount:$("#amount").val(),reason:$("#reason").val()},
+				data: {id:idx,refundAmount:$("#amount").val(),reason:$("#reason").val()},
 				// data: new FormData($('#from'+element.name)[0]),
 				success: function(data) {
 					if(data && data.code == 0) {
@@ -263,6 +264,7 @@
 							title: "申请成功",
 							type: "success"
 						});
+						window.location.reload();
 
 					} else {
 						alert("上传失败!");

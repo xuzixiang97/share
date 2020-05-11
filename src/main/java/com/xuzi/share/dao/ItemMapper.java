@@ -34,4 +34,11 @@ public interface ItemMapper {
     Item selectById(Integer id);
 
     List<Item> selectByStyleId(String styleIds);
+
+
+    List<Item> selectByKey(@Param("offset") int offset, @Param("limit") int limit,@Param("keyword") String keyword);
+
+    int selectRowsByKey(String keyword);
+
+    List<Item> selectByCondition(Item item);
 }

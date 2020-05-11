@@ -23,6 +23,13 @@ public interface ItemService {
     int selectRows();
 
     /**
+     *
+     * @param keyword
+     * @return
+     */
+    int selectRowsByKey(String keyword);
+
+    /**
      * 查询作品（用于管理员后台）
      * @param offset  起始行
      * @param limit 每页显示上限
@@ -79,5 +86,7 @@ public interface ItemService {
      List<Item> selectByCondition(Item item);
 
      int updateByCondition(Item item);
+
+     List<Item> selectByKey(int offset, int limit, String keyword);
 
 }

@@ -1,9 +1,7 @@
 package com.xuzi.share.controller.designer;
 
-import com.xuzi.share.entity.BiddingCustom;
-import com.xuzi.share.entity.Designer;
-import com.xuzi.share.entity.Item;
-import com.xuzi.share.entity.Page;
+import com.alibaba.fastjson.JSON;
+import com.xuzi.share.entity.*;
 import com.xuzi.share.service.BiddingCustomService;
 import com.xuzi.share.service.ItemService;
 import com.xuzi.share.utils.FileUtil;
@@ -15,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -41,6 +41,33 @@ public class DesignerBuddingCustomController {
         List<BiddingCustom> customList = biddingCustomService.findPage(page.getOffset(), page.getLimit());
         model.addAttribute("customList", customList);
         return "designer/bidding";
+    }
+
+    /**
+     * 用户信息页面 展示用户信息
+     * @param model
+     * @return
+     */
+    @RequestMapping("/data")
+    @ResponseBody
+    public String data(Model model, HttpSession session) {
+        Object designerId = session.getAttribute("designerId");
+        List<BiddingCustom> customList = biddingCustomService.findAll();
+        Iterator<BiddingCustom> iterator = customList.iterator();
+        while (iterator.hasNext()){
+            BiddingCustom biddingCustom = iterator.next();
+            biddingCustom.setOrderNo("J00"+biddingCustom.getId());
+            if (biddingCustom.getDesignerIds()!=null){
+                String[] split = biddingCustom.getDesignerIds().split(",");
+                for (String s : split) {
+                    if(Integer.parseInt(s) == Integer.parseInt(designerId.toString())){
+                        iterator.remove();
+                    }
+                }
+            }
+        }
+        String s = JSON.toJSONString(customList);
+        return s;
     }
 
 

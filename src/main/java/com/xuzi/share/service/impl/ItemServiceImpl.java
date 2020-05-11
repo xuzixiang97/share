@@ -26,6 +26,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public int selectRowsByKey(String keyword) {
+        return itemMapper.selectRowsByKey(keyword);
+    }
+
+    @Override
     public List<Item> findPageByDesignerId(int offset, int limit, Integer designerId) {
         return itemMapper.findPageByDesignerId(offset,limit,designerId);
     }
@@ -63,12 +68,17 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<Item> selectByCondition(Item item) {
-        return null;
+        return itemMapper.selectByCondition(item);
     }
 
     @Override
     public int updateByCondition(Item item) {
         return itemMapper.updateByPrimaryKey(item);
+    }
+
+    @Override
+    public List<Item> selectByKey(int offset, int limit, String keyword) {
+        return itemMapper.selectByKey(offset,limit,keyword);
     }
 
 }

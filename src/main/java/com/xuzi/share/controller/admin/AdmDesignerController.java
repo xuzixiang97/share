@@ -3,9 +3,7 @@ package com.xuzi.share.controller.admin;
 
 import com.xuzi.share.entity.Designer;
 import com.xuzi.share.entity.Page;
-import com.xuzi.share.entity.User;
 import com.xuzi.share.service.DesignerService;
-import com.xuzi.share.service.impl.UserServiceImpl;
 import com.xuzi.share.utils.ShareUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -12,21 +12,11 @@
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
 
     <link rel="shortcut icon" th:href="@{/admin/favicon.ico}">
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
-
+    <link th:href="@{/admin/css/bootstrap.min.css?v=3.3.6}" rel="stylesheet">
     <link th:href="@{/admin/css/plugins/iCheck/custom.css}" rel="stylesheet">
     <link th:href="@{/admin/css/font-awesome.min.css?v=4.4.0}" rel="stylesheet">
     <link th:href="@{/admin/css/animate.css}" rel="stylesheet">
     <link th:href="@{/admin/css/style.css?v=4.1.0}" rel="stylesheet">
-    <!-- Sweet Alert -->
-    <link th:href="@{/admin/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet">
 
 </head>
 
@@ -37,7 +27,7 @@
                 <div class="ibox float-e-margins">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>竞标定制</h5>
+                        <h5>用户信息</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -59,9 +49,6 @@
                     <div class="ibox-content">
                         <div class="row">
                             <div class="col-sm-5 m-b-xs">
-                                <div id="toolbox">
-                                    <button class="btn" onclick="okk()"><span class="glyphicon glyphicon-plus" ></span> 参加</button>
-                                </div>
                             </div>
                             <div class="col-sm-4 m-b-xs">
                             </div>
@@ -72,10 +59,49 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-                        <table id="data-table"></table>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>用户名</th>
+                                        <th>昵称</th>
+                                        <th>邮箱</th>
+                                        <th>头像</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="user,iterStat : ${users}">
+                                        <td>
+                                            <input type="checkbox" checked class="i-checks" name="input[]">
+                                        </td>
+                                        <td th:text="${user.username}"></td>
+                                        <td th:text="${user.nickName}"></td>
+                                        <td th:text="${user.email}"></td>
+                                        <td th:text="${user.headerUrl}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- 分页 -->
+                            <nav class="mt-5" th:if="${page.rows>0}" th:fragment="pagination">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                        <a class="page-link" th:href="@{${page.path}(current=1)}">首页</a>
+                                    </li>
+                                    <li th:class="|page-item ${page.current==1?'disabled':''}|">
+                                        <a class="page-link" th:href="@{${page.path}(current=${page.current-1})}">上一页</a></li>
+                                    <li th:class="|page-item ${i==page.current?'active':''}|" th:each="i:${#numbers.sequence(page.from,page.to)}">
+                                        <a class="page-link" th:href="@{${page.path}(current=${i})}" th:text="${i}">1</a>
+                                    </li>
+                                    <li th:class="|page-item ${page.current==page.total?'disabled':''}|">
+                                        <a class="page-link" th:href="@{${page.path}(current=${page.current+1})}">下一页</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" th:href="@{${page.path}(current=${page.total})}">末页</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
 
                     </div>
                 </div>
@@ -102,75 +128,17 @@
     <!-- Peity -->
     <script th:src="@{/admin/js/demo/peity-demo.js}"></script>
 
-        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-        <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
-        <script>
-            var $table = $('#data-table');
-
-            $table.bootstrapTable({
-                url: "/share/designer/bidding/data",
-                method: 'get',
-                columns: [
-                    {
-                        field: "state",
-                        checkbox: true
-                    },{
-                        field: 'id',
-                        title: '订单id'
-                    },{
-                    field: 'orderNo',
-                    title: '订单编号'
-                }, {
-                    field: 'describe',
-                    title: '描述'
-                }, {
-                    field: 'endTime',
-                    title: '完成时间'
-                }, {
-                        field: 'amount',
-                        title: '订单金额（元）'
-                    }, ],
-                striped : false, //是否显示行间隔色
-                pageNumber : 1, //初始化加载第一页
-                pagination : true,//是否分页
-                sidePagination : 'client',//server:服务器端分页|client：前端分页
-                pageSize : 5,//单页记录数
-
-
+    <script>
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
             });
-
-            $('#data-table').bootstrapTable('hideColumn',"id");
-
-            function okk() {
-                var row=$("#data-table").bootstrapTable('getSelections');
-                $.ajax({
-                    url: "/share/designer/bidding/bidding",
-                    method: "post",
-                    dataType: "json",
-                    data: {id:row[0].id},
-                    success: function (data) {
-                        swal({
-                            title: "竞标成功",
-                            type: "success"
-                        });
-                        $("#data-table").bootstrapTable('refresh');
-                    }
-                });
-            }
-
-            function noo() {
-
-            }
-
-        </script>
+        });
+    </script>
 
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
     <!--统计代码，可删除-->
-        <!-- Sweet alert -->
-        <script th:src="@{/admin/js/plugins/sweetalert/sweetalert.min.js}"></script>
 
 </body>
 

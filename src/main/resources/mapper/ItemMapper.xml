@@ -92,9 +92,20 @@
     where id = #{id}
   </select>
 
+  <select id="selectByKey" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from `item`
+    where `name` like CONCAT('%',#{keyword},'%')
+    limit #{offset}, #{limit}
+  </select>
 
   <select id="selectRows" resultType="int">
     select count(id) from `item`
+  </select>
+
+  <select id="selectRowsByKey" resultType="int" parameterType="java.lang.String" >
+    select count(id) from `item`
+    where `name` like CONCAT('%',#{keyword},'%')
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -192,5 +203,81 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByCondition" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from `item`
+    <where>
+      <if test="designerId != null" >
+        designer_id = #{designerId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        `describe` = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizeUnitprice != null" >
+        authorize_unitprice = #{authorizeUnitprice,jdbcType=INTEGER},
+      </if>
+      <if test="buyoutUnitprice != null" >
+        buyout_unitprice = #{buyoutUnitprice,jdbcType=INTEGER},
+      </if>
+      <if test="categoryIds != null" >
+        category_ids = #{categoryIds,jdbcType=VARCHAR},
+      </if>
+      <if test="showImg != null" >
+        show_img = #{showImg,jdbcType=VARCHAR},
+      </if>
+      <if test="effectImg != null" >
+        effect_img = #{effectImg,jdbcType=VARCHAR},
+      </if>
+      <if test="structureImg != null" >
+        structure_img = #{structureImg,jdbcType=VARCHAR},
+      </if>
+      <if test="refenenceImg != null" >
+        refenence_img = #{refenenceImg,jdbcType=VARCHAR},
+      </if>
+      <if test="fabircImg != null" >
+        fabirc_img = #{fabircImg,jdbcType=VARCHAR},
+      </if>
+      <if test="productInformationImg != null" >
+        product_information_img = #{productInformationImg,jdbcType=VARCHAR},
+      </if>
+      <if test="cdrDownload != null" >
+        cdr_download = #{cdrDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="etDownload != null" >
+        et_download = #{etDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="allDownload != null" >
+        all_download = #{allDownload,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="extendedField != null" >
+        extended_field = #{extendedField,jdbcType=VARCHAR},
+      </if>
+      <if test="showImg2 != null" >
+        show_img2 = #{showImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="showImg3 != null" >
+        show_img3 = #{showImg3,jdbcType=VARCHAR},
+      </if>
+      <if test="extendedField != null" >
+        extended_field = #{extendedField,jdbcType=VARCHAR},
+      </if>
+      <if test="extendedField != null" >
+        extended_field = #{extendedField,jdbcType=VARCHAR},
+      </if>
+    </where>
+  </select>
 
 </mapper>

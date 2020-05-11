@@ -5,6 +5,7 @@
 		<title>个人信息</title>
 		<link rel="stylesheet" type="text/css" th:href="@{/user/css/public.css}"/>
 		<link rel="stylesheet" type="text/css" th:href="@{/user/css/mygxin.css}" />
+		<link rel="stylesheet" href="https://formden.com/static/assets/demos/bootstrap-iso/bootstrap-iso/bootstrap-iso.css" />
 	</head>
 	<body>
 		<!------------------------------head------------------------------>
@@ -98,7 +99,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="you fl">
+				<div class="you fl bootstrap-iso">
 					<div class="tx clearfix">
 						<div class="fl clearfix">
 							<a href="#" class="fl"><img th:src="${user.headerUrl}" height="92" width="92"/></a>
@@ -132,9 +133,12 @@
 							</p>
 						</div>
 					</div>
+
 				</div>
+
 			</div>
-		</div>
+			</div>
+
 
 
 
@@ -194,5 +198,7 @@
 		<script th:src="@{/user/js/jquery-1.12.4.min.js}" type="text/javascript" charset="utf-8"></script>
 		<script th:src="@{/user/js/public.js}" type="text/javascript" charset="utf-8"></script>
 		<script th:src="@{/user/js/user.js}" type="text/javascript" charset="utf-8"></script>
+		<script th:src="@{/js/global.js}"></script>
+		<script th:src="@{/js/letter.js}"></script>
 	</body>
 </html>

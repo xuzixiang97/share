@@ -12,11 +12,21 @@
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
 
     <link rel="shortcut icon" th:href="@{/admin/favicon.ico}">
-    <link th:href="@{/admin/css/bootstrap.min.css?v=3.3.6}" rel="stylesheet">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+
     <link th:href="@{/admin/css/plugins/iCheck/custom.css}" rel="stylesheet">
     <link th:href="@{/admin/css/font-awesome.min.css?v=4.4.0}" rel="stylesheet">
     <link th:href="@{/admin/css/animate.css}" rel="stylesheet">
     <link th:href="@{/admin/css/style.css?v=4.1.0}" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link th:href="@{/admin/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet">
 
 </head>
 
@@ -49,65 +59,176 @@
                     <div class="ibox-content">
                         <div class="row">
                             <div class="col-sm-5 m-b-xs">
+                                <div id="toolbox">
+                                    <button class="btn" onclick="edit()"><span class="glyphicon glyphicon-zoom-in"></span> 查看详情</button>
+                                    <button class="btn"  onclick="remove()" ><span class="glyphicon glyphicon-remove"></span> 下架</button>
+                                </div>
                             </div>
                             <div class="col-sm-4 m-b-xs">
                             </div>
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    <input type="text" placeholder="请输入关键词" class="input-sm form-control"> <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-primary"> 搜索</button> </span>
+                                    <input id="search" type="text" placeholder="根据作品名称查询" class="input-sm form-control"> <span class="input-group-btn">
+                                        <button id="sn-btn" type="button" class="btn btn-sm btn-primary"> 搜索</button> </span>
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>id</th>
-                                        <th>设计师id</th>
-                                        <th>描述</th>
-                                        <th>授权使用价格</th>
-                                        <th>头像</th>
-                                        <th>更多信息</th>
-                                        <th>编辑作品</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="item,iterStat : ${items}">
-                                        <td>
-                                            <input type="checkbox" checked class="i-checks" name="input[]">
-                                        </td>
-                                        <td th:text="${item.id}"></td>
-                                        <td th:text="${item.designerId}"></td>
-                                        <td th:text="${item.name}"></td>
-                                        <td th:text="${item.describe}"></td>
-                                        <td th:text="${item.authorizeUnitprice}"></td>
-                                        <td th:text="${item.buyoutUnitprice}"></td>
-                                        <td><button th:name="${item.id}" type="button" class="btn btn-w-m btn-primary" >更多信息</button></td>
-                                        <td><button th:name="${item.id}" type="button" class="btn btn-w-m btn-primary" >编辑作品</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <!-- 分页 -->
-                            <nav class="mt-5" th:if="${page.rows>0}" th:fragment="pagination">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item">
-                                        <a class="page-link" th:href="@{${page.path}(current=1)}">首页</a>
-                                    </li>
-                                    <li th:class="|page-item ${page.current==1?'disabled':''}|">
-                                        <a class="page-link" th:href="@{${page.path}(current=${page.current-1})}">上一页</a></li>
-                                    <li th:class="|page-item ${i==page.current?'active':''}|" th:each="i:${#numbers.sequence(page.from,page.to)}">
-                                        <a class="page-link" th:href="@{${page.path}(current=${i})}" th:text="${i}">1</a>
-                                    </li>
-                                    <li th:class="|page-item ${page.current==page.total?'disabled':''}|">
-                                        <a class="page-link" th:href="@{${page.path}(current=${page.current+1})}">下一页</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" th:href="@{${page.path}(current=${page.total})}">末页</a>
-                                    </li>
-                                </ul>
-                            </nav>
+
+
+
+                        <table id="data-table"></table>
+
+                        <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">作品详情</h4>
+                                    </div>
+                                    <form id="form1">
+                                    <div class="modal-body col-sm-6">
+
+                                        <div class="form-group">
+                                            <input  id="id" name="id" type="text" hidden="true" >
+                                            <label class="font-noraml">作品名称</label>
+                                            <input id="name" name="name"  disabled="disabled" type="text" class=" input-sm form-control required" style="width: 200px">
+                                        </div>
+                                        <div class="form-group" id="data_5">
+                                            <label class="font-noraml">上架时间</label>
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input type="text"  disabled="disabled" class="input-sm form-control" name="start" value="2020-5-1" />
+                                                <span class="input-group-addon">到</span>
+                                                <input type="text"   disabled="disabled" class="input-sm form-control" name="end" value="2020-11-1" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">价格（单位：元）*</label>
+                                            <input id="authorizeUnitprice"  disabled="disabled" name="authorizeUnitprice" type="text" class="input-sm form-control required" style="width:200px;">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">工艺*</label>
+                                            <select class="form-control" name="technologyIds" id="technologyIds" disabled="disabled">
+                                                <option>花边</option>
+                                                <option>拼接</option>
+                                                <option>两套</option>
+                                                <option>印花</option>
+                                                <option>拉链</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">材质*</label>
+                                            <select class="form-control" name="materialIds" id="materialIds" disabled="disabled">
+                                                <option>针织</option>
+                                                <option>纤维</option>
+                                                <option>纯棉</option>
+                                                <option>复合</option>
+                                                <option>涤纶</option>
+                                                <option>棉麻</option>
+                                                <option>毛织</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">类目*</label>
+                                            <select class="form-control" data-placeholder="选择省份..." name="categoryIds" id="categoryIds" disabled="disabled">
+                                                <option>T恤</option>
+                                                <option>衬衫</option>
+                                                <option>卫衣</option>
+                                                <option>小衫</option>
+                                                <option>毛衣</option>
+                                                <option>背心</option>
+                                                <option>内衣</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">面辅料图*<a id="url4" target="_blank">查看</a></label>
+                                            <input  type="hidden"  id="token4" name="token4" th:value="${uploadToken4}">
+                                            <input  type="hidden" id="key4" name="key4" th:value="${fileName4}">
+                                            <input  type="file" class="form-control"  id="img4" name="file" onchange="handleFile4()" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">作品信息图*<a id="url5" target="_blank">查看</a></label>
+                                            <input  type="hidden" id="token5" name="token5" th:value="${uploadToken5}">
+                                            <input  type="hidden" id="key5" name="key5" th:value="${fileName5}">
+                                            <input  type="file" class="form-control"  id="img5" name="file" onchange="handleFile5()" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">CDR*<a id="url6" target="_blank">查看</a></label>
+                                            <input  type="hidden" id="token6" name="token6" th:value="${uploadToken6}">
+                                            <input  type="hidden" id="key6" name="key6" th:value="${fileName6}">
+                                            <input  type="file" class="form-control"  id="img6" name="file" onchange="handleFile6()" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">ET纸样*<a id="url7" target="_blank">查看</a></label>
+                                            <input  type="hidden" id="token7" name="token7" th:value="${uploadToken7}">
+                                            <input  type="hidden" id="key7" name="key7" th:value="${fileName7}">
+                                            <input  type="file" class="form-control" id="img7" name="file" onchange="handleFile7()" disabled="disabled">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="modal-body col-sm-6">
+                                        <div class="form-group">
+                                            <label class="font-noraml">作品描述 *</label>
+                                            <textarea class="form-control" rows="7" name="describe" id="describe" disabled="disabled"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">风格*</label>
+                                            <select class="form-control" name="styleIds" id="styleIds" disabled="disabled">
+                                                <option>复古</option>
+                                                <option>百搭</option>
+                                                <option>民族</option>
+                                                <option>街头</option>
+                                                <option>田园</option>
+                                                <option>甜美</option>
+                                                <option>原创上衣</option>
+                                                <option>时尚群套</option>
+                                                <option>春季新品</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">季节*</label>
+                                            <select class="form-control" name="seasonIds" id="seasonIds" disabled="disabled">
+                                                <option>春</option>
+                                                <option>夏</option>
+                                                <option>秋</option>
+                                                <option>冬</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">性别*</label>
+                                            <select class="form-control" name="gender" disabled="disabled">
+                                                <option>男</option>
+                                                <option>女</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">展示图片一*<a id="url1" target="_blank">查看</a></label>
+                                            <input  type="hidden" name="token" th:value="${uploadToken}">
+                                            <input  type="hidden" name="key" th:value="${fileName}">
+                                            <input  type="file" class="form-control"  name="file" onchange="handleFile1()" id="img1" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">展示图片二*<a id="url2" target="_blank">查看</a></label>
+                                            <input  type="hidden" id="token2"  name="token2" th:value="${uploadToken2}">
+                                            <input  type="hidden" id="key2" name="key2" th:value="${fileName2}">
+                                            <input  type="file" class="form-control" id="img2" name="file" onchange="handleFile2()" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-noraml">展示图片三*<a id="url3" target="_blank">查看</a></label>
+                                            <input  type="hidden"  id="token3" name="token3" th:value="${uploadToken3}">
+                                            <input  type="hidden" id="key3" name="key3" th:value="${fileName3}">
+                                            <input  type="file" class="form-control"  id="img3" name="file" onchange="handleFile3()" disabled="disabled">
+                                        </div>
+
+                                    </div>
+                                    </form>
+
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal -->
                         </div>
 
                     </div>
@@ -135,17 +256,154 @@
     <!-- Peity -->
     <script th:src="@{/admin/js/demo/peity-demo.js}"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
+        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+        <script>
+            var $table = $('#data-table');
+
+            $table.bootstrapTable({
+                url: "/share/admin/data/item",
+                method: 'get',
+                columns: [
+                    {
+                        field: "state",
+                        checkbox: true
+                    },{
+                        field: 'id',
+                        title: 'id'
+                    },{
+                    field: 'name',
+                    title: '商品名称'
+                }, {
+                    field: 'describe',
+                    title: '商品描述'
+                }, {
+                    field: 'authorizeUnitprice',
+                    title: '授权使用价格（元）'
+                }, {
+                        field: 'buyoutUnitprice',
+                        title: '买断价格（元）'
+                    },
+                    {
+                        field: 'categoryIds',
+                        title: '类目'
+                    },
+                    {
+                        field: 'materialIds',
+                        title: '材质'
+                    },
+                    {
+                        field: 'technologyIds',
+                        title: '工艺'
+                    },{
+                        field: 'styleIds',
+                        title: '样式'
+                    },{
+                        field: 'fabircImg',
+                        title: '面辅料图'
+                    },{
+                        field: 'productInformationImg',
+                        title: '作品信息图'
+                    },{
+                        field: 'cdrDownload',
+                        title: 'cdr'
+                    },{
+                        field: 'etDownload',
+                        title: 'ET'
+                    },{
+                        field: 'showImg',
+                        title: '展示图片1'
+                    },{
+                        field: 'showImg2',
+                        title: '展示图片2'
+                    },{
+                        field: 'showImg3',
+                        title: '展示图片3'
+                    },],
+                striped : false, //是否显示行间隔色
+                pageNumber : 1, //初始化加载第一页
+                pagination : true,//是否分页
+                sidePagination : 'client',//server:服务器端分页|client：前端分页
+                pageSize : 5,//单页记录数
+
+
             });
-        });
-    </script>
+
+            $('#data-table').bootstrapTable('hideColumn',"id");
+            $('#data-table').bootstrapTable('hideColumn',"showImg");
+            $('#data-table').bootstrapTable('hideColumn',"showImg2");
+            $('#data-table').bootstrapTable('hideColumn',"showImg3");
+            $('#data-table').bootstrapTable('hideColumn',"etDownload");
+            $('#data-table').bootstrapTable('hideColumn',"cdrDownload");
+            $('#data-table').bootstrapTable('hideColumn',"fabircImg");
+            $('#data-table').bootstrapTable('hideColumn',"productInformationImg");
+
+            var keyList = "key0";
+
+            function edit() {
+                var row=$("#data-table").bootstrapTable('getSelections');
+                $("#name").val(row[0].name);
+                $("#id").val(row[0].id);
+                $("#describe").val(row[0].describe);
+                $("#authorizeUnitprice").val(row[0].authorizeUnitprice);
+                $("#technologyIds").val(row[0].technologyIds);
+                $("#materialIds").val(row[0].materialIds);
+                $("#categoryIds").val(row[0].categoryIds);
+                $("#url4").attr('href',row[0].fabircImg);
+                $("#url5").attr('href',row[0].productInformationImg);
+                $("#url6").attr('href',row[0].cdrDownload);
+                $("#url7").attr('href',row[0].etDownload);
+                $("#styleIds").val(row[0].styleIds);
+                $("#seasonIds").val(row[0].seasonIds);
+                $("#gender").val(row[0].gender);
+                $("#url1").attr('href',row[0].showImg);
+                $("#url2").attr('href',row[0].showImg2);
+                $("#img3").attr('href',row[0].showImg3);
+                $("#myModal").modal("show");
+            }
+
+
+            function add(){
+                $.ajax({
+                    url:"/share/designer/item/add",
+                    method: "post",
+                    dataType: "json",
+                    data: $('#form1').serialize(),
+                    success: function(data) {
+                        alert("新增作品成功!");
+                    }
+                });
+            }
+
+            //点击搜索单据号
+            $('#sn-btn').click(function(){
+                var snVal=$('#search').val();
+                searchFun(snVal,'name');
+            });
+
+            function searchFun(searchVal,snNameStr){ 　　//searchVal为用户输入的搜索值，snNameStr为搜索的字段
+                var newArry=[];
+                var productList = $('#data-table').bootstrapTable('getData');
+                for(var i in productList){
+                    var snName=productList[i][snNameStr];
+                    searchVal=new RegExp(searchVal);
+                    var isHasName=searchVal.test(snName);　　//匹配当前单据号是否符合条件
+                    if(isHasName){
+                        newArry.push(productList[i]);　　　　//符合条件添加到newArry中　
+                    }
+                }
+                $('#data-table').bootstrapTable('load',newArry);　　//加载数据
+            }
+
+        </script>
 
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
     <!--统计代码，可删除-->
+        <!-- Sweet alert -->
+        <script th:src="@{/admin/js/plugins/sweetalert/sweetalert.min.js}"></script>
 
 </body>
 

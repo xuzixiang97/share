@@ -19,7 +19,6 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
 
-
     List<Order> selectbyCondition(Order record);
 
     int selectRowsByType(int type);

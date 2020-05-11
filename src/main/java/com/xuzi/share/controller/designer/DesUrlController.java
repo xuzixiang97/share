@@ -92,6 +92,30 @@ public class DesUrlController {
     }
 
 
+    /**
+     * 跳转普通订单
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/common/page/v1")
+    public String common(Model model) {
+        return "designer/common_order";
+    }
+
+    /**
+     * 跳转竞标订单
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/bidding/page/v1")
+    public String bidding(Model model) {
+        fileUtil.fileup(model);
+        return "designer/bidding_order";
+    }
+
+
 
 
 

@@ -17,10 +17,12 @@
     <result column="refund_reason" property="refundReason" jdbcType="VARCHAR" />
     <result column="refund_amount" property="refundAmount" jdbcType="INTEGER" />
     <result column="refuse_reason" property="refuseReason" jdbcType="VARCHAR" />
+    <result column="bidding_id" property="biddingId" jdbcType="INTEGER" />
+    <result column="resource" property="resource" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, user_id, designer_id, `type`, status, amount, earnest, create_time, update_time,
-    end_time, extended_field,refund_status,refund_reason,refund_amount,refuse_reason
+    end_time, extended_field,refund_status,refund_reason,refund_amount,refuse_reason,bidding_id,resource
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -157,6 +159,12 @@
       <if test="refundAmount != null" >
         refund_amount = #{refundAmount},
       </if>
+      <if test="biddingId != null" >
+        bidding_id = #{biddingId},
+      </if>
+      <if test="resource != null" >
+        resource = #{resource},
+      </if>
     </set>
     where id = #{id}
   </update>
@@ -198,6 +206,7 @@
        and extended_field = #{extendedField,jdbcType=VARCHAR}
      </if>
    </where>
+    order by create_time desc
   </select>
 
   <select id="findPageByType" resultMap="BaseResultMap">

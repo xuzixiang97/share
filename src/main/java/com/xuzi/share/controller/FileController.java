@@ -13,7 +13,6 @@ public class FileController {
     @Autowired
     private FileUtil fileUtil;
 
-
     @RequestMapping(path = "/setting", method = RequestMethod.GET)
     public String getSettingPage(Model model) {
         fileUtil.fileup(model);

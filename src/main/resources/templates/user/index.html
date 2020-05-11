@@ -5,6 +5,7 @@
 		<title>最家</title>
 		<link rel="stylesheet" type="text/css" th:href="@{/user/css/public.css}"/>
 		<link rel="stylesheet" type="text/css" th:href="@{/user/css/index.css}" />
+
 	</head>
 	<body>
 		<!------------------------------head------------------------------>
@@ -21,8 +22,8 @@
 							<!--<a href="#" id="login">登录</a>
 							<a href="#" id="reg">注册</a>-->
 						</p>
-						<form action="#" method="get" class="fl">
-							<input type="text" placeholder="热门搜索：新款" />
+						<form action="/share/user/search/page1" method="get" class="fl">
+							<input type="text" placeholder="热门搜索：新款" name="keyword" />
 							<input type="button" />
 						</form>
 						<div class="btn fl clearfix">

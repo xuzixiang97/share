@@ -40,7 +40,6 @@
         select <include refid="selectFields"></include>
         from message
         where status != 2
-        and from_id != 1
         and conversation_id = #{conversationId}
         order by id desc
         limit #{offset}, #{limit}
@@ -50,7 +49,6 @@
         select count(id)
         from message
         where status != 2
-        and from_id != 1
         and conversation_id = #{conversationId}
     </select>
 

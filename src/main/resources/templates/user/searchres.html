@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head lang="en">
+		<meta charset="utf-8" />
+		<title>搜索</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/user/css/public.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/user/css/proList.css}"/>
+
+		<link rel="stylesheet" href="https://formden.com/static/assets/demos/bootstrap-iso/bootstrap-iso/bootstrap-iso.css" />
+		<link th:href="@{/admin/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css}" rel="stylesheet">
+		<link th:href="@{/admin/css/font-awesome.css?v=4.4.0}" rel="stylesheet">
+
+		<link th:href="@{/admin/css/plugins/iCheck/custom.css}" rel="stylesheet">
+
+		<link th:href="@{/admin/css/plugins/chosen/chosen.css}" rel="stylesheet">
+	</head>
+	<body>
+		<!------------------------------head------------------------------>
+		<div class="head ding">
+			<div class="wrapper clearfix">
+				<div class="clearfix" id="top">
+					<h1 class="fl">
+						<a href="index.html">
+							<!--<img src="img/logo.png"/>-->
+						</a>
+					</h1>
+					<div class="fr clearfix" id="top1">
+						<p class="fl" th:text="'欢迎你' + ${user.nickName}">
+							<!--<a href="#" id="login">登录</a>
+							<a href="#" id="reg">注册</a>-->
+						</p>
+						<form action="#" method="get" class="fl">
+							<input type="text" placeholder="热门搜索：新款" />
+							<input type="button" />
+						</form>
+						<div class="btn fl clearfix">
+							<a th:href="@{/user/mygxin/page}"><img th:src="@{/user/img/grzx.png}"/></a>
+							<a href="#" class="er1"><img th:src="@{/user/img/ewm.png}"/></a>
+							<a th:href="@{/user/cart/page}"><img th:src="@{/user/img/gwc.png}"/></a>
+							<p><a href="#"><img th:src="@{/user/img/smewm.png}"/></a></p>
+						</div>
+					</div>
+				</div>
+				<ul class="clearfix" id="bott">
+					<li><a th:href="@{/user/index/page}">首页</a></li>
+					<li>
+						<a href="#">所有商品</a>
+						<div class="sList">
+							<div class="wrapper  clearfix">
+								<a th:href="@{/user/item/detail(id=501)}">
+									<dl>
+										<dt><img th:src="@{/user/img/nav1.jpg}"/></dt>
+										<dd>春季精选</dd>
+									</dl>
+								</a>
+								<a th:href="@{/user/item/detail(id=301)}">
+									<dl>
+										<dt><img th:src="@{/user/img/nav2.jpg}"/></dt>
+										<dd>原创外套</dd>
+									</dl>
+								</a>
+								<a th:href="@{/user/item/detail(id=303)}">
+									<dl>
+										<dt><img th:src="@{/user/img/nav3.jpg}"/></dt>
+										<dd>时尚群套</dd>
+									</dl>
+								</a>
+							</div>
+						</div>
+					</li>
+					<li><a th:href="@{/user/item/detail(id=501)}">春季精选</a></li>
+					<li><a th:href="@{/user/item/detail(id=301)}">原创外套</a></li>
+					<li><a th:href="@{/user/item/detail(id=303)}">时尚裙装</a></li>
+					<li><a th:href="@{/user/dingzhi/page}">定制</a></li>
+					<li><a th:href="@{/letter/list}">消息</a></li>
+				</ul>
+			</div>
+		</div>
+		<!------------------------------搜索列表------------------------------>
+		<div class="schBox ">
+			<form th:action="@{/user/search/page1}">
+			<ul class="wrapper sch">
+				<li class="">
+					<h4>性别：</h4>
+					<input  id="keyword" name="keyword" type="text" hidden="true" th:value="${keyword}">
+					<input type="radio" id="inlineRadio1" value="男" name="gender" checked="">
+					<label for="inlineRadio1">男&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio2" value="女" name="gender">
+					<label for="inlineRadio2">女&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				</li>
+				<li>
+					<h4>季节：</h4>
+					<input type="radio" id="inlineRadio3" value="复古" name="styleIds" checked="">
+					<label for="inlineRadio3">复古&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio4" value="百搭" name="styleIds" >
+					<label for="inlineRadio4">百搭&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio5" value="民族" name="styleIds" >
+					<label for="inlineRadio5">民族&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio6" value="街头" name="styleIds" >
+					<label for="inlineRadio6">街头&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio7" value="田园" name="styleIds">
+					<label for="inlineRadio7">田园&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio8" value="甜美" name="styleIds" >
+					<label for="inlineRadio8">甜美&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio9" value="原创上衣" name="styleIds" >
+					<label for="inlineRadio9">原创上衣&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio10" value="时尚群套" name="styleIds" >
+					<label for="inlineRadio10">时尚群套&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio11" value="春季新品" name="styleIds" >
+					<label for="inlineRadio11">春季新品&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				</li>
+				<li>
+					<h4>季节：</h4>
+					<input type="radio" id="inlineRadio12" value="春" name="seasonIds" checked="">
+					<label for="inlineRadio12">春&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio13" value="夏" name="seasonIds" checked="">
+					<label for="inlineRadio13">夏&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio14" value="秋" name="seasonIds" checked="">
+					<label for="inlineRadio14">秋&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio15" value="冬" name="seasonIds" checked="">
+					<label for="inlineRadio15">冬&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				</li>
+				<li>
+					<h4>工艺：</h4>
+					<input type="radio" id="inlineRadio16" value="花边" name="technologyIds" checked="">
+					<label for="inlineRadio3">花边&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio17" value="拼接" name="technologyIds" checked="">
+					<label for="inlineRadio3">拼接&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio18" value="两套" name="technologyIds" checked="">
+					<label for="inlineRadio3">两套&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio19" value="印花" name="technologyIds" checked="">
+					<label for="inlineRadio3">印花&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="radio" id="inlineRadio20" value="拉链" name="technologyIds" checked="">
+					<label for="inlineRadio3">拉链&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				</li>
+
+				<li>
+					<button class="btn " onclick="okk()" type="submit">同意</button>
+				</li>
+			</ul>
+
+			</form>
+		</div>
+		<!-------------------current---------------------->
+		<div class="current ">
+			<div class="wrapper clearfix">
+				<h3 class="fl" th:text="'搜索结果：“'+${keyword}+'”'">搜索结果：“干花”</h3>
+				<div class="fr choice">
+					<p class="default">排序方式</p>
+					<ul class="select">
+						<li>新品上市</li>
+						<li>销量从高到低</li>
+						<li>销量从低到高</li>
+						<li>价格从高到低</li>
+						<li>价格从低到高</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!----------------proList------------------------->
+		<ul class="proList wrapper clearfix">
+			<tr th:each="item,iterStat : ${items}">
+			<li>
+				<a href="proDetail.html">
+					<dl>
+						<dt><img th:src="${item.showImg}" width="268" height="268"></dt>
+						<dd th:text="${item.name}">【最家】跳舞兰仿真花干花</dd>
+						<dd th:text="${item.authorizeUnitprice}">￥17.90</dd>
+					</dl>
+				</a>
+			</li>
+			</tr>
+		</ul>
+		<!-- 分页 -->
+		<div class="mt-5 bootstrap-iso" th:if="${page.rows>0}" th:fragment="pagination" style="text-align: center;">
+			<ul class="pagination justify-content-center" style="display: inline-block;">
+				<li class="page-item">
+					<a class="page-link" th:href="@{${page.path}(current=1)}">首页</a>
+				</li>
+				<li th:class="|page-item ${page.current==1?'disabled':''}|">
+					<a class="page-link" th:href="@{${page.path}(current=${page.current-1})}">上一页</a></li>
+				<li th:class="|page-item ${i==page.current?'active':''}|" th:each="i:${#numbers.sequence(page.from,page.to)}">
+					<a class="page-link" th:href="@{${page.path}(current=${i})}" th:text="${i}">1</a>
+				</li>
+				<li th:class="|page-item ${page.current==page.total?'disabled':''}|">
+					<a class="page-link" th:href="@{${page.path}(current=${page.current+1})}">下一页</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" th:href="@{${page.path}(current=${page.total})}">末页</a>
+				</li>
+			</ul>
+		</div>
+		<!----------------mask------------------->
+		<div class="mask"></div>
+		<!-------------------mask内容------------------->
+		<div class="proDets">
+			<img class="off" src="img/temp/off.jpg" />
+			<div class="tit clearfix">
+				<h4 class="fl">【最家】非洲菊仿真花干花</h4>
+				<span class="fr">￥17.90</span>
+			</div>
+			<div class="proCon clearfix">
+				<div class="proImg fl">
+					<img class="list" src="img/temp/proDet.jpg"  />
+					<div class="smallImg clearfix">
+						<img src="img/temp/proDet01.jpg" data-src="img/temp/proDet01_big.jpg">
+						<img src="img/temp/proDet02.jpg" data-src="img/temp/proDet02_big.jpg">
+						<img src="img/temp/proDet03.jpg" data-src="img/temp/proDet03_big.jpg">
+						<img src="img/temp/proDet04.jpg" data-src="img/temp/proDet04_big.jpg">
+					</div>
+				</div>
+				<div class="fr">
+					<div class="proIntro">
+						<p>颜色分类</p>
+						<div class="smallImg clearfix categ">
+							<p class="fl"><img src="img/temp/prosmall01.jpg" alt="白瓷花瓶+20支快乐花" data-src="img/temp/proBig01.jpg"></p>
+							<p class="fl"><img src="img/temp/prosmall02.jpg" alt="白瓷花瓶+20支兔尾巴草" data-src="img/temp/proBig02.jpg"></p>
+							<p class="fl"><img src="img/temp/prosmall03.jpg" alt="20支快乐花" data-src="img/temp/proBig03.jpg"></p>
+							<p class="fl"><img src="img/temp/prosmall04.jpg" alt="20支兔尾巴草" data-src="img/temp/proBig04.jpg"></p>
+						</div>
+						<p>数量</p>
+						<div class="num clearfix">
+							<img class="fl sub" src="img/temp/sub.jpg">
+							<span class="fl" contentEditable="true">1</span>
+							<img class="fl add" src="img/temp/add.jpg">
+							<p class="please fl">请选择商品属性!</p>
+						</div>
+					</div>
+					<div class="btns clearfix">
+						<a href="#2"><p class="buy fl">立即购买</p></a>
+						<a href="#2"><p class="cart fr">加入购物车</p></a>
+					</div>
+				</div>
+			</div>
+			<a class="more" href="proDetail.html">查看更多细节</a>
+		</div>
+
+		<!-------------------login-------------------------->
+		<!--footer-->
+		<div class="footer">
+			<div class="top">
+				<div class="wrapper">
+					<div class="clearfix">
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot1.png}"/></a>
+						<span class="fl">人才济济</span>
+					</div>
+					<div class="clearfix">
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot2.png}"/></a>
+						<span class="fl">作品丰富</span>
+					</div>
+					<div class="clearfix">
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot3.png}"/></a>
+						<span class="fl">优秀设计师</span>
+					</div>
+					<div class="clearfix">
+						<a href="#2" class="fl"><img th:src="@{/user/img/foot4.png}"/></a>
+						<span class="fl">特色服务</span>
+					</div>
+				</div>
+			</div>
+			<p class="dibu">服装设计师技能共享平台</p>
+		</div>
+		<script th:src="@{/user/js/jquery-1.12.4.min.js}" type="text/javascript" charset="utf-8"></script>
+		<script th:src="@{/user/js/public.js}" type="text/javascript" charset="utf-8"></script>
+		<script th:src="@{/user//pro.js}" type="text/javascript" charset="utf-8"></script>
+		<script th:src="@{/user/js/cart.js}" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

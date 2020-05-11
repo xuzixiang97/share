@@ -16,6 +16,12 @@ public interface BiddingCustomService {
     List<BiddingCustom> findPage(int offset, int limit);
 
     /**
+     * 查询全部信息
+     * @return
+     */
+    List<BiddingCustom> findAll();
+
+    /**
      * 查询作品数量（用于分页，管理员后台）
      * @return
      */

@@ -60,4 +60,9 @@ public class Item {
 
     private String gender;
 
+    /**
+     * 设计师
+     */
+    private String designerName;
+
 }

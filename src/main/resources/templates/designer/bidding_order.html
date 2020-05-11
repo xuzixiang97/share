@@ -1,5 +1,5 @@
- <!DOCTYPE html>
- <html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -31,13 +31,13 @@
 </head>
 
 <body class="gray-bg">
-    <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="ibox float-e-margins">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>用户信息</h5>
+                        <h5>竞标定制订单信息</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -60,8 +60,7 @@
                         <div class="row">
                             <div class="col-sm-5 m-b-xs">
                                 <div id="toolbox">
-                                    <button class="btn" onclick="okk()"><span class="glyphicon glyphicon-plus" ></span> 同意</button>
-                                    <button class="btn"  onclick="noo()" ><span class="glyphicon glyphicon-remove"></span> 拒绝</button>
+                                    <button class="btn" onclick="page()"><span class="glyphicon glyphicon-open" ></span> 上传</button>
                                 </div>
                             </div>
                             <div class="col-sm-4 m-b-xs">
@@ -69,15 +68,12 @@
                             <div class="col-sm-3">
                                 <div class="input-group">
                                     <input type="text" placeholder="请输入关键词" class="input-sm form-control"> <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-primary"> 搜索</button> </span>
+                                        <button type="button" class="btn btn-sm btn-primary" onclick="page()"> 搜索</button> </span>
                                 </div>
                             </div>
                         </div>
 
-
-
                         <table id="data-table"></table>
-
 
                         <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -89,16 +85,22 @@
                                     <div class="modal-body">
                                         <form id="form1">
                                             <div class="form-group">
-                                                <label class="font-noraml">理由</label>
-                                                <input id="id" name="id" hidden="true"/>
-                                                <textarea id="refuseReason" class="form-control" rows="8" name="refuseReason"></textarea>
+                                                <input  id="id" name="id" type="text" hidden="true" >
+                                                <label class="font-noraml">文件(zip文件)</label>
+                                                <input  type="hidden" name="token" th:value="${uploadToken}">
+                                                <input  type="hidden" name="key" th:value="${fileName}">
+                                                <input  type="file" class="form-control"  name="file" onchange="handleFile1()" style="width: 200px">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-noraml">备注</label>
+                                                <textarea id="extended_field" class="form-control" rows="8" name="extended_field"></textarea>
                                             </div>
                                         </form>
                                     </div>
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                        <button type="button" class="btn btn-primary" name="" onclick="refuse()">提交</button>
+                                        <button type="button" class="btn btn-primary" name="" onclick="upresource()">上传</button>
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal -->
@@ -129,94 +131,103 @@
     <!-- Peity -->
     <script th:src="@{/admin/js/demo/peity-demo.js}"></script>
 
-        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-        <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
-        <script>
-            var $table = $('#data-table');
+    <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+    <script>
+        var $table = $('#data-table');
 
-            $table.bootstrapTable({
-                url: "/share/designer/order/refunddata",
-                method: 'get',
-                columns: [
-                    {
-                        field: "state",
-                        checkbox: true
-                    },{
-                        field: 'id',
-                        title: '订单id'
-                    },{
+        $table.bootstrapTable({
+            url: "/share/designer/order/bidding/data",
+            method: 'get',
+            columns: [
+                {
+                    field: "state",
+                    checkbox: true
+                },{
+                    field: 'id',
+                    title: '订单id'
+                },{
                     field: 'orderNo',
                     title: '订单编号'
+                },{
+                    field: 'describe',
+                    title: '定制内容'
+                },{
+                    field: 'username',
+                    title: '用户名'
                 }, {
-                    field: 'refundReason',
-                    title: '退款原因'
+                    field: 'amount',
+                    title: '订单金额'
                 }, {
-                    field: 'refundAmount',
-                    title: '退款金额（元）'
+                    field: 'time',
+                    title: '订单创建时间'
                 }, {
-                        field: 'amount',
-                        title: '订单金额（元）'
-                    }, ],
-                striped : false, //是否显示行间隔色
-                pageNumber : 1, //初始化加载第一页
-                pagination : true,//是否分页
-                sidePagination : 'client',//server:服务器端分页|client：前端分页
-                pageSize : 5,//单页记录数
+                    field: 'endline',
+                    title: '订单最后期限'
+                }, {
+                    field: 'amount',
+                    title: '订单金额（元）'
+                }, ],
+            striped : false, //是否显示行间隔色
+            pageNumber : 1, //初始化加载第一页
+            pagination : true,//是否分页
+            sidePagination : 'client',//server:服务器端分页|client：前端分页
+            pageSize : 5,//单页记录数
 
 
+        });
+
+        $('#data-table').bootstrapTable('hideColumn',"id");
+
+        function upresource() {
+            alert("??");
+            var row=$("#data-table").bootstrapTable('getSelections');
+            $.ajax({
+                url: "/share/designer/order/up?id="+row[0].id,
+                method: "post",
+                dataType: "json",
+                data: $("#form1").serialize(),
+                success: function (data) {
+                    swal({
+                        title: "上传成功",
+                        type: "success"
+                    });
+                    $("#data-table").bootstrapTable('refresh');
+                }
             });
+        }
 
-            $('#data-table').bootstrapTable('hideColumn',"id");
+        function page() {
+            $("#myModal").modal("show");
+        }
 
-            function okk() {
-                var row=$("#data-table").bootstrapTable('getSelections');
+        function handleFile1() {
+            $.ajax({
+                url: "http://upload-z2.qiniup.com",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data: new FormData($("#form1")[0]),
+                success: function(data) {
+                    if(data && data.code == 0) {
 
-                $.ajax({
-                    url:"/share/designer/order/ok",
-                    method: "post",
-                    dataType: "json",
-                    data: {id:row[0].id},
-                    success: function(data) {
-                        swal({
-                            title: "已同意",
-                            type: "success"
-                        });
-                        $("#data-table").bootstrapTable('refresh');
+                    } else {
+                        alert("上传失败!");
                     }
-                });
+                }
+            });
+            return false;
+        }
 
-            }
-
-            function noo() {
-                $("#myModal").modal("show");
-            }
-
-            function refuse() {
-                var row=$("#data-table").bootstrapTable('getSelections');
-                $.ajax({
-                    url:"/share/designer/order/no?id="+row[0].id,
-                    method: "post",
-                    dataType: "json",
-                    data: $("#form1").serialize(),
-                    success: function(data) {
-                        swal({
-                            title: "已拒绝",
-                            type: "success"
-                        });
-                        $("#data-table").bootstrapTable('refresh');
-                    }
-                });
-            }
-
-        </script>
+    </script>
 
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
     <!--统计代码，可删除-->
-        <!-- Sweet alert -->
-        <script th:src="@{/admin/js/plugins/sweetalert/sweetalert.min.js}"></script>
+    <!-- Sweet alert -->
+    <script th:src="@{/admin/js/plugins/sweetalert/sweetalert.min.js}"></script>
 
 </body>
 

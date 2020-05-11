@@ -37,7 +37,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>设计师信息管理</h5>
+                        <h5>普通订单</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    <input id="search" type="text" placeholder="请输入设计师用户名" class="input-sm form-control"> <span class="input-group-btn">
+                                    <input id="search" type="text" placeholder="根据订单编号查询" class="input-sm form-control"> <span class="input-group-btn">
                                         <button id="sn-btn" type="button" class="btn btn-sm btn-primary"> 搜索</button> </span>
                                 </div>
                             </div>
@@ -106,8 +106,10 @@
     <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
     <script>
         var $table = $('#data-table');
+
+
         $table.bootstrapTable({
-            url: "/share/admin/data/review",
+            url: "/share/admin/data/common",
             method: 'get',
             columns: [
                 {
@@ -115,26 +117,32 @@
                     checkbox: true
                 },{
                     field: 'id',
-                    title: '设计师id'
+                    title: '订单id'
+                },{
+                    field: 'orderNo',
+                    title: '订单编号'
                 },{
                     field: 'username',
-                    title: '设计师用户名'
+                    title: '用户名'
                 }, {
-                    field: 'nickName',
-                    title: '设计师昵称'
+                    field: 'amount',
+                    title: '订单金额'
                 }, {
-                    field: 'email',
-                    title: '邮箱'
+                    field: 'time',
+                    title: '订单创建时间'
                 }, {
-                    field: 'headerUrl',
-                    title: '头像'
+                    field: 'amount',
+                    title: '订单金额（元）'
                 }, ],
             striped : false, //是否显示行间隔色
             pageNumber : 1, //初始化加载第一页
             pagination : true,//是否分页
             sidePagination : 'client',//server:服务器端分页|client：前端分页
             pageSize : 5,//单页记录数
+
         });
+
+        $('#data-table').bootstrapTable('hideColumn',"id");
 
 
         function okk() {
@@ -157,7 +165,7 @@
         //点击搜索单据号
         $('#sn-btn').click(function(){
             var snVal=$('#search').val();
-            searchFun(snVal,'username');
+            searchFun(snVal,'orderNo');
         });
 
         function searchFun(searchVal,snNameStr){ 　　//searchVal为用户输入的搜索值，snNameStr为搜索的字段

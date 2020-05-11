@@ -49,12 +49,13 @@ public interface OrderService {
      * @param limit 每页显示上限
      * @return
      */
-    List<Order> findPageByType(int offset, int limit ,int type);
+     List<Order> findPageByType(int offset, int limit ,int type);
+
 
     /**
      * 查询用户数量（用于分页）
      * @return
      */
-    int selectRowsByType(int type);
+     int selectRowsByType(int type);
 
 }

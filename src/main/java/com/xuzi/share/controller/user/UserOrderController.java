@@ -184,12 +184,12 @@ public class UserOrderController {
 
 
     /**
-     * 商品详情页下单
+     * 竞标定制下单
      * @param model
      * @return
      */
     @RequestMapping("/bidding")
-    public String bidding(Model model, Integer designerId,Integer amount, HttpSession session) {
+    public String bidding(Model model, Integer designerId,Integer amount, HttpSession session,Integer id) {
         //TODO 暂时默认授权使用
         Integer paytype = 1;
 
@@ -207,6 +207,11 @@ public class UserOrderController {
         order.setUpdateTime(System.currentTimeMillis());
         order.setUserId(Integer.parseInt(session.getAttribute("userId").toString()));
         Order insert = orderService.insert(order);
+
+        Order order1 = new Order();
+        order1.setId(insert.getId());
+        order1.setBiddingId(id);
+        int i = orderService.updateById(order1);
         model.addAttribute("order", order);
         model.addAttribute("amount", 100);
         return  "user/bidorder";
@@ -220,9 +225,9 @@ public class UserOrderController {
      */
     @RequestMapping("/tuikuan")
     @ResponseBody
-    public String tuikuan(Model model, HttpSession session,Order order,Integer amount,String reason){
+    public String tuikuan(Model model, HttpSession session,Order order,Integer refundAmount,String reason){
         order.setRefundStatus(1);
-        order.setRefundAmount(amount);
+        order.setRefundAmount(refundAmount);
         order.setRefundReason(reason);
         order.setStatus(OrderStatus.REFUNDING);
         orderService.updateById(order);

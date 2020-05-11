@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -74,6 +75,18 @@ public class UserUrlController {
         Order order = new Order();
         order.setUserId(Integer.parseInt(userId.toString()));
         List<Order> orders = orderService.selectbyCondition(order);
+        for (Order order1 : orders) {
+            //设置订单编号
+            order1.setOrderNo("#P00" + order1.getId());
+            //设置订单时间
+            order1.setTime(new Date(order1.getCreateTime()).toString());
+            //设置订单内容
+            if(order1.getBiddingId()!=null){
+                BiddingCustom byId = biddingCustomService.findById(order1.getBiddingId());
+                order1.setDescribe(byId.getDescribe());
+                order1.setEndline(byId.getEndTime());
+            }
+        }
         // todo 目前只有普通订单
         Map<Integer,List<Order>> map = orders.stream().collect(Collectors.groupingBy(Order::getType));
         model.addAttribute("user", user);
@@ -95,6 +108,18 @@ public class UserUrlController {
         Order order = new Order();
         order.setUserId(Integer.parseInt(userId.toString()));
         List<Order> orders = orderService.selectbyCondition(order);
+        for (Order order1 : orders) {
+            //设置订单编号
+            order1.setOrderNo("#J00" + order1.getId());
+            //设置订单时间
+            order1.setTime(new Date(order1.getCreateTime()).toString());
+            //设置订单内容
+            if(order1.getBiddingId()!=null){
+                BiddingCustom byId = biddingCustomService.findById(order1.getBiddingId());
+                order1.setDescribe(byId.getDescribe());
+                order1.setEndline(byId.getEndTime());
+            }
+        }
         // todo 目前只有普通订单
         Map<Integer,List<Order>> map = orders.stream().collect(Collectors.groupingBy(Order::getType));
         model.addAttribute("user", user);
@@ -224,6 +249,35 @@ public class UserUrlController {
         model.addAttribute("items3", items3);
         return "user/search";
     }
+
+    /**
+     * 跳转搜索结果页面
+     * @param model
+     * @return
+     */
+    @RequestMapping("/search/page1")
+    public String searchres(Model model, HttpSession session,String keyword,Page page,Item item) {
+        page.setRows(itemService.selectRowsByKey(keyword));
+        page.setPath("/user/search/page1?keyword="+keyword);
+        Object userId = session.getAttribute("userId");
+        User user = userService.findById(Integer.parseInt(userId.toString()));
+        model.addAttribute("user", user);
+        model.addAttribute("keyword", keyword);
+        List<Item> items = itemService.selectByKey(page.getOffset(), page.getLimit(), keyword);
+        ArrayList<Item> list = new ArrayList<>();
+        if(item != null){
+            List<Item> items1 = itemService.selectByCondition(item);
+            list.addAll(items1);
+        }
+        for (Item item1 : items) {
+            if(!list.contains(item1)){
+                items.remove(item1);
+            }
+        }
+        model.addAttribute("items", items);
+        return "user/searchres";
+    }
+
 
     public List<OrderDetail> transfer(List<Order> orderList) throws InvocationTargetException, IllegalAccessException {
         List<OrderDetail> orderDetailList = new ArrayList<>();

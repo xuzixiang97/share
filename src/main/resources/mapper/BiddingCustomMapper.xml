@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xuzi.share.dao.BiddingCustomMapper" >
+  <resultMap id="BaseResultMap" type="com.xuzi.share.entity.BiddingCustom" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="category_ids" property="categoryIds" jdbcType="VARCHAR" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="enclosure" property="enclosure" jdbcType="VARCHAR" />
+    <result column="designer_ids" property="designerIds" jdbcType="VARCHAR" />
+    <result column="item_ids" property="itemIds" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+    <result column="earnest" property="earnest" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+    <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+    <result column="extended_field" property="extendedField" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, category_ids, `describe`, quantity, enclosure, designer_ids, item_ids,
+    status, amount, earnest, create_time, update_time, end_time, extended_field
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bidding_custom
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bidding_custom
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xuzi.share.entity.BiddingCustom"   useGeneratedKeys="true" keyProperty="id">
+    insert into bidding_custom (id, user_id, category_ids, 
+      `describe`, quantity, enclosure,
+      designer_ids, item_ids, status, 
+      amount, earnest, create_time, 
+      update_time, end_time, extended_field
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{categoryIds,jdbcType=VARCHAR}, 
+      #{describe,jdbcType=VARCHAR}, #{quantity,jdbcType=INTEGER}, #{enclosure,jdbcType=VARCHAR}, 
+      #{designerIds,jdbcType=VARCHAR}, #{itemIds,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{amount,jdbcType=BIGINT}, #{earnest,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=BIGINT}, #{endTime,jdbcType=BIGINT}, #{extendedField,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xuzi.share.entity.BiddingCustom" >
+    insert into bidding_custom
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="categoryIds != null" >
+        category_ids,
+      </if>
+      <if test="describe != null" >
+        `describe`,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="enclosure != null" >
+        enclosure,
+      </if>
+      <if test="designerIds != null" >
+        designer_ids,
+      </if>
+      <if test="itemIds != null" >
+        item_ids,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="earnest != null" >
+        earnest,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="extendedField != null" >
+        extended_field,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryIds != null" >
+        #{categoryIds,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="enclosure != null" >
+        #{enclosure,jdbcType=VARCHAR},
+      </if>
+      <if test="designerIds != null" >
+        #{designerIds,jdbcType=VARCHAR},
+      </if>
+      <if test="itemIds != null" >
+        #{itemIds,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="earnest != null" >
+        #{earnest,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="extendedField != null" >
+        #{extendedField,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xuzi.share.entity.BiddingCustom" >
+    update bidding_custom
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryIds != null" >
+        category_ids = #{categoryIds,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        `describe` = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="enclosure != null" >
+        enclosure = #{enclosure,jdbcType=VARCHAR},
+      </if>
+      <if test="designerIds != null" >
+        designer_ids = #{designerIds,jdbcType=VARCHAR},
+      </if>
+      <if test="itemIds != null" >
+        item_ids = #{itemIds,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="earnest != null" >
+        earnest = #{earnest,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="extendedField != null" >
+        extended_field = #{extendedField,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xuzi.share.entity.BiddingCustom" >
+    update bidding_custom
+    set user_id = #{userId,jdbcType=INTEGER},
+      category_ids = #{categoryIds,jdbcType=VARCHAR},
+      describe = #{describe,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      enclosure = #{enclosure,jdbcType=VARCHAR},
+      designer_ids = #{designerIds,jdbcType=VARCHAR},
+      item_ids = #{itemIds,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=BIGINT},
+      earnest = #{earnest,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      end_time = #{endTime,jdbcType=BIGINT},
+      extended_field = #{extendedField,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from `bidding_custom`
+    order by create_time desc
+    limit #{offset}, #{limit}
+  </select>
+
+  <select id="selectRows" resultType="int">
+    select count(id) from `bidding_custom`
+  </select>
+
+  <select id="findByUserId" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from `bidding_custom`
+    where user_id = #{userId}
+    order by create_time desc
+  </select>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from `bidding_custom`
+  </select>
+
+  <select id="findById" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from `bidding_custom`
+    where id = #{id}
+  </select>
+
+
+</mapper>
