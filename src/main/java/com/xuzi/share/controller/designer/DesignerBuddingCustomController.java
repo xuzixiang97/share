@@ -57,10 +57,10 @@ public class DesignerBuddingCustomController {
         while (iterator.hasNext()){
             BiddingCustom biddingCustom = iterator.next();
             biddingCustom.setOrderNo("J00"+biddingCustom.getId());
-            if (biddingCustom.getDesignerIds()!=null){
-                String[] split = biddingCustom.getDesignerIds().split(",");
-                for (String s : split) {
-                    if(Integer.parseInt(s) == Integer.parseInt(designerId.toString())){
+            if (biddingCustom.getDesignerIds()!=null && biddingCustom.getDesignerIds()!= ""){
+                List<BidDesigner> designerList1 = JSON.parseArray(biddingCustom.getDesignerIds(), BidDesigner.class);
+                for (BidDesigner s : designerList1) {
+                    if(s.getDesignerId() == Integer.parseInt(designerId.toString())){
                         iterator.remove();
                     }
                 }
@@ -72,22 +72,95 @@ public class DesignerBuddingCustomController {
 
 
     /**
+     * 个人
+     * @param model
+     * @return
+     */
+    @RequestMapping("/mydata")
+    @ResponseBody
+    public String mydata(Model model, HttpSession session) {
+        Object designerId = session.getAttribute("designerId");
+        List<BiddingCustom> customList = biddingCustomService.findAll();
+        List<BiddingCustom> result = new ArrayList<>();
+        Iterator<BiddingCustom> iterator = customList.iterator();
+        while (iterator.hasNext()){
+            BiddingCustom biddingCustom = iterator.next();
+            biddingCustom.setOrderNo("J00"+biddingCustom.getId());
+            if (biddingCustom.getDesignerIds()!=null && biddingCustom.getDesignerIds()!= ""){
+                List<BidDesigner> designerList1 = JSON.parseArray(biddingCustom.getDesignerIds(), BidDesigner.class);
+                for (BidDesigner s : designerList1) {
+                    if(s.getDesignerId() == Integer.parseInt(designerId.toString())){
+                        biddingCustom.setBaojia(s.getPrice());
+                        result.add(biddingCustom);
+                    }
+                }
+            }
+        }
+        String s = JSON.toJSONString(result);
+        return s;
+    }
+
+
+
+    /**
      * 参加竞标
      * @param model
      * @return
      */
     @RequestMapping("/bidding")
     @ResponseBody
-    public String add(Model model,  Integer id,HttpSession session,String key) {
+    public String add(Model model,  Integer id,String remark,Integer price,HttpSession session,String key) {
         Object designerId = session.getAttribute("designerId");
         BiddingCustom custom = biddingCustomService.findById(id);
-        if(custom.getDesignerIds()==null){
-            custom.setDesignerIds(designerId.toString());
+        if(custom.getDesignerIds() != null){
+            List<BidDesigner> designerList1 = JSON.parseArray(custom.getDesignerIds(), BidDesigner.class);
+            BidDesigner designer = new BidDesigner();
+            designer.setDesignerId(Integer.parseInt(designerId.toString()));
+            designer.setRemark(remark);
+            designer.setPrice(price);
+            designer.setStatus("竞标中");
+            designerList1.add(designer);
+            String jsonString = JSON.toJSONString(designerList1);
+            custom.setDesignerIds(jsonString);
         }else{
-            custom.setDesignerIds(custom.getDesignerIds()+","+designerId.toString());
+            BidDesigner designer = new BidDesigner();
+            designer.setDesignerId(Integer.parseInt(designerId.toString()));
+            designer.setRemark(remark);
+            designer.setPrice(price);
+            designer.setStatus("竞标中");
+            List<BidDesigner> designerList = new ArrayList<>();
+            designerList.add(designer);
+            String jsonString = JSON.toJSONString(designerList);
+            custom.setDesignerIds(jsonString);
         }
         biddingCustomService.update(custom);
         return ShareUtil.getJSONString(0);
     }
 
+
+    /**
+     * 参加竞标
+     * @param model
+     * @return
+     */
+    @RequestMapping("/update")
+    @ResponseBody
+    public String update(Model model,  Integer id,String remark,Integer price,HttpSession session,String key) {
+        Object designerId = session.getAttribute("designerId");
+        BiddingCustom custom = biddingCustomService.findById(id);
+        if(custom.getDesignerIds() != null){
+            List<BidDesigner> designerList1 = JSON.parseArray(custom.getDesignerIds(), BidDesigner.class);
+            for (BidDesigner designer : designerList1) {
+                if(designer.getDesignerId() == Integer.parseInt(designerId.toString())){
+                    designer.setDesignerId(Integer.parseInt(designerId.toString()));
+                    designer.setRemark(remark);
+                    designer.setPrice(price);
+                }
+            }
+            String jsonString = JSON.toJSONString(designerList1);
+            custom.setDesignerIds(jsonString);
+        }
+        biddingCustomService.update(custom);
+        return ShareUtil.getJSONString(0);
+    }
 }

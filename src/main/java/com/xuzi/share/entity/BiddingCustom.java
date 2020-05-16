@@ -19,8 +19,12 @@ public class BiddingCustom {
 
     private String designerIds;
 
+    private Integer baojia;
+
 
     private List<Designer> designerIdList;
+
+    private List<BidDesigner> bidDesigners;
 
     private String itemIds;
 
@@ -174,5 +178,21 @@ public class BiddingCustom {
 
     public void setOrderNo(String orderNo) {
         this.orderNo = orderNo;
+    }
+
+    public List<BidDesigner> getBidDesigners() {
+        return bidDesigners;
+    }
+
+    public void setBidDesigners(List<BidDesigner> bidDesigners) {
+        this.bidDesigners = bidDesigners;
+    }
+
+    public Integer getBaojia() {
+        return baojia;
+    }
+
+    public void setBaojia(Integer baojia) {
+        this.baojia = baojia;
     }
 }

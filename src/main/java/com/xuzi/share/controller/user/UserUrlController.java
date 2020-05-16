@@ -1,6 +1,7 @@
 package com.xuzi.share.controller.user;
 
 
+import com.alibaba.fastjson.JSON;
 import com.xuzi.share.constant.OrderType;
 import com.xuzi.share.entity.*;
 import com.xuzi.share.entity.response.OrderDetail;
@@ -197,12 +198,14 @@ public class UserUrlController {
 
         for (BiddingCustom biddingCustom : biddingCustomList) {
             if (biddingCustom.getDesignerIds()!=null){
-                String[] split = biddingCustom.getDesignerIds().split(",");
+                List<BidDesigner> designerList1 = JSON.parseArray(biddingCustom.getDesignerIds(), BidDesigner.class);
                 ArrayList<Designer> list = new ArrayList<>();
-                for (String s : split) {
-                    Designer designer = designerService.selectById(Integer.parseInt(s));
+                for (BidDesigner s : designerList1) {
+                    Designer designer = designerService.selectById(s.getDesignerId());
+                    s.setDesignerName(designer.getUsername());
                     list.add(designer);
                 }
+                biddingCustom.setBidDesigners(designerList1);
                 biddingCustom.setDesignerIdList(list);
             }
         }
@@ -236,18 +239,17 @@ public class UserUrlController {
      * @param model
      * @return
      */
-    @RequestMapping("/search/page")
-    public String search(Model model, HttpSession session) {
+    @RequestMapping("/fenlei")
+    public String search(Model model, HttpSession session,String categoryId,Page page) {
         Object userId = session.getAttribute("userId");
         User user = userService.findById(Integer.parseInt(userId.toString()));
         model.addAttribute("user", user);
-        List<Item> items1 = itemService.selectByStyleId("原创上衣");//原创上衣
-        List<Item> items2 = itemService.selectByStyleId("时尚群套");//时尚套裙
-        List<Item> items3 = itemService.selectByStyleId("春季新品");//春季新品
-        model.addAttribute("items1", items1);
-        model.addAttribute("items2", items2);
-        model.addAttribute("items3", items3);
-        return "user/search";
+        page.setRows(itemService.selectRowsByCategoryId(categoryId));
+        page.setPath("/user/fenlei?categoryId="+categoryId);
+        List<Item> items = itemService.findPageByCategoryId(page.getOffset(), page.getLimit(), categoryId);
+        model.addAttribute("items", items);
+
+        return "user/fenlei";
     }
 
     /**
@@ -265,16 +267,27 @@ public class UserUrlController {
         model.addAttribute("keyword", keyword);
         List<Item> items = itemService.selectByKey(page.getOffset(), page.getLimit(), keyword);
         ArrayList<Item> list = new ArrayList<>();
-        if(item != null){
-            List<Item> items1 = itemService.selectByCondition(item);
-            list.addAll(items1);
-        }
+        List<Item> items1 = itemService.selectByCondition(item);
+        list.addAll(items1);
+        List<Integer> ids  = new ArrayList<>();
+        List<Item> res  = new ArrayList<>();
         for (Item item1 : items) {
-            if(!list.contains(item1)){
-                items.remove(item1);
+            for (Item item2 : items1) {
+                if(item1.getId()==item2.getId()){
+                    ids.add(item1.getId());
+                }
             }
         }
-        model.addAttribute("items", items);
+
+        for (Integer id : ids) {
+            for (Item item1 : items) {
+                if(item1.getId()==id){
+                    res.add(item1);
+                }
+            }
+        }
+
+        model.addAttribute("items", res);
         return "user/searchres";
     }
 

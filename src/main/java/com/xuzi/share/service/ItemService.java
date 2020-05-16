@@ -17,10 +17,25 @@ public interface ItemService {
     List<Item> findPage(int offset, int limit);
 
     /**
+     * 查询作品（用于管理员后台）
+     * @param offset  起始行
+     * @param limit 每页显示上限
+     * @return
+     */
+    List<Item> findPageByCategoryId(int offset, int limit, String categoryId);
+
+
+    /**
      * 查询作品数量（用于分页，管理员后台）
      * @return
      */
     int selectRows();
+
+    /**
+     * 查询作品数量（用于分页，管理员后台）
+     * @return
+     */
+    int selectRowsByCategoryId(String categoryId);
 
     /**
      *

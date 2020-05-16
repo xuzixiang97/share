@@ -45,6 +45,7 @@
 				$('[data-toggle="popover"]').popover();
 			});
 		</script>
+		<link rel="stylesheet" href="https://formden.com/static/assets/demos/bootstrap-iso/bootstrap-iso/bootstrap-iso.css" />
 
 	</head>
 	<body>
@@ -176,7 +177,7 @@
 				<div class="row" th:each="item,iterStat : ${biddingCustomList}">
 					<div class="col-md-8">
 						<h5>
-							<a href="/collections/album/12476/" th:text="'订单编号:#000'+${item.id}">
+							<a href="/collections/album/12476/" th:text="'订单编号:#J000'+${item.id}">
 
 								主题开发编号: 12476 / 2021春夏女装趋势预测：白色勾边 White Outline
 
@@ -185,18 +186,53 @@
 						</h5>
 						<p th:text="${item.describe}">该板块根据wgsn趋势为客户推荐最新女装趋势花型，保持两周更新一次的频率，在首页banner页进行推荐推广，欢迎设计师投稿～</p>
 					</div>
-					<div class="col-md-4 text-right" th:each="aa,iterStat : ${item.getDesignerIdList()}">
+					<input th:id="cnm" th:value="${item.describe}" hidden="true"/>
 
+					<div class="col-md-4 text-right" th:each="aa,iterStat : ${item.getBidDesigners()}">
 						接单设计师：
-						<a th:text="${aa.username}" onclick="index(this)" th:name="${aa.id}">aa</a>
-						<a  onclick="bidding(this)" th:name="${aa.id}" th:id="${item.id}">选择</a>
-
+						<a th:text="${aa.designerName}" onclick="index(this)" th:name="${aa.designerId}">aa</a>
+						<a  onclick="tuikuan(this)" th:name="${aa.designerId}" th:id="${item.id}">查看</a>
+						<input th:id="'price'+${aa.designerId}" th:value="${aa.price}" hidden="true"/>
+						<input th:id="'remark'+${aa.designerId}" th:value="${aa.remark}" hidden="true"/>
+						<input th:id="'designerId'+${aa.designerId}" th:value="${aa.designerId}" hidden="true"/>
 					</div>
 				</div>
 
 			</div>
 
+			<div class="modal fade bootstrap-iso" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">查看报价</h4>
+						</div>
+						<div class="modal-body">
+							<form id="form1">
+								<div class="form-group">
+									<label class="font-noraml">报价 *</label>
+									<input id="price" name="price" type="text" class=" input-sm form-control required" style="width: 200px" disabled="disabled">
+								</div>
+								<div class="form-group">
+									<label class="font-noraml">备注 *</label>
+									<input id="id" name="id" hidden="true"/>
+									<input id="designerId" name="designerId" hidden="true"/>
+									<textarea id="remark" class="form-control" rows="8" name="remark" disabled="disabled"></textarea>
+								</div>
+							</form>
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-primary" name="" onclick="okk()">提交</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal -->
+			</div>
+
 		</div>
+
+
 
 
 		<!-------------------login-------------------------->
@@ -230,6 +266,7 @@
 		<script th:src="@{/user/js/public.js}" type="text/javascript" charset="utf-8"></script>
 		<script th:src="@{/user/js/nav.js}" type="text/javascript" charset="utf-8"></script>
 		<script th:src="@{/user/js/jquery.flexslider-min.js}" type="text/javascript" charset="utf-8"></script>
+		<script th:src="@{/admin/js/bootstrap.min.js?v=3.3.6}"></script>
 		<script type="text/javascript">
 			$(function() {
 				$('#home_slider').flexslider({
@@ -245,14 +282,25 @@
 			});
 
 			function bidding(element) {
-				alert("/share/user/order/bidding?designerId=" +element.name+"&id="+element.id)
 				window.location.href ="/share/user/order/bidding?designerId=" +element.name+"&id="+element.id;
 			}
 
-			function index(element) {
-				window.location.href ="/share/user/designer/page?designerId=" +element.name;
+			function okk() {
+				window.location.href ="/share/user/order/bidding?designerId=" +document.getElementById('designerId').value +"&id="+document.getElementById('id').value +"&amount="+document.getElementById('price').value;
 			}
 
 		</script>
+	<script>
+		function tuikuan(element){
+			$("#myModal").modal("show");
+			$("#id").val(element.id)
+			$("#designerId").val(document.getElementById('designerId'+ element.name).value)
+			$("#price").val(document.getElementById('price'+ element.name).value)
+			$("#remark").val(document.getElementById('remark'+ element.name).value)
+
+
+
+		}
+	</script>
 	</body>
 </html>

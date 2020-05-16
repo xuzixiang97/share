@@ -21,7 +21,11 @@ public interface ItemMapper {
 
     List<Item> findPage(@Param("offset") int offset, @Param("limit") int limit);
 
+    List<Item> findPageByCategoryId(@Param("offset") int offset, @Param("limit") int limit,@Param("categoryIds") String categoryIds);
+
     int selectRows();
+
+    int selectRowsByCategoryId(String categoryIds);
 
     List<Item> findPageByDesignerId(@Param("offset") int offset, @Param("limit") int limit,@Param("designerId") int designerId);
 

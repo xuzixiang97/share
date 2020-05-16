@@ -22,7 +22,7 @@
                         <a href="#" id="reg">注册</a>-->
 					</p>
 					<form action="#" method="get" class="fl">
-						<input type="text" placeholder="热门搜索：干花花瓶" />
+						<input type="text" placeholder="热门搜索：新品" />
 						<input type="button" />
 					</form>
 					<div class="btn fl clearfix">
@@ -70,7 +70,7 @@
 		<!-----------------address------------------------------->
 		<div class="address">
 			<div class="wrapper clearfix">
-				<a href="index.html">首页</a>
+				<a th:href="@{/user/index/page}">首页/</a>
 				<a href="#" class="on" th:text="${item.name}">【最家】非洲菊仿真花干花</a>
 			</div>
 		</div>
@@ -81,17 +81,16 @@
 					<div class="proImg fl">
 						<img class="det" th:src="${item.showImg}" />
 						<div class="smallImg clearfix">
-							<img th:src="${item.showImg}" data-src="img/temp/proDet01_big.jpg">
-							<img th:src="${item.showImg}" data-src="img/temp/proDet02_big.jpg">
-							<img th:src="${item.showImg}" data-src="img/temp/proDet03_big.jpg">
-							<img th:src="${item.showImg}" data-src="img/temp/proDet04_big.jpg">
+							<img th:src="${item.showImg}" th:data-src="${item.showImg}">
+							<img th:src="${item.showImg2}" data-src="img/temp/proDet02_big.jpg">
+							<img th:src="${item.showImg3}" data-src="img/temp/proDet03_big.jpg">
 						</div>
 					</div>
 					<div class="fr intro">
 						<div class="title">
 							<h4 th:text="${item.name}">【最家】非洲菊仿真花干花</h4>
 							<p th:text="${item.describe}">【破损补寄】【适合放室内、卧室、书房、餐桌、办公室、客厅、电视柜等地方】【无理由退换货】【包邮】【白色现代简约花瓶】</p>
-							<span th:text="${item.authorizeUnitprice}">授权价格￥59.90</span>
+							<span th:text="'价格￥'+${item.authorizeUnitprice}">授权价格￥59.90</span>
 						</div>
 						<div class="proIntro">
 							<div class="num clearfix">
@@ -109,7 +108,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="introMsg wrapper clearfix">
+		<div class="introMsg wrapper clearfix" >
 			<div class="msgL fl">
 				<div class="msgTit clearfix">
 					<a class="on">商品详情</a>
@@ -117,13 +116,9 @@
 				</div>
 				<div class="msgAll">
 					<div class="msgImgs">
-						<img th:src="${item.showImg}">
-						<img th:src="${item.showImg}">
-						<img th:src="${item.showImg}">
-						<img th:src="${item.showImg}">
-						<img th:src="${item.showImg}">
-						<img th:src="${item.showImg}">
-
+						<img th:src="${item.showImg}" width="888px">
+						<img th:src="${item.showImg2}" width="888px">
+						<img th:src="${item.showImg3}" width="888px">
 					</div>
 			</div>
 

@@ -37,7 +37,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>竞标定制</h5>
+                        <h5>我的竞标</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -60,7 +60,7 @@
                         <div class="row">
                             <div class="col-sm-5 m-b-xs">
                                 <div id="toolbox">
-                                    <button class="btn" onclick="show()"><span class="glyphicon glyphicon-plus" ></span> 参加</button>
+                                    <button class="btn" onclick="page()"><span class="glyphicon glyphicon-open" ></span> 重新报价</button>
                                 </div>
                             </div>
                             <div class="col-sm-4 m-b-xs">
@@ -68,12 +68,10 @@
                             <div class="col-sm-3">
                                 <div class="input-group">
                                     <input type="text" placeholder="请输入关键词" class="input-sm form-control"> <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-primary"> 搜索</button> </span>
+                                        <button type="button" class="btn btn-sm btn-primary" onclick="page()"> 搜索</button> </span>
                                 </div>
                             </div>
                         </div>
-
-
 
                         <table id="data-table"></table>
 
@@ -82,7 +80,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title" id="myModalLabel">拒绝退款</h4>
+                                        <h4 class="modal-title" id="myModalLabel">重新报价</h4>
                                     </div>
                                     <div class="modal-body">
                                         <form id="form1">
@@ -140,7 +138,7 @@
         var $table = $('#data-table');
 
         $table.bootstrapTable({
-            url: "/share/designer/bidding/data",
+            url: "/share/designer/bidding/mydata",
             method: 'get',
             columns: [
                 {
@@ -161,6 +159,9 @@
                 }, {
                     field: 'amount',
                     title: '订单金额（元）'
+                }, {
+                    field: 'baojia',
+                    title: '我的报价（元）'
                 }, ],
             striped : false, //是否显示行间隔色
             pageNumber : 1, //初始化加载第一页
@@ -174,10 +175,8 @@
         $('#data-table').bootstrapTable('hideColumn',"id");
 
         function okk() {
-            var row=$("#data-table").bootstrapTable('getSelections');
-
             $.ajax({
-                url: "/share/designer/bidding/bidding",
+                url: "/share/designer/bidding/update",
                 method: "post",
                 dataType: "json",
                 data: $('#form1').serialize(),
@@ -187,16 +186,34 @@
                         type: "success"
                     });
                     $("#data-table").bootstrapTable('refresh');
+                    $("#myModal").modal("hide");
                 }
             });
         }
 
-        function show() {
+        function page() {
             $("#myModal").modal("show");
             var row=$("#data-table").bootstrapTable('getSelections');
             $("#id").val(row[0].id);
         }
 
+        function handleFile1() {
+            $.ajax({
+                url: "http://upload-z2.qiniup.com",
+                method: "post",
+                processData: false,
+                contentType: false,
+                data: new FormData($("#form1")[0]),
+                success: function(data) {
+                    if(data && data.code == 0) {
+
+                    } else {
+                        alert("上传失败!");
+                    }
+                }
+            });
+            return false;
+        }
 
     </script>
 

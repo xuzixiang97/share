@@ -225,12 +225,15 @@
     select <include refid="Base_Column_List"></include>
     from `bidding_custom`
     where user_id = #{userId}
+    and status = 1
     order by create_time desc
   </select>
 
   <select id="findAll" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"></include>
     from `bidding_custom`
+    where status = 1
+    order by create_time desc
   </select>
 
   <select id="findById" resultMap="BaseResultMap">

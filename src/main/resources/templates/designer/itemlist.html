@@ -37,7 +37,7 @@
                 <div class="ibox float-e-margins">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>用户信息</h5>
+                        <h5>作品信息</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -285,11 +285,8 @@
                     title: '商品描述'
                 }, {
                     field: 'authorizeUnitprice',
-                    title: '授权使用价格（元）'
-                }, {
-                        field: 'buyoutUnitprice',
-                        title: '买断价格（元）'
-                    },
+                    title: '价格（元）'
+                },
                     {
                         field: 'categoryIds',
                         title: '类目'
@@ -364,7 +361,7 @@
                 $("#gender").val(row[0].gender);
                 $("#url1").attr('href',row[0].showImg);
                 $("#url2").attr('href',row[0].showImg2);
-                $("#img3").attr('href',row[0].showImg3);
+                $("#url3").attr('href',row[0].showImg3);
                 $("#myModal").modal("show");
             }
 

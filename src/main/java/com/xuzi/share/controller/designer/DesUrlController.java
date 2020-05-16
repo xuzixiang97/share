@@ -115,6 +115,18 @@ public class DesUrlController {
         return "designer/bidding_order";
     }
 
+    /**
+     * 跳转竞标订单
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/mybidding/page")
+    public String mybidding(Model model) {
+        return "designer/mybidding";
+    }
+
+
 
 
 

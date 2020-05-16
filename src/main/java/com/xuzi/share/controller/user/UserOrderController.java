@@ -36,6 +36,9 @@ public class UserOrderController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BiddingCustomService biddingCustomService;
+
     /**
      * 商品详情页下单
      * @param model
@@ -196,7 +199,7 @@ public class UserOrderController {
         //生成订单信息
         Order order = new Order();
         if(paytype == 1){
-            order.setAmount(100);
+            order.setAmount(amount);
         }
         order.setType(OrderType.BIDDING_ORDER);
         order.setCreateTime(System.currentTimeMillis());
@@ -208,12 +211,17 @@ public class UserOrderController {
         order.setUserId(Integer.parseInt(session.getAttribute("userId").toString()));
         Order insert = orderService.insert(order);
 
+        BiddingCustom biddingCustom = new BiddingCustom();
+        biddingCustom.setId(id);
+        biddingCustom.setStatus(2);
+        biddingCustomService.update(biddingCustom);
+
         Order order1 = new Order();
         order1.setId(insert.getId());
         order1.setBiddingId(id);
         int i = orderService.updateById(order1);
         model.addAttribute("order", order);
-        model.addAttribute("amount", 100);
+        model.addAttribute("amount", amount);
         return  "user/bidorder";
     }
 

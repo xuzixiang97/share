@@ -3,6 +3,7 @@ package com.xuzi.share.service;
 import com.xuzi.share.ShareApplication;
 import com.xuzi.share.constant.UserStatus;
 import com.xuzi.share.constant.UserType;
+import com.xuzi.share.entity.Designer;
 import com.xuzi.share.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,8 @@ import java.util.List;
 public class AddressServiceTest {
     @Autowired
     private UserService userService;
+    @Autowired
+    private DesignerService designerService;
 
     @Test
     public void insertUser() {
@@ -44,4 +47,19 @@ public class AddressServiceTest {
             System.out.println(amount/(i-7));
         }
     }
+
+    @Test
+    public void insertDesigner() {
+        for(int i = 5; i < 100; i++){
+            Designer user = new Designer();
+            user.setUsername("designer" + i);
+            user.setNickName("设计师" + i);
+            user.setHeaderUrl("http://qa574h0i0.bkt.clouddn.com/designer2.jpg");
+            user.setPassword("123456");
+            user.setEmail("xzixiang"+i+"@163.com");
+            user.setStatus(1);
+            designerService.register(user);
+        }
+    }
+
 }

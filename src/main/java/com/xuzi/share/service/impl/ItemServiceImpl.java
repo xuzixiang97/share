@@ -21,8 +21,18 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<Item> findPageByCategoryId(int offset, int limit, String categoryId) {
+        return itemMapper.findPageByCategoryId(offset,limit,categoryId);
+    }
+
+    @Override
     public int selectRows() {
         return itemMapper.selectRows();
+    }
+
+    @Override
+    public int selectRowsByCategoryId(String categoryId) {
+        return itemMapper.selectRowsByCategoryId(categoryId);
     }
 
     @Override
